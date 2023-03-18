@@ -9,7 +9,10 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div
+        className="container"
+        style={{ maxWidth: "300px", maxHeight: "300px" }}
+      >
         <h2> Login </h2>
         <div className="row">
           <form
