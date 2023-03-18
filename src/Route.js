@@ -2,9 +2,9 @@ import { Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 
-const NotFound = () => {
+/*const NotFound = () => {
   return <Link to="..">NotFound.... 돌아가기</Link>;
-};
+};*/
 
 const Router = () => {
   return (
