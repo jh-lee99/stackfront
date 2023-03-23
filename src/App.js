@@ -1,7 +1,8 @@
 import { Container } from "react-bootstrap";
 import Layout from "./layouts/Layout";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+
 function App() {
   return (
     <Routes>
