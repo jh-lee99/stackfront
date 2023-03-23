@@ -18,12 +18,16 @@ const Header = () => {
           <Container>
             <Navbar.Brand>Danny TWLC</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+            <Navbar.Collapse
+              id="basic-navbar-nav"
+              className="justify-content-end"
+            >
               <Nav className="ml-auto">
                 <Nav.Link>
                   <Button
                     variant="primary"
                     onClick={() => setLoginModalOn(true)}
+                    id="fullBtn"
                   >
                     Sign In
                   </Button>
@@ -32,6 +36,7 @@ const Header = () => {
                   <Button
                     variant="secondary"
                     onClick={() => setRegistModalOn(true)}
+                    id="fullBtn"
                   >
                     Sign Up
                   </Button>
