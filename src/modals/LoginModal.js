@@ -26,7 +26,7 @@ const LoginModal = ({ show, onHide }) => {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
-            <Button block variant="info" type="button" className="my-3">
+            <Button block variant="info" type="button" className="my-3" id="fullBtn">
               Sign in
             </Button>
 
