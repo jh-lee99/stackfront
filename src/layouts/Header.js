@@ -16,7 +16,12 @@ const Header = () => {
       <header>
         <Navbar bg="light" expand="lg">
           <Container>
-            <Navbar.Brand>Danny TWLC</Navbar.Brand>
+            <Navbar.Brand href="#home">
+              <img src="images\logo.png"
+              alt="For. travel"
+              width="auto"
+              height='50vh'/>
+              </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
               <Nav className="ml-auto">
