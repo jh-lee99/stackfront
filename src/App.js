@@ -1,14 +1,19 @@
-import { Container } from "react-bootstrap";
-import Layout from "./layouts/Layout";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, redirect } from "react-router-dom";
 import Home from "./pages/Home";
+import Travel from "./pages/Travel";
 
-function App() {
+const App = () => {
+  let isAuthorized = sessionStorage.getItem("isAuthorized");
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
+    <div>
+      {!isAuthorized ? <redirect to="/travel" /> : <redirect to="/" />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/travel" element={<Travel />} />
+      </Routes>
+    </div>
   );
-}
+};
 
 export default App;

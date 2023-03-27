@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <Container>
-        <div style={{ textAlign: "center" }}>&copy; 2020 Danny</div>
+        <div style={{ textAlign: "center" }}>&copy; 2023 ForTravel</div>
       </Container>
     </footer>
   );
