@@ -66,9 +66,7 @@ const RegistModal = ({ show, onHide }) => {
     >
       <Container>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            회원정보 수정
-          </Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Sign Up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -78,6 +76,22 @@ const RegistModal = ({ show, onHide }) => {
                 placeholder="Enter Nickname"
                 value={Nickname}
                 onChange={onChangeNickname}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Id</Form.Label>
+              <Form.Control
+                placeholder="Enter Id"
+                value={Id}
+                onChange={onChangeId}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                placeholder="Enter Email"
+                value={Email}
+                onChange={onChangeEmail}
               />
             </Form.Group>
 
@@ -110,7 +124,7 @@ const RegistModal = ({ show, onHide }) => {
               }}
               id="fullBtn"
             >
-              변경내용 저장
+              Sign Up
             </Button>
 
             <HorizonLine text={"OR"} />

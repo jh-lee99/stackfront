@@ -15,7 +15,24 @@ const LoginModal = ({ show, onHide }) => {
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
-
+  const Login = () => {
+    axios
+      .post("", {
+        id: Id,
+        password: Password,
+      })
+      .then((response) => {
+        // Handle success.
+        console.log("Well done!");
+        console.log("User profile", response.data.user);
+        console.log("User token", response.data.jwt);
+        localStorage.setItem("token", response.data.jwt);
+      })
+      .catch((error) => {
+        // Handle error.
+        console.log("An error occurred:", error.response);
+      });
+  };
   return (
     <Modal
       show={show}
@@ -60,7 +77,7 @@ const LoginModal = ({ show, onHide }) => {
               id="fullBtn"
               name="loginButton"
               value={Password}
-              onClick
+              onClick={Login}
             >
               Login
             </Button>

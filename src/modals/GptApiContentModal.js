@@ -3,10 +3,8 @@ import React from "react";
 
 import { useState } from "react";
 import axios from "axios";
-import GptApiContent from "../layouts/GptApiContent";
 
 const GptApiContentModal = ({ show, onHide }) => {
-  const [GptApiContentModalOn, setGptApiContentModalOn] = useState(false);
   const [Dest, setDest] = useState("");
   const [Start, setStart] = useState("");
   const onChangeDest = (e) => {
@@ -18,7 +16,7 @@ const GptApiContentModal = ({ show, onHide }) => {
 
   const submit = () => {
     axios
-      .get("https://localhost:3000/travelkeyword", {
+      .post("https://localhost:3000/travelkeyword", {
         Destination: Dest,
         StartingPoint: Start,
       })
