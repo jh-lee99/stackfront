@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import "./bootstrap.min.css";
-import App from "./App";
+import { BrowserRouter as Br } from "react-router-dom";
+
+import Router from "./Route";
 import reportWebVitals from "./reportWebVitals";
+
+import "materialize-css/dist/css/materialize.min.css";
+import "materialize-css/dist/js/materialize.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Br>
+    <Router />
+  </Br>
 );
 
 // If you want to start measuring performance in your app, pass a function
