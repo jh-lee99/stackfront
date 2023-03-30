@@ -3,13 +3,6 @@ import RegisterUpdate from "../pages/RegisterUpdate";
 import TravelLayout from "../layouts/TravelLayout";
 
 const Dropdown = () => {
-  const Update = () => {
-    return (
-      <TravelLayout>
-        <RegisterUpdate />;
-      </TravelLayout>
-    );
-  };
   return (
     <div class="dropdown">
       <button
@@ -22,13 +15,7 @@ const Dropdown = () => {
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a
-            class="dropdown-item"
-            href="#"
-            onClick={() => {
-              Update();
-            }}
-          >
+          <a class="dropdown-item" href="/RegisterUpdate">
             회원정보 수정
           </a>
         </li>
