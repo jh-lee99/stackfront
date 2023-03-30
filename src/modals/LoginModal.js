@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
-import Travel from "../pages/Travel";
 
 const LoginModal = ({ show, onHide }) => {
   const [Id, setId] = useState("");

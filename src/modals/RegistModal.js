@@ -36,7 +36,7 @@ const RegistModal = ({ show, onHide }) => {
 
   const register = () => {
     axios
-      .post("../server/server", {
+      .post("", {
         username: Nickname,
         id: Id,
         email: Email,
