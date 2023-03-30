@@ -36,7 +36,7 @@ const RegistModal = ({ show, onHide }) => {
 
   const register = () => {
     axios
-      .post("localhost:3002", {
+      .post("../server/server", {
         username: Nickname,
         id: Id,
         email: Email,
@@ -66,7 +66,9 @@ const RegistModal = ({ show, onHide }) => {
     >
       <Container>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Sign Up</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">
+            회원정보 수정
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -78,24 +80,7 @@ const RegistModal = ({ show, onHide }) => {
                 onChange={onChangeNickname}
               />
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={Email}
-                onChange={onChangeEmail}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Id</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Id"
-                value={Id}
-                onChange={onChangeId}
-              />
-            </Form.Group>
+
             <Form.Group>
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -125,7 +110,7 @@ const RegistModal = ({ show, onHide }) => {
               }}
               id="fullBtn"
             >
-              Sign Up
+              변경내용 저장
             </Button>
 
             <HorizonLine text={"OR"} />
