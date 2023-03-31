@@ -6,7 +6,7 @@ const TravelLayout = ({ children }) => {
   return (
     <>
       <TravelHeader />
-      {children}
+      <div className="ComponentBox">{children}</div>
       <Footer />
     </>
   );

@@ -14,8 +14,8 @@ const TravelHeader = () => {
                 height="50vh"
               />
             </Navbar.Brand>
+            <Dropdown />
           </Container>
-          <Dropdown />
         </Navbar>
       </header>
     </>

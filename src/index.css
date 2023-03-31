@@ -19,5 +19,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 80vh;
+}
+#center {
+  justify-content: center;
+}
+#Form {
+  width: 60%;
+  margin: auto;
+  min-height: 70vh;
 }

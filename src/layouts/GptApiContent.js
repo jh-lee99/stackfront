@@ -27,6 +27,7 @@ const GptApiContent = () => {
           onClick={() => {
             setGptApiContentModalOn(true);
           }}
+          id="Center"
         >
           여행 떠나기
         </Button>
