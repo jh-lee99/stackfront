@@ -6,7 +6,7 @@ const TravelHeader = () => {
       <header>
         <Navbar bg="light" expand="lg">
           <Container>
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
               <img
                 src="images\logo.png"
                 alt="For. travel"

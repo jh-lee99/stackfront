@@ -44,7 +44,7 @@ const GptApiContentModal = ({ show, onHide }) => {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              회원정보 수정
+              여행 떠나기
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

@@ -1,5 +1,5 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
@@ -43,7 +43,7 @@ const LoginModal = ({ show, onHide }) => {
     >
       <Container>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Sign In</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -79,7 +79,7 @@ const LoginModal = ({ show, onHide }) => {
               value={Password}
               onClick={Login}
             >
-              Login
+              Sign In
             </Button>
 
             <HorizonLine text={"OR"} />

@@ -1,6 +1,4 @@
 import React from "react";
-import RegisterUpdate from "../pages/RegisterUpdate";
-import TravelLayout from "../layouts/TravelLayout";
 
 const Dropdown = () => {
   return (
