@@ -20,9 +20,9 @@ const RegisterContent = () => {
   const MemberProfileEditing = () => {
     axios
       .post("", {
-        ModifiedNickname: ModifiedNickname,
-        ModifiedPassword: ModifiedPassword,
-        ConfirmModifiedPassword: ConfirmModifiedPassword,
+        modifiedNickname: ModifiedNickname,
+        modifiedPassword: ModifiedPassword,
+        confirmModifiedPassword: ConfirmModifiedPassword,
       })
       .then((response) => {
         // Handle success.
