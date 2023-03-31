@@ -6,7 +6,7 @@ import GptApiContent from "../layouts/GptApiContent";
 const Travel = () => {
   return (
     <TravelLayout>
-      <Container style={{ minHeight: "75vh" }}>
+      <Container>
         <GptApiContent />
       </Container>
     </TravelLayout>

@@ -39,7 +39,12 @@ const RegisterContent = () => {
 
   return (
     <Container>
-      <Form style={{ width: "50%" }}>
+      <Form id="Form">
+        <Form.Group>
+          <Form.Label>
+            <h1 className="my-5">회원정보 수정</h1>
+          </Form.Label>
+        </Form.Group>
         <Form.Group>
           <Form.Label>닉네임 변경</Form.Label>
           <Form.Control
@@ -47,6 +52,7 @@ const RegisterContent = () => {
             value={ModifiedNickname}
             onChange={onChangeModifiedNickname}
             placeholder="Nickname"
+            className="my-2"
           />
         </Form.Group>
         <Form.Group>
@@ -56,6 +62,7 @@ const RegisterContent = () => {
             placeholder="Password"
             value={ModifiedPassword}
             onChange={onChangeModifiedPassword}
+            className="my-2"
           />
         </Form.Group>
         <Form.Group>
@@ -65,6 +72,7 @@ const RegisterContent = () => {
             placeholder="ConfirmPassword"
             value={ConfirmModifiedPassword}
             onChange={onChangeConfirmModifiedPassword}
+            className="my-2"
           />
         </Form.Group>
         <Button

@@ -1,11 +1,12 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+
 import TravelLayout from "../layouts/TravelLayout";
 import RegisterContent from "../layouts/RegisterContent";
+import { Container } from "react-bootstrap";
 const RegisterUpdate = () => {
   return (
     <TravelLayout>
-      <Container style={{ minHeight: "75vh" }}>
+      <Container>
         <RegisterContent />
       </Container>
     </TravelLayout>

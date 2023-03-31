@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import TravelMap from "../components/TravelMap";
-
 import GptApiContentModal from "../modals/GptApiContentModal";
 
 const GptApiContent = () => {
@@ -28,6 +27,7 @@ const GptApiContent = () => {
           onClick={() => {
             setGptApiContentModalOn(true);
           }}
+          id="Center"
         >
           여행 떠나기
         </Button>
