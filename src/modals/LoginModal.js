@@ -43,7 +43,7 @@ const LoginModal = ({ show, onHide }) => {
     >
       <Container>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Sign In</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -55,18 +55,20 @@ const LoginModal = ({ show, onHide }) => {
                 name="id"
                 value={Id}
                 onChange={onChangeId}
-                placeholder="ID"
+                placeholder="아이디"
+                className="my-2"
               />
             </Form.Group>
             <Form.Group>
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="비밀번호"
                 id="password"
                 name="Password"
                 value={Password}
                 onChange={onChangePassword}
+                className="my-2"
               />
             </Form.Group>
             <Button
@@ -79,7 +81,7 @@ const LoginModal = ({ show, onHide }) => {
               value={Password}
               onClick={Login}
             >
-              Sign In
+              Login
             </Button>
 
             <HorizonLine text={"OR"} />

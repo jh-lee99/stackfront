@@ -3,13 +3,18 @@ import { Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import TravelMap from "../components/TravelMap";
 import GptApiContentModal from "../modals/GptApiContentModal";
+import { useLocation } from "react-router-dom";
 
 const GptApiContent = () => {
   const [GptApiContentModalOn, setGptApiContentModalOn] = useState(false);
+
   <GptApiContentModal
     show={GptApiContentModalOn}
     onHide={() => setGptApiContentModalOn(false)}
   />;
+
+  const location = useLocation();
+  const number = location.state.value;
 
   return (
     <>
@@ -31,6 +36,7 @@ const GptApiContent = () => {
         >
           여행 떠나기
         </Button>
+        <div>{number}</div>
       </Container>
     </>
   );

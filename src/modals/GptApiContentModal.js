@@ -1,17 +1,21 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
-import React from "react";
-
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
+  const [result, setResult] = useState("");
   const onChangeDest = (e) => {
     setDest(e.target.value);
   };
   const onChangeStart = (e) => {
     setStart(e.target.value);
+  };
+  const navigate = useNavigate();
+  const clicked = () => {
+    navigate("/newpage", { state: { value: result } });
   };
 
   const submit = () => {
@@ -21,7 +25,8 @@ const GptApiContentModal = ({ show, onHide }) => {
         startingPoint: start,
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        setResult(response.data);
         // Handle success.
         // console.log("Well done!");
         // console.log("User profile", response.data.user);
@@ -33,6 +38,7 @@ const GptApiContentModal = ({ show, onHide }) => {
         console.log("An error occurred:", error.response);
       });
   };
+
   return (
     <>
       <Container>
@@ -77,6 +83,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                 className="my-3"
                 onClick={() => {
                   submit();
+                  clicked();
                 }}
               >
                 전송
