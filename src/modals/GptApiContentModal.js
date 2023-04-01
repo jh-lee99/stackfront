@@ -5,8 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 
 const GptApiContentModal = ({ show, onHide }) => {
-  const [Dest, setDest] = useState("");
-  const [Start, setStart] = useState("");
+  const [dest, setDest] = useState("");
+  const [start, setStart] = useState("");
   const onChangeDest = (e) => {
     setDest(e.target.value);
   };
@@ -16,16 +16,17 @@ const GptApiContentModal = ({ show, onHide }) => {
 
   const submit = () => {
     axios
-      .post("https://localhost:3000/travelkeyword", {
-        Destination: Dest,
-        StartingPoint: Start,
+      .post("http://localhost:3000/travelkeyword", {
+        destination: dest,
+        startingPoint: start,
       })
       .then((response) => {
+        console.log(response);
         // Handle success.
-        console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        localStorage.setItem("token", response.data.jwt);
+        // console.log("Well done!");
+        // console.log("User profile", response.data.user);
+        // console.log("User token", response.data.jwt);
+        // localStorage.setItem("token", response.data.jwt);
       })
       .catch((error) => {
         // Handle error.
@@ -54,7 +55,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                 <Form.Control
                   type="text"
                   id="dest"
-                  value={Dest}
+                  value={dest}
                   onChange={onChangeDest}
                   placeholder="목적지 입력"
                 />
@@ -65,7 +66,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   type="text"
                   placeholder="출발지 입력"
                   id="start"
-                  value={Start}
+                  value={start}
                   onChange={onChangeStart}
                 />
               </Form.Group>
