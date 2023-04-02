@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { useState } from "react";
-
 import TravelMap from "../components/TravelMap";
 import GptApiContentModal from "../modals/GptApiContentModal";
 

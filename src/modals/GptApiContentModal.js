@@ -1,6 +1,8 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
+import TravelCalendar from "../components/TravelCalendar";
+import "react-calendar/dist/Calendar.css";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
@@ -70,6 +72,9 @@ const GptApiContentModal = ({ show, onHide }) => {
                   className="my-3"
                 />
               </Form.Group>
+              <div className="Box">
+                <TravelCalendar />
+              </div>
               <Button
                 block
                 variant="info"
@@ -85,7 +90,7 @@ const GptApiContentModal = ({ show, onHide }) => {
           </Modal.Body>
         </Modal>
       </Container>
-      <p>{result}</p>
+      <div className="pre">{result}</div>
     </>
   );
 };
