@@ -7,7 +7,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const RegistModal = ({ show, onHide }) => {
-  const [Nickname, setNickname] = useState("");
   const [Email, setEmail] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");

@@ -1,21 +1,17 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState([]);
+
   const onChangeDest = (e) => {
     setDest(e.target.value);
   };
   const onChangeStart = (e) => {
     setStart(e.target.value);
-  };
-  const navigate = useNavigate();
-  const clicked = () => {
-    navigate("/newpage", { state: { value: result } });
   };
 
   const submit = () => {
@@ -25,13 +21,9 @@ const GptApiContentModal = ({ show, onHide }) => {
         startingPoint: start,
       })
       .then((response) => {
-        console.log(response.data);
-        setResult(response.data);
-        // Handle success.
-        // console.log("Well done!");
-        // console.log("User profile", response.data.user);
-        // console.log("User token", response.data.jwt);
-        // localStorage.setItem("token", response.data.jwt);
+        console.log(response.data.result);
+        setResult(response.data.result);
+        onHide();
       })
       .catch((error) => {
         // Handle error.
@@ -64,6 +56,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   value={dest}
                   onChange={onChangeDest}
                   placeholder="목적지 입력"
+                  className="my-3"
                 />
               </Form.Group>
               <Form.Group>
@@ -74,6 +67,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   id="start"
                   value={start}
                   onChange={onChangeStart}
+                  className="my-3"
                 />
               </Form.Group>
               <Button
@@ -83,7 +77,6 @@ const GptApiContentModal = ({ show, onHide }) => {
                 className="my-3"
                 onClick={() => {
                   submit();
-                  clicked();
                 }}
               >
                 전송
@@ -92,6 +85,7 @@ const GptApiContentModal = ({ show, onHide }) => {
           </Modal.Body>
         </Modal>
       </Container>
+      <p>{result}</p>
     </>
   );
 };

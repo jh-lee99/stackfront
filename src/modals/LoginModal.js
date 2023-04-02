@@ -17,7 +17,7 @@ const LoginModal = ({ show, onHide }) => {
   };
   const Login = () => {
     axios
-      .post("", {
+      .post("/", {
         id: Id,
         password: Password,
       })
