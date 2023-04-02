@@ -21,7 +21,7 @@ const GptApiContentModal = ({ show, onHide }) => {
         startingPoint: start,
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data.result);
         // Handle success.
         // console.log("Well done!");
         // console.log("User profile", response.data.user);
