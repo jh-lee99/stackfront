@@ -17,8 +17,8 @@ const GptApiContentModal = ({ show, onHide }) => {
   const submit = () => {
     axios
       .post("http://localhost:3000/travelkeyword", {
-        destination: dest,
-        startingPoint: start,
+        dest: dest,
+        start: start,
       })
       .then((response) => {
         console.log(response.data.result);
