@@ -4,11 +4,11 @@ import { useState } from "react";
 import axios from "axios";
 
 const RegisterContent = () => {
-  const [ModifiedNickname, setModifiedNickname] = useState("");
+  const [ModifiedId, setModifiedId] = useState("");
   const [ModifiedPassword, setModifiedPassword] = useState("");
   const [ConfirmModifiedPassword, setConfirmModifiedPassword] = useState("");
-  const onChangeModifiedNickname = (e) => {
-    setModifiedNickname(e.target.value);
+  const onChangeModifiedId = (e) => {
+    setModifiedId(e.target.value);
   };
   const onChangeModifiedPassword = (e) => {
     setModifiedPassword(e.target.value);
@@ -20,9 +20,9 @@ const RegisterContent = () => {
   const MemberProfileEditing = () => {
     axios
       .post("", {
-        ModifiedNickname: ModifiedNickname,
-        ModifiedPassword: ModifiedPassword,
-        ConfirmModifiedPassword: ConfirmModifiedPassword,
+        modifiedId: ModifiedId,
+        modifiedPassword: ModifiedPassword,
+        confirmModifiedPassword: ConfirmModifiedPassword,
       })
       .then((response) => {
         // Handle success.
@@ -46,12 +46,12 @@ const RegisterContent = () => {
           </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>닉네임 변경</Form.Label>
+          <Form.Label>Id 변경</Form.Label>
           <Form.Control
             type="text"
-            value={ModifiedNickname}
-            onChange={onChangeModifiedNickname}
-            placeholder="Nickname"
+            value={ModifiedId}
+            onChange={onChangeModifiedId}
+            placeholder="아이디"
             className="my-2"
           />
         </Form.Group>
@@ -59,7 +59,7 @@ const RegisterContent = () => {
           <Form.Label>Password 변경</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="비밀번호"
             value={ModifiedPassword}
             onChange={onChangeModifiedPassword}
             className="my-2"
@@ -69,7 +69,7 @@ const RegisterContent = () => {
           <Form.Label>Password 변경 확인</Form.Label>
           <Form.Control
             type="password"
-            placeholder="ConfirmPassword"
+            placeholder="비밀번호 확인"
             value={ConfirmModifiedPassword}
             onChange={onChangeConfirmModifiedPassword}
             className="my-2"

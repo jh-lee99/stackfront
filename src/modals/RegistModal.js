@@ -7,16 +7,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const RegistModal = ({ show, onHide }) => {
-  const [Nickname, setNickname] = useState("");
   const [Email, setEmail] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
   const [ConfrimPassword, setConfirmPassword] = useState("");
   const { replace } = useNavigate();
-
-  const onChangeNickname = (e) => {
-    setNickname(e.target.value);
-  };
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -37,7 +32,6 @@ const RegistModal = ({ show, onHide }) => {
   const register = () => {
     axios
       .post("", {
-        username: Nickname,
         id: Id,
         email: Email,
         password: Password,
@@ -71,27 +65,21 @@ const RegistModal = ({ show, onHide }) => {
         <Modal.Body>
           <Form>
             <Form.Group>
-              <Form.Label>Nickname</Form.Label>
-              <Form.Control
-                placeholder="Enter Nickname"
-                value={Nickname}
-                onChange={onChangeNickname}
-              />
-            </Form.Group>
-            <Form.Group>
               <Form.Label>Id</Form.Label>
               <Form.Control
-                placeholder="Enter Id"
+                placeholder="아이디"
                 value={Id}
                 onChange={onChangeId}
+                className="my-2"
               />
             </Form.Group>
             <Form.Group>
               <Form.Label>Email</Form.Label>
               <Form.Control
-                placeholder="Enter Email"
+                placeholder="이메일"
                 value={Email}
                 onChange={onChangeEmail}
+                className="my-2"
               />
             </Form.Group>
 
@@ -99,18 +87,20 @@ const RegistModal = ({ show, onHide }) => {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="비밀번호"
                 value={Password}
                 onChange={onChangePassword}
+                className="my-2"
               />
             </Form.Group>
             <Form.Group>
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="비밀번호 확인"
                 value={ConfrimPassword}
                 onChange={onChangeConfirmPassword}
+                className="my-2"
               />
             </Form.Group>
 

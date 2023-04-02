@@ -1,12 +1,12 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
-import React from "react";
-
 import { useState } from "react";
 import axios from "axios";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
+  const [result, setResult] = useState([]);
+
   const onChangeDest = (e) => {
     setDest(e.target.value);
   };
@@ -22,17 +22,15 @@ const GptApiContentModal = ({ show, onHide }) => {
       })
       .then((response) => {
         console.log(response.data.result);
-        // Handle success.
-        // console.log("Well done!");
-        // console.log("User profile", response.data.user);
-        // console.log("User token", response.data.jwt);
-        // localStorage.setItem("token", response.data.jwt);
+        setResult(response.data.result);
+        onHide();
       })
       .catch((error) => {
         // Handle error.
         console.log("An error occurred:", error.response);
       });
   };
+
   return (
     <>
       <Container>
@@ -58,6 +56,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   value={dest}
                   onChange={onChangeDest}
                   placeholder="목적지 입력"
+                  className="my-3"
                 />
               </Form.Group>
               <Form.Group>
@@ -68,6 +67,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   id="start"
                   value={start}
                   onChange={onChangeStart}
+                  className="my-3"
                 />
               </Form.Group>
               <Button
@@ -85,6 +85,7 @@ const GptApiContentModal = ({ show, onHide }) => {
           </Modal.Body>
         </Modal>
       </Container>
+      <p>{result}</p>
     </>
   );
 };
