@@ -11,20 +11,20 @@ const Dropdown = () => {
       >
         닉네임 표시
       </button>
-      <ul class="dropdown-menu">
+      <ul className="dropdown-menu">
         <li>
-          <a class="dropdown-item" href="/RegisterUpdate">
+          <a className="dropdown-item" href="/RegisterUpdate">
             회원정보 수정
           </a>
         </li>
         <li>
-          <a class="dropdown-item">최근 메시지 표시</a>
+          <a className="dropdown-item">최근 메시지 표시</a>
         </li>
         <li>
-          <hr class="dropdown-divider" />
+          <hr className="dropdown-divider" />
         </li>
         <li>
-          <a class="dropdown-item" href="#">
+          <a className="dropdown-item" href="#">
             로그아웃
           </a>
         </li>
