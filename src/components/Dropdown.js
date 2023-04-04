@@ -2,6 +2,7 @@ import React from "react";
 
 const Dropdown = () => {
   return (
+    //TravelHeader에 필요한 드롭다운 생성
     <div class="dropdown">
       <button
         class="btn btn-secondary dropdown-toggle"
