@@ -10,6 +10,8 @@ const GptApiContentModal = ({ show, onHide }) => {
   //const [date, setDate] = useState();
   const [result, setResult] = useState([]);
   const [showButton, setShowButton] = useState(true);
+  //const [startEN, setStartEN] = useState('');
+  //const [endEN, setEndEN] = useState('');
 
   const onChangeDest = (e) => {
     setDest(e.target.value);
@@ -19,9 +21,11 @@ const GptApiContentModal = ({ show, onHide }) => {
   };
 
   const addForm = () => {
+    //버튼이 사라지게
     setShowButton(false);
   };
   const clearStart = () => {
+    //버튼이 보이게
     setShowButton(true);
   };
 
@@ -35,6 +39,8 @@ const GptApiContentModal = ({ show, onHide }) => {
         console.log(response.data.result);
         setResult(response.data.result); //startEN, destEN 같이들어온다.
         setShowButton(true);
+        //setStartEN(response.data.starEN);
+        //setEndEN(response.data.endEN);
         onHide();
       })
       .catch((error) => {

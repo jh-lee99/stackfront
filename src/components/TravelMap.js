@@ -1,5 +1,7 @@
 import React from "react";
+import { useState, useCallback, memo } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import GptApiContentModal from "../modals/GptApiContentModal";
 
 const containerStyle = {
   width: "100%",
@@ -11,21 +13,21 @@ const center = {
   lng: 127.0016985,
 };
 
-function TravelMap() {
+function TravelMap({ lat, lng }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBN-IU-e5RgkOxfMf1VRQGtNN99FKJb4-A",
   });
 
-  const [map, setMap] = React.useState(null);
+  const [map, setMap] = useState(null);
 
-  const onLoad = React.useCallback(function callback(map) {
+  const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
     setMap(map);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
 
@@ -46,4 +48,4 @@ function TravelMap() {
 }
 
 // React.memo로 리렌더링 방지
-export default React.memo(TravelMap);
+export default memo(TravelMap);
