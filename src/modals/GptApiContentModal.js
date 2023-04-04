@@ -7,13 +7,22 @@ import "react-calendar/dist/Calendar.css";
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
+  //const [date, setDate] = useState();
   const [result, setResult] = useState([]);
+  const [showButton, setShowButton] = useState(true);
 
   const onChangeDest = (e) => {
     setDest(e.target.value);
   };
   const onChangeStart = (e) => {
     setStart(e.target.value);
+  };
+
+  const addForm = () => {
+    setShowButton(false);
+  };
+  const clearStart = () => {
+    setShowButton(true);
   };
 
   const submit = () => {
@@ -24,12 +33,15 @@ const GptApiContentModal = ({ show, onHide }) => {
       })
       .then((response) => {
         console.log(response.data.result);
-        setResult(response.data.result);
+        setResult(response.data.result); //startEN, destEN 같이들어온다.
+        setShowButton(true);
         onHide();
       })
       .catch((error) => {
         // Handle error.
+        alert(error.message);
         console.log("An error occurred:", error.response);
+        setShowButton(true);
       });
   };
 
@@ -61,17 +73,34 @@ const GptApiContentModal = ({ show, onHide }) => {
                   className="my-3"
                 />
               </Form.Group>
-              <Form.Group>
-                <Form.Label>2. 출발지를 입력해주세요.</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="출발지 입력"
-                  id="start"
-                  value={start}
-                  onChange={onChangeStart}
-                  className="my-3"
-                />
-              </Form.Group>
+              {showButton && (
+                <Button block variant="info" type="button" onClick={addForm}>
+                  출발지 입력하기!
+                </Button>
+              )}
+              {!showButton && (
+                <Form.Group>
+                  <Form.Label>2. 출발지를 입력해주세요.</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="출발지 입력"
+                    id="start"
+                    value={start}
+                    onChange={onChangeStart}
+                    className="my-3"
+                  />
+                </Form.Group>
+              )}
+              {!showButton && (
+                <Button
+                  variant="info"
+                  onClick={() => {
+                    clearStart();
+                  }}
+                >
+                  목적지만 입력하기
+                </Button>
+              )}
               <div className="Box">
                 <TravelCalendar />
               </div>
@@ -79,7 +108,6 @@ const GptApiContentModal = ({ show, onHide }) => {
                 block
                 variant="info"
                 type="button"
-                className="my-3"
                 onClick={() => {
                   submit();
                 }}

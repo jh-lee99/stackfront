@@ -17,12 +17,13 @@ const LoginModal = ({ show, onHide }) => {
   };
   const Login = () => {
     axios
-      .post("/", {
+      .post("/login", {
         id: Id,
         password: Password,
       })
       .then((response) => {
         // Handle success.
+        alert(response.message);
         console.log("Well done!");
         console.log("User profile", response.data.user);
         console.log("User token", response.data.jwt);
@@ -30,6 +31,7 @@ const LoginModal = ({ show, onHide }) => {
       })
       .catch((error) => {
         // Handle error.
+        alert(error.message);
         console.log("An error occurred:", error.response);
       });
   };

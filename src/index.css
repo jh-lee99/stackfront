@@ -34,8 +34,14 @@
 .Box {
   display: flex;
   justify-content: center;
+  padding: 50px;
 }
 
 .pre {
   white-space: pre-wrap;
+}
+
+#halfBtn {
+  width: 80%;
+  margin: auto;
 }

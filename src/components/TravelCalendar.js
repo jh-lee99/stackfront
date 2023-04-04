@@ -3,7 +3,7 @@ import { Calendar } from "react-calendar";
 import moment from "moment";
 
 import "react-calendar/dist/Calendar.css";
-import { diff } from "semver";
+//import { diff } from "semver";
 
 function TravelCalendar() {
   const [selectedDates, setSelectedDates] = useState([]);
@@ -13,7 +13,9 @@ function TravelCalendar() {
       const start = moment(selectedDates[0]);
       const end = moment(selectedDates[1]);
       const diff = end.diff(start, "days");
-      return `Selected dates are ${diff} days apart`;
+      if (diff === 0) {
+        return `당일치기 일정입니다.`;
+      } else return `${diff}박 ${diff + 1}일 일정입니다.`;
     } else {
       return "Please select two dates";
     }
@@ -47,11 +49,16 @@ function TravelCalendar() {
         activeStartDate={null}
       />
       {selectedDates.length === 2 ? (
-        <div>
-          {/* {moment(selectedDates[0]).format("YYYY-MM-DD")} ~ {moment(selectedDates[1]).format("YYYY-MM-DD")} */}
+        <div className="my-3 text-center">
+          <p>
+            {moment(selectedDates[0]).format("YYYY-MM-DD")} ~{" "}
+            {moment(selectedDates[1]).format("YYYY-MM-DD")}
+          </p>
           {dateDiff()}
         </div>
-      ) : null}
+      ) : (
+        <div className="my-3 text-center">여행날짜를 선택해주세요!</div>
+      )}
     </div>
   );
 }

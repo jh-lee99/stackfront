@@ -6,7 +6,7 @@ import GptApiContentModal from "../modals/GptApiContentModal";
 
 const GptApiContent = () => {
   const [GptApiContentModalOn, setGptApiContentModalOn] = useState(false);
-
+  const [showButton, setShowButton] = useState(true);
   return (
     <>
       <Container>
@@ -27,6 +27,8 @@ const GptApiContent = () => {
       <GptApiContentModal
         show={GptApiContentModalOn}
         onHide={() => setGptApiContentModalOn(false)}
+        showButton={showButton}
+        HideButton={() => setShowButton(false)}
       />
     </>
   );
