@@ -47,22 +47,19 @@ import "react-calendar/dist/Calendar.css";
 // };
 function TravelCalendar() {
   const [selectedDates, setSelectedDates] = useState([]);
+  
+  const dateDiff = () => {
+    if (selectedDates.length === 2) {
+      const start = moment(selectedDates[0]);
+      const end = moment(selectedDates[1]);
+      const diff = end.diff(start, "days");
+      return `Selected dates are ${diff} days apart`;
+    } else {
+      return "Please select two dates";
+    }
+  };
 
   useEffect(() => {
-    const dateDiff = () => {
-      if (selectedDates.length === 2) {
-        const start = moment(selectedDates[0]);
-        const end = moment(selectedDates[1]);
-        const diff = end.diff(start, "days");
-        console.log('start: ', selectedDates[0]._d.getDate());
-        console.log('end: ', selectedDates[1]._d.getDate());
-        console.log('diff: ', diff);
-        return `Selected dates are ${diff} days apart`;
-      } else {
-        return "Please select two dates";
-      }
-    };
-  
     console.log(dateDiff());
   }, [selectedDates]);
 
@@ -91,7 +88,8 @@ function TravelCalendar() {
       />
       {selectedDates.length === 2 ? (
         <div>
-          {moment(selectedDates[0]).format("YYYY-MM-DD")} ~ {moment(selectedDates[1]).format("YYYY-MM-DD")}
+          {/* {moment(selectedDates[0]).format("YYYY-MM-DD")} ~ {moment(selectedDates[1]).format("YYYY-MM-DD")} */}
+          {dateDiff()}
         </div>
         ) : null}
     </div>
