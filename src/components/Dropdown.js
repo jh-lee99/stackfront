@@ -10,7 +10,7 @@ const Dropdown = () => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        닉네임 표시
+        아이디 표시
       </button>
       <ul className="dropdown-menu">
         <li>

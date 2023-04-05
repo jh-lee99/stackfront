@@ -36,7 +36,7 @@ const Header = () => {
                     onClick={() => setLoginModalOn(true)}
                     id="fullBtn"
                   >
-                    Sign In
+                    Login
                   </Button>
                 </Nav.Link>
                 <Nav.Link>

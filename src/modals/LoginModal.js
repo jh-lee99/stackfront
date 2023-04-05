@@ -5,29 +5,31 @@ import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
 
 const LoginModal = ({ show, onHide }) => {
-  const [Id, setId] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const onChangeId = (e) => {
-    setId(e.target.value);
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
   };
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
   };
+
   const Login = () => {
     axios
-      .post("/login", {
-        id: Id,
-        password: Password,
+      .post("http://localhost:3000/models/login", {
+        email: email,
+        password: password,
       })
       .then((response) => {
         // Handle success.
-        alert(response.message);
-        console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        localStorage.setItem("token", response.data.jwt);
+        if (response.staus === 401) alert("로그인 성공!");
+        else if (response.status === 201) alert("로그인 실패!");
+        //console.log("login complete!");
+        //console.log("User profile", response.data.user);
+        //console.log("User token", response.data.jwt);
+        //localStorage.setItem("token", response.data.jwt);
       })
       .catch((error) => {
         // Handle error.
@@ -50,14 +52,12 @@ const LoginModal = ({ show, onHide }) => {
         <Modal.Body>
           <Form>
             <Form.Group>
-              <Form.Label>ID</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="text"
-                id="id"
-                name="id"
-                value={Id}
-                onChange={onChangeId}
-                placeholder="아이디"
+                value={email}
+                onChange={onChangeEmail}
+                placeholder="이메일"
                 className="my-2"
               />
             </Form.Group>
@@ -66,9 +66,7 @@ const LoginModal = ({ show, onHide }) => {
               <Form.Control
                 type="password"
                 placeholder="비밀번호"
-                id="password"
-                name="Password"
-                value={Password}
+                value={password}
                 onChange={onChangePassword}
                 className="my-2"
               />
@@ -80,7 +78,6 @@ const LoginModal = ({ show, onHide }) => {
               className="my-3"
               id="fullBtn"
               name="loginButton"
-              value={Password}
               onClick={Login}
             >
               Login

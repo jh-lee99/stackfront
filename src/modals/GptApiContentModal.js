@@ -7,6 +7,7 @@ import "react-calendar/dist/Calendar.css";
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
+
   //const [date, setDate] = useState();
   const [result, setResult] = useState([]);
   const [showButton, setShowButton] = useState(true);
