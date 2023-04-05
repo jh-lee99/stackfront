@@ -24,8 +24,8 @@ const LoginModal = ({ show, onHide }) => {
       })
       .then((response) => {
         // Handle success.
-        if (response.staus === 401) alert("로그인 성공!");
-        else if (response.status === 201) alert("로그인 실패!");
+        if (response.status === 401) alert("로그인 실패!");
+        else if (response.status === 201) alert("로그인 성공!");
         //console.log("login complete!");
         //console.log("User profile", response.data.user);
         //console.log("User token", response.data.jwt);
