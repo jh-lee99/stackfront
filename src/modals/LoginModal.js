@@ -24,8 +24,7 @@ const LoginModal = ({ show, onHide }) => {
       })
       .then((response) => {
         // Handle success.
-        if (response.status === 401) alert("로그인 실패!");
-        else if (response.status === 201) alert("로그인 성공!");
+        if (response.status === 201) alert(response.message);
         //console.log("login complete!");
         //console.log("User profile", response.data.user);
         //console.log("User token", response.data.jwt);
@@ -33,8 +32,8 @@ const LoginModal = ({ show, onHide }) => {
       })
       .catch((error) => {
         // Handle error.
-        alert(error.message);
-        console.log("An error occurred:", error.response);
+        if (error.status === 401) alert(error.message);
+        //console.log("An error occurred:", error.response);
       });
   };
   return (
