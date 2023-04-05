@@ -8,12 +8,27 @@ const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [emailValid, setEmailValid] = useState(false);
+  const [pwValid, setPwValid] = useState(false);
+
   const onChangeEmail = (e) => {
+    //이메일 검증
     setEmail(e.target.value);
+    const regex =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if (regex.test(e.target.value)) {
+      setEmailValid(true);
+    } else setEmailValid(false);
   };
 
   const onChangePassword = (e) => {
+    //비밀번호 검증
     setPassword(e.target.value);
+    const regex =
+      /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+    if (regex.test(e.target.value)) {
+      setPwValid(true);
+    } else setPwValid(false);
   };
 
   const Login = () => {
@@ -36,6 +51,7 @@ const LoginModal = ({ show, onHide }) => {
         //console.log("An error occurred:", error.response);
       });
   };
+
   return (
     <Modal
       show={show}
@@ -53,12 +69,17 @@ const LoginModal = ({ show, onHide }) => {
             <Form.Group>
               <Form.Label>Email</Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 value={email}
                 onChange={onChangeEmail}
                 placeholder="이메일"
-                className="my-2"
+                className="my-3"
               />
+              <div className="errorMessageWrap">
+                {!emailValid && email.length > 0 && (
+                  <div>올바른 이메일을 입력해주세요.</div>
+                )}
+              </div>
             </Form.Group>
             <Form.Group>
               <Form.Label>Password</Form.Label>
@@ -69,6 +90,11 @@ const LoginModal = ({ show, onHide }) => {
                 onChange={onChangePassword}
                 className="my-2"
               />
+              <div className="errorMessageWrap">
+                {!pwValid && password.length > 0 && (
+                  <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+                )}
+              </div>
             </Form.Group>
             <Button
               block
