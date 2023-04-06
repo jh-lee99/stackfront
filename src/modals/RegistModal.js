@@ -111,8 +111,11 @@ const RegistModal = ({ show, onHide }) => {
                 className="my-2"
               />
               <div className="errorMessageWrap">
-                {!pwValid && password.length > 0 && (
+                {!pwValid && password.length > 0 && password.length < 21 && (
                   <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+                )}
+                {!pwValid && password.length > 20 && (
+                  <div>20자 이하로 입력해 주세요.</div>
                 )}
               </div>
             </Form.Group>

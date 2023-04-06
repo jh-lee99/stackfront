@@ -51,3 +51,11 @@
   color: #ef0000;
   font-size: 12px;
 }
+
+.introText {
+  padding: 10vh;
+  text: center;
+  justify-content: center;
+}
+.introButton {
+}

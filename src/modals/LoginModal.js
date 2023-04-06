@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
@@ -11,11 +12,17 @@ const LoginModal = ({ show, onHide }) => {
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
 
+  const navigate = useNavigate();
+
+  const redirectTest = () => {
+    navigate("/*", { replace: true });
+  };
+
   const onChangeEmail = (e) => {
     //이메일 검증
     setEmail(e.target.value);
     const regex =
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (regex.test(e.target.value)) {
       setEmailValid(true);
     } else setEmailValid(false);
@@ -33,7 +40,7 @@ const LoginModal = ({ show, onHide }) => {
 
   const Login = () => {
     axios
-      .post("http://localhost:3000/models/login", {
+      .post("http://localhost:3000/login", {
         email: email,
         password: password,
       })
@@ -43,11 +50,18 @@ const LoginModal = ({ show, onHide }) => {
         //console.log("login complete!");
         //console.log("User profile", response.data.user);
         //console.log("User token", response.data.jwt);
+
         //localStorage.setItem("token", response.data.jwt);
       })
       .catch((error) => {
         // Handle error.
-        if (error.status === 401) alert(error.message);
+        if (error.status === 401) {
+          alert(error.message);
+        } else {
+          alert(error.message);
+          navigate("/*", { replace: true });
+        }
+
         //console.log("An error occurred:", error.response);
       });
   };
@@ -91,8 +105,13 @@ const LoginModal = ({ show, onHide }) => {
                 className="my-2"
               />
               <div className="errorMessageWrap">
-                {!pwValid && password.length > 0 && (
-                  <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+                {!pwValid && password.length > 0 && password.length < 21 && (
+                  <div>
+                    영문, 숫자, 특수문자 포함 8자 이상 20자 이내로 입력해주세요.
+                  </div>
+                )}
+                {!pwValid && password.length > 20 && (
+                  <div>20자 이하로 입력해 주세요.</div>
                 )}
               </div>
             </Form.Group>
@@ -103,7 +122,10 @@ const LoginModal = ({ show, onHide }) => {
               className="my-3"
               id="fullBtn"
               name="loginButton"
-              onClick={Login}
+              onClick={() => {
+                Login();
+                //redirectTest();
+              }}
             >
               Login
             </Button>
