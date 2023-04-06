@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
+import { useNavigate } from "react-router-dom";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
@@ -20,7 +21,7 @@ const GptApiContentModal = ({ show, onHide }) => {
   const onChangeStart = (e) => {
     setStart(e.target.value);
   };
-
+  const navigate = useNavigate();
   const addForm = () => {
     //버튼이 사라지게
     setShowButton(false);
@@ -49,6 +50,8 @@ const GptApiContentModal = ({ show, onHide }) => {
         alert(error.message);
         console.log("An error occurred:", error.response);
         setShowButton(true);
+        window.location.replace("/travel");
+        navigate("/travel", { replace: true });
       });
   };
 

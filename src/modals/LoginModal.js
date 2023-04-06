@@ -47,6 +47,7 @@ const LoginModal = ({ show, onHide }) => {
       .then((response) => {
         // Handle success.
         if (response.status === 201) alert(response.message);
+        navigate("/travel");
         //console.log("login complete!");
         //console.log("User profile", response.data.user);
         //console.log("User token", response.data.jwt);
@@ -59,7 +60,8 @@ const LoginModal = ({ show, onHide }) => {
           alert(error.message);
         } else {
           alert(error.message);
-          navigate("/*", { replace: true });
+          window.location.replace("/");
+          navigate("/", { replace: true });
         }
 
         //console.log("An error occurred:", error.response);
