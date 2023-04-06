@@ -14,9 +14,9 @@ const LoginModal = ({ show, onHide }) => {
 
   const navigate = useNavigate();
 
-  const redirectTest = () => {
+  /*const redirectTest = () => { // redirect test
     navigate("/*", { replace: true });
-  };
+  };*/
 
   const onChangeEmail = (e) => {
     //이메일 검증
