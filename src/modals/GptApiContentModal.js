@@ -4,17 +4,21 @@ import axios from "axios";
 import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
-const GptApiContentModal = ({ show, onHide }) => {
+const GptApiContentModal = ({ show, onHide, dateDiff }) => {
+  
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
-
+  
+  //const [loading, setLoading] = useState(true);
   //const [date, setDate] = useState();
   const [result, setResult] = useState([]);
   const [showButton, setShowButton] = useState(true);
   //const [startEN, setStartEN] = useState('');
   //const [endEN, setEndEN] = useState('');
 
+  
   const onChangeDest = (e) => {
     setDest(e.target.value);
   };
@@ -22,6 +26,7 @@ const GptApiContentModal = ({ show, onHide }) => {
     setStart(e.target.value);
   };
   const navigate = useNavigate();
+
   const addForm = () => {
     //버튼이 사라지게
     setShowButton(false);
@@ -31,11 +36,20 @@ const GptApiContentModal = ({ show, onHide }) => {
     setShowButton(true);
   };
 
+  const resetDest = (e) => {
+    setDest("");
+  };
+
+  const resetStart = (e) => {
+    setStart("");
+  };
   const submit = () => {
+    //setLoading(true);
     axios
       .post("http://localhost:3000/travelkeyword", {
         dest: dest,
         start: start,
+        //date: date,
       })
       .then((response) => {
         console.log(response.data.result);
@@ -53,6 +67,8 @@ const GptApiContentModal = ({ show, onHide }) => {
         window.location.replace("/travel");
         navigate("/travel", { replace: true });
       });
+    resetDest();
+    resetStart();
   };
 
   return (
@@ -60,7 +76,7 @@ const GptApiContentModal = ({ show, onHide }) => {
       <Container>
         <Modal
           show={show}
-          onHide={onHide}
+          onHide={onHide}          
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered

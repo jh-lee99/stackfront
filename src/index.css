@@ -53,9 +53,39 @@
 }
 
 .introText {
+  display: flex;
   padding: 10vh;
   text: center;
   justify-content: center;
 }
-.introButton {
+.introBtn {
+  margin: 8px;
+  border-radius: 8px;
+}
+
+.bottom {
+  width: 40%;
+  height: 48px;
+  border: none;
+}
+
+.introBox {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+
+  height: px;
+}
+
+.travelBtn {
+  margin: 8px;
+  border-radius: 8px;
+  justify-content: center;
+}
+
+.center {
+  display: flex;
+
+  margin: 35%;
+  width: 30%;
 }

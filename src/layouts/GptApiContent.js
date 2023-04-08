@@ -9,21 +9,20 @@ const GptApiContent = () => {
   const [showButton, setShowButton] = useState(true);
   return (
     <>
-      <Container>
-        <TravelMap />
-        <Button
-          block
-          variant="info"
-          type="button"
-          className="my-3"
-          onClick={() => {
-            setGptApiContentModalOn(true);
-          }}
-          id="Center"
-        >
-          여행 떠나기
-        </Button>
-      </Container>
+      <TravelMap />
+
+      <Button
+        block
+        variant="info"
+        type="button"
+        className="my-3 travelBtn center"
+        onClick={() => {
+          setGptApiContentModalOn(true);
+        }}
+      >
+        여행 떠나기
+      </Button>
+
       <GptApiContentModal
         show={GptApiContentModalOn}
         onHide={() => setGptApiContentModalOn(false)}

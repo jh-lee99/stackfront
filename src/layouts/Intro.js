@@ -7,17 +7,31 @@ const Intro = () => {
   const loginLink = () => {
     navigate("/travel");
   };
+  const userEditLink = () => {
+    navigate("/registerUpdate");
+  };
   return (
     <div>
       <div className="introText">첫 접속시 표시되는 화면입니다.</div>
-      <br />
-      <a href="/RegisterUpdate">회원정보 수정 페이지 이동하기</a>
-      <div>
+      <div className="introBox">
+        <Button
+          href="#"
+          onClick={() => {
+            userEditLink();
+          }}
+          variant="info"
+          className="introBtn bottom"
+        >
+          회원정보 수정하기
+        </Button>
+
         <Button
           href="#"
           onClick={() => {
             loginLink();
           }}
+          variant="info"
+          className="introBtn bottom"
         >
           로그인 이후 화면 이동하기
         </Button>

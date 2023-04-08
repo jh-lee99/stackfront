@@ -7,12 +7,15 @@ import "react-calendar/dist/Calendar.css";
 
 function TravelCalendar() {
   const [selectedDates, setSelectedDates] = useState([]);
+  const [date, setDate] = useState(0);
 
   const dateDiff = () => {
     if (selectedDates.length === 2) {
       const start = moment(selectedDates[0]);
       const end = moment(selectedDates[1]);
       const diff = end.diff(start, "days");
+      //setDate(diff + 1);
+
       if (diff === 0) {
         return `당일치기 일정입니다.`;
       } else return `${diff}박 ${diff + 1}일 일정입니다.`;
@@ -47,6 +50,7 @@ function TravelCalendar() {
         next2Label={null}
         className="mx-auto w-full text-sm border-b"
         activeStartDate={null}
+        //sendDate={date}
       />
       {selectedDates.length === 2 ? (
         <div className="my-3 text-center">
