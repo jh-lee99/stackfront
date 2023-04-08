@@ -6,19 +6,18 @@ import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 
-const GptApiContentModal = ({ show, onHide, dateDiff }) => {
-  
+const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
-  
+  const [date, setDate] = useState(0);
+
   //const [loading, setLoading] = useState(true);
-  //const [date, setDate] = useState();
+
   const [result, setResult] = useState([]);
   const [showButton, setShowButton] = useState(true);
   //const [startEN, setStartEN] = useState('');
   //const [endEN, setEndEN] = useState('');
 
-  
   const onChangeDest = (e) => {
     setDest(e.target.value);
   };
@@ -43,13 +42,15 @@ const GptApiContentModal = ({ show, onHide, dateDiff }) => {
   const resetStart = (e) => {
     setStart("");
   };
+
   const submit = () => {
     //setLoading(true);
+    setDate(diff);
     axios
       .post("http://localhost:3000/travelkeyword", {
         dest: dest,
         start: start,
-        //date: date,
+        date: date,
       })
       .then((response) => {
         console.log(response.data.result);
@@ -76,7 +77,7 @@ const GptApiContentModal = ({ show, onHide, dateDiff }) => {
       <Container>
         <Modal
           show={show}
-          onHide={onHide}          
+          onHide={onHide}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
@@ -145,6 +146,7 @@ const GptApiContentModal = ({ show, onHide, dateDiff }) => {
         </Modal>
       </Container>
       <div className="pre">{result}</div>
+      <div>{diff}</div>
     </>
   );
 };
