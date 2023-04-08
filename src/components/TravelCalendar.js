@@ -23,6 +23,7 @@ function TravelCalendar() {
       return "Please select two dates";
     }
   };
+
   useEffect(() => {
     if (selectedDates.length === 2) {
       const start = moment(selectedDates[0]);
@@ -66,7 +67,8 @@ function TravelCalendar() {
       ) : (
         <div className="my-3 text-center">여행날짜를 선택해주세요!</div>
       )}
-      <GptApiContentModal diff={Tdate} />
+      <GptApiContentModal diff={Tdate} />{" "}
+      {/*GptApiContentModal prop 으로 Tdate 전달(날짜 차이) */}
     </div>
   );
 }

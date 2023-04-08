@@ -7,34 +7,46 @@ const RegisterContent = () => {
   const [ModifiedId, setModifiedId] = useState("");
   const [ModifiedPassword, setModifiedPassword] = useState("");
   const [ConfirmModifiedPassword, setConfirmModifiedPassword] = useState("");
+  const [mpwValid, setMpwValid] = useState(false);
+
   const onChangeModifiedId = (e) => {
     setModifiedId(e.target.value);
   };
   const onChangeModifiedPassword = (e) => {
     setModifiedPassword(e.target.value);
+    const regex =
+      /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+    if (regex.test(e.target.value)) {
+      setMpwValid(true);
+    } else setMpwValid(false);
   };
   const onChangeConfirmModifiedPassword = (e) => {
     setConfirmModifiedPassword(e.target.value);
   };
 
   const MemberProfileEditing = () => {
-    axios
-      .post("", {
-        modifiedId: ModifiedId,
-        modifiedPassword: ModifiedPassword,
-        confirmModifiedPassword: ConfirmModifiedPassword,
-      })
-      .then((response) => {
-        // Handle success.
-        console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        localStorage.setItem("token", response.data.jwt);
-      })
-      .catch((error) => {
-        // Handle error.
-        console.log("An error occurred:", error.response);
-      });
+    if (ModifiedPassword !== ConfirmModifiedPassword)
+      return alert("비밀번호를 확인해주세요.");
+    else {
+      axios
+        .post("", {
+          modifiedId: ModifiedId,
+          modifiedPassword: ModifiedPassword,
+          confirmModifiedPassword: ConfirmModifiedPassword,
+        })
+        .then((response) => {
+          // Handle success.
+          console.log("Well done!");
+          console.log("User profile", response.data.user);
+          console.log("User token", response.data.jwt);
+          localStorage.setItem("token", response.data.jwt);
+        })
+        .catch((error) => {
+          // Handle error.
+          console.log("An error occurred:", error.response);
+          alert(error.response);
+        });
+    }
   };
 
   return (
@@ -64,6 +76,16 @@ const RegisterContent = () => {
             onChange={onChangeModifiedPassword}
             className="my-2"
           />
+          <div className="errorMessageWrap">
+            {!mpwValid &&
+              ModifiedPassword.length > 0 &&
+              ModifiedPassword.length < 21 && (
+                <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+              )}
+            {!mpwValid && ModifiedPassword.length > 20 && (
+              <div>20자 이하로 입력해 주세요.</div>
+            )}
+          </div>
         </Form.Group>
         <Form.Group>
           <Form.Label>Password 변경 확인</Form.Label>
@@ -74,6 +96,11 @@ const RegisterContent = () => {
             onChange={onChangeConfirmModifiedPassword}
             className="my-2"
           />
+          <div className="errorMessageWrap">
+            {!(ModifiedPassword === ConfirmModifiedPassword) && (
+              <div>입력하신 비밀번호와 일치하지 않습니다.</div>
+            )}
+          </div>
         </Form.Group>
         <Button
           block
