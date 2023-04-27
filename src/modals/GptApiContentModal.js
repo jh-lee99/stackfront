@@ -146,7 +146,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         </Modal>
       </Container>
       <div className="pre">{result}</div>
-      <div>{diff}</div>
+      <div>{/*diff*/}</div>
     </>
   );
 };

@@ -20,7 +20,7 @@ const Intro = () => {
             userEditLink();
           }}
           variant="info"
-          className="introBtn bottom"
+          className="introBtn"
         >
           회원정보 수정하기
         </Button>
@@ -31,7 +31,7 @@ const Intro = () => {
             loginLink();
           }}
           variant="info"
-          className="introBtn bottom"
+          className="introBtn"
         >
           로그인 이후 화면 이동하기
         </Button>

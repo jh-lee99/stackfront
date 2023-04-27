@@ -54,27 +54,21 @@
 
 .introText {
   display: flex;
-  padding: 10vh;
+  padding: 15%;
   text: center;
   justify-content: center;
 }
 .introBtn {
-  margin: 8px;
+  margin: 20px;
   border-radius: 8px;
-}
-
-.bottom {
-  width: 40%;
-  height: 48px;
-  border: none;
+  width: 50%;
 }
 
 .introBox {
   display: flex;
   justify-content: center;
-  padding: 50px;
-
-  height: px;
+  padding: 20%;
+  //align-items: flex-end;
 }
 
 .travelBtn {

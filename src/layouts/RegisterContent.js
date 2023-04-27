@@ -97,9 +97,10 @@ const RegisterContent = () => {
             className="my-2"
           />
           <div className="errorMessageWrap">
-            {!(ModifiedPassword === ConfirmModifiedPassword) && (
-              <div>입력하신 비밀번호와 일치하지 않습니다.</div>
-            )}
+            {!(ModifiedPassword === ConfirmModifiedPassword) &&
+              ConfirmModifiedPassword.length > 0 && (
+                <div>입력하신 비밀번호와 일치하지 않습니다.</div>
+              )}
           </div>
         </Form.Group>
         <Button
