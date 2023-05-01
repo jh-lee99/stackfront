@@ -60,17 +60,10 @@ const GptApiContentModal = ({ show, onHide, diff, getPlace }) => {
       })
       .then((response) => {
         console.log(response.data.result);
-        setResult(response.data.result); //startEN, destEN 같이들어온다.
+        var responseDiv = document.getElementById("pre");
+        responseDiv.innerHTML = response.data.result;
         setShowButton(true);
-        //setStartEN(response.data.startEN);
-        //setEndEN(response.data.endEN);
-        //console.log(response.data.startEN);
-        //console.log(response.data.endEN);
-        //console.log(response.data.date);
-        <TravelMap
-        //startEN={response.data.startEN}
-        //endEN={response.data.endEN}
-        />;
+
         onHide();
       })
       .catch((error) => {
