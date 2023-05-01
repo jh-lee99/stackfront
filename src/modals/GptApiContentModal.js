@@ -1,12 +1,13 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading";
+//import Loading from "../components/Loading";
+import TravelMap from "../components/TravelMap";
 
-const GptApiContentModal = ({ show, onHide, diff }) => {
+const GptApiContentModal = ({ show, onHide, diff, getPlace }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
   const [date, setDate] = useState(0);
@@ -15,8 +16,13 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
 
   const [result, setResult] = useState([]);
   const [showButton, setShowButton] = useState(true);
-  //const [startEN, setStartEN] = useState('');
-  //const [endEN, setEndEN] = useState('');
+  const [startEN, setStartEN] = useState("");
+  const [endEN, setEndEN] = useState("");
+
+  useEffect(() => {
+    // diff 값이 바뀔때마다 date값이 변경됨
+    setDate(diff);
+  }, [diff]);
 
   const onChangeDest = (e) => {
     setDest(e.target.value);
@@ -35,6 +41,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
     setShowButton(true);
   };
 
+  // 목적지, 출발지 칸을 비우기 위한 함수
   const resetDest = (e) => {
     setDest("");
   };
@@ -45,7 +52,6 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
 
   const submit = () => {
     //setLoading(true);
-    setDate(diff);
     axios
       .post("http://localhost:3000/travelkeyword", {
         dest: dest,
@@ -56,8 +62,15 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         console.log(response.data.result);
         setResult(response.data.result); //startEN, destEN 같이들어온다.
         setShowButton(true);
-        //setStartEN(response.data.starEN);
+        //setStartEN(response.data.startEN);
         //setEndEN(response.data.endEN);
+        //console.log(response.data.startEN);
+        //console.log(response.data.endEN);
+        //console.log(response.data.date);
+        <TravelMap
+        //startEN={response.data.startEN}
+        //endEN={response.data.endEN}
+        />;
         onHide();
       })
       .catch((error) => {
@@ -137,6 +150,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
                 type="button"
                 onClick={() => {
                   submit();
+                  getPlace();
                 }}
               >
                 전송
@@ -145,8 +159,8 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
           </Modal.Body>
         </Modal>
       </Container>
-      <div className="pre">{result}</div>
-      <div>{/*diff*/}</div>
+      <div id="pre">{result}</div>
+      <div>{/*date*/}</div>
     </>
   );
 };

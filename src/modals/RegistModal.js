@@ -108,7 +108,7 @@ const RegistModal = ({ show, onHide }) => {
                 placeholder="비밀번호"
                 value={password}
                 onChange={onChangePassword}
-                className="my-2"
+                className="my-2 register"
               />
               <div className="errorMessageWrap">
                 {!pwValid && password.length > 0 && password.length < 21 && (

@@ -25,7 +25,13 @@ const Dropdown = () => {
           <hr className="dropdown-divider" />
         </li>
         <li>
-          <a className="dropdown-item" href="#">
+          <a
+            className="dropdown-item"
+            href="#"
+            onClick={() => {
+              console.log("click");
+            }}
+          >
             로그아웃
           </a>
         </li>
