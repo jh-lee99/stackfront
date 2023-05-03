@@ -7,19 +7,6 @@ import { useNavigate } from "react-router-dom";
 //import Loading from "../components/Loading";
 import TravelMap from "../components/TravelMap";
 
-function getPlace() {
-  axios
-    .get("http://localhost:3000/findLocation") // 서버에서 location 데이터를 받아서 center 값을 변경
-    .then((res) => {
-      /*setLocation(res.data.location);
-      console.log(res.data.location);*/
-      console.log("click");
-    })
-    .catch(() => {
-      console.log("data error");
-    });
-}
-
 const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
@@ -60,6 +47,19 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
   const resetStart = (e) => {
     setStart("");
   };
+
+  function getPlace() {
+    axios
+      .get("http://localhost:3000/findLocation") // 서버에서 location 데이터를 받아서 center 값을 변경
+      .then((res) => {
+        /*setLocation(res.data.location);
+        console.log(res.data.location);*/
+        console.log("click");
+      })
+      .catch(() => {
+        console.log("data error");
+      });
+  }
 
   const submit = () => {
     //setLoading(true);
@@ -162,6 +162,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
           </Modal.Body>
         </Modal>
       </Container>
+      <script>function getPlace(){console.log("click")};</script>
       <div id="pre">{result}</div>
       <div>{/*date*/}</div>
     </>
