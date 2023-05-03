@@ -7,7 +7,20 @@ import { useNavigate } from "react-router-dom";
 //import Loading from "../components/Loading";
 import TravelMap from "../components/TravelMap";
 
-const GptApiContentModal = ({ show, onHide, diff, getPlace }) => {
+function getPlace() {
+  axios
+    .get("http://localhost:3000/findLocation") // 서버에서 location 데이터를 받아서 center 값을 변경
+    .then((res) => {
+      /*setLocation(res.data.location);
+      console.log(res.data.location);*/
+      console.log("click");
+    })
+    .catch(() => {
+      console.log("data error");
+    });
+}
+
+const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
   const [date, setDate] = useState(0);
@@ -16,8 +29,6 @@ const GptApiContentModal = ({ show, onHide, diff, getPlace }) => {
 
   const [result, setResult] = useState([]);
   const [showButton, setShowButton] = useState(true);
-  const [startEN, setStartEN] = useState("");
-  const [endEN, setEndEN] = useState("");
 
   useEffect(() => {
     // diff 값이 바뀔때마다 date값이 변경됨
@@ -143,7 +154,6 @@ const GptApiContentModal = ({ show, onHide, diff, getPlace }) => {
                 type="button"
                 onClick={() => {
                   submit();
-                  getPlace();
                 }}
               >
                 전송

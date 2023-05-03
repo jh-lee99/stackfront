@@ -10,22 +10,10 @@ const GptApiContent = () => {
   const [showButton, setShowButton] = useState(true);
   const [location, setLocation] = useState();
 
-  const getPlace = () => {
-    axios
-      .get("http://localhost:3000/findLocation") // 서버에서 location 데이터를 받아서 center 값을 변경
-      .then((res) => {
-        setLocation(res.data.location);
-        console.log(res.data.location);
-      })
-      .catch(() => {
-        console.log("data error");
-      });
-  };
-
   return (
     <>
       <TravelMap
-        location={location} /*서버에서 받은 location 을 TravelMap 으로
+      /*location={location} /*서버에서 받은 location 을 TravelMap 으로
       전달 */
       />
 
@@ -46,7 +34,6 @@ const GptApiContent = () => {
         onHide={() => setGptApiContentModalOn(false)}
         showButton={showButton}
         HideButton={() => setShowButton(false)}
-        getPlace={getPlace}
       />
     </>
   );
