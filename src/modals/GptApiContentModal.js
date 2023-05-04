@@ -5,13 +5,14 @@ import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { getPlace } from "../functions/getPlace";
+import TravelMap from "../components/TravelMap";
 //import Loading from "../components/Loading";
 
 const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
   const [date, setDate] = useState(0);
-
+  const [place, setPlace] = useState([]);
   //const [loading, setLoading] = useState(true);
 
   const [result, setResult] = useState("<div></div>");
@@ -31,14 +32,15 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
 
       // 가져온 값을 사용해 필요한 작업을 수행합니다.
       console.log(`Location clicked: ${location}`);
-      getPlace(location);
+      const place = getPlace(location);
+      setPlace(place);
     }
 
     const locationElements = pre.querySelectorAll("[location]");
     locationElements.forEach((element) => {
       element.addEventListener("click", handleLocationClick);
     });
-  }, [result]);
+  }, [place, result]);
 
   useEffect(() => {
     // diff 값이 바뀔때마다 date값이 변경됨
@@ -175,6 +177,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
       </Container>
 
       <div id="pre"></div>
+      <div>{place}</div>
     </>
   );
 };

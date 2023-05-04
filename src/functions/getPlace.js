@@ -10,9 +10,12 @@ export function getPlace(location) {
       //setLocation(res.data.location);
       //<TravelMap lat={lat}, lng={lng} />
       console.log(res.data);
+      const place = res.data;
+      return place;
     })
     .catch(() => {
       console.log("data error");
     });
+
   //console.log({ location });
 }
