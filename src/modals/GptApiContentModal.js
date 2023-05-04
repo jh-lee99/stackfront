@@ -154,6 +154,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
       {/* <script>function getPlace(){console.log("click")};</script> */}
 
       <div id="pre">{Parser(result)}</div>
+      <script src="../functions/getPlace.js"></script>
       <div>{/*date*/}</div>
     </>
   );
