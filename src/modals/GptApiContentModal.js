@@ -4,9 +4,7 @@ import axios from "axios";
 import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
-import { getPlace } from "../functions/getPlace";
 //import Loading from "../components/Loading";
-import Parser from "html-react-parser";
 
 const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
@@ -17,6 +15,29 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
 
   const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
+
+  // 추가함
+  useEffect(() => {
+    const parser = new DOMParser();
+    const parsedHtml = parser.parseFromString(result, "text/html");
+    const pre = document.getElementById("pre");
+    pre.innerHTML = "";
+    pre.appendChild(parsedHtml.documentElement);
+  
+    function handleLocationClick(event) {
+      // 클릭한 요소의 location 속성 값을 가져옵니다.
+      const location = event.target.getAttribute('location');
+  
+      // 가져온 값을 사용해 필요한 작업을 수행합니다.
+      console.log(`Location clicked: ${location}`);
+    }
+  
+    const locationElements = pre.querySelectorAll('[location]');
+    locationElements.forEach(element => {
+      element.addEventListener('click', handleLocationClick);
+    });
+  
+  }, [result]);
 
   useEffect(() => {
     // diff 값이 바뀔때마다 date값이 변경됨
@@ -151,10 +172,8 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
           </Modal.Body>
         </Modal>
       </Container>
-      {/* <script>function getPlace(){console.log("click")};</script> */}
 
-      <div id="pre">{Parser(result)}</div>
-      <div>{/*date*/}</div>
+      <div id="pre"></div>
     </>
   );
 };
