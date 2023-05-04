@@ -4,8 +4,9 @@ import axios from "axios";
 import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
+import { getPlace } from "../functions/getPlace";
 //import Loading from "../components/Loading";
-import TravelMap from "../components/TravelMap";
+import Parser from "html-react-parser";
 
 const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
@@ -14,7 +15,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
 
   //const [loading, setLoading] = useState(true);
 
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
 
   useEffect(() => {
@@ -48,19 +49,6 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
     setStart("");
   };
 
-  function getPlace() {
-    axios
-      .get("http://localhost:3000/findLocation") // 서버에서 location 데이터를 받아서 center 값을 변경
-      .then((res) => {
-        /*setLocation(res.data.location);
-        console.log(res.data.location);*/
-        console.log("click");
-      })
-      .catch(() => {
-        console.log("data error");
-      });
-  }
-
   const submit = () => {
     //setLoading(true);
     axios
@@ -71,8 +59,9 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
       })
       .then((response) => {
         console.log(response.data.result);
-        var responseDiv = document.getElementById("pre");
-        responseDiv.innerHTML = response.data.result;
+        //var responseDiv = document.getElementById("pre");
+        //responseDiv.innerHTML = response.data.result;
+        setResult(response.data.result);
         setShowButton(true);
 
         onHide();
@@ -162,8 +151,9 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
           </Modal.Body>
         </Modal>
       </Container>
-      <script>function getPlace(){console.log("click")};</script>
-      <div id="pre">{result}</div>
+      {/* <script>function getPlace(){console.log("click")};</script> */}
+
+      <div id="pre">{Parser(result)}</div>
       <div>{/*date*/}</div>
     </>
   );
