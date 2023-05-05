@@ -1,4 +1,4 @@
-import { Modal, Button, Form, Container } from "react-bootstrap";
+import { Modal, Button, Form, Container, Dropdown } from "react-bootstrap";
 import React, { useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
@@ -46,12 +46,40 @@ const LoginModal = ({ show, onHide }) => {
       data: {
         email: email,
         password: password,
+<<<<<<< HEAD
       },
     }).then((result) => {
       if (result.status === 200) {
         console.log(result)
       }
     });
+=======
+      })
+      .then((response) => {
+        // Handle success.
+        if (response.status === 201) alert(response.message);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        navigate("/travel");
+        console.log("login complete!");
+        //console.log("User profile", response.data.user);
+        //console.log("User token", response.data.jwt);
+
+        //localStorage.setItem("token", response.data.jwt);
+      })
+      .catch((error) => {
+        // Handle error.
+        if (error.status === 401) {
+          alert(error.message);
+        } else {
+          alert(error.message);
+          window.location.replace("/");
+          navigate("/", { replace: true });
+        }
+
+        //console.log("An error occurred:", error.response);
+      });
+>>>>>>> 892a37d4869260e5b009ab85e698f01b4edec7c7
   };
 
   return (
@@ -112,6 +140,11 @@ const LoginModal = ({ show, onHide }) => {
               name="loginButton"
               onClick={() => {
                 Login();
+<<<<<<< HEAD
+=======
+                confirmButton();
+                //redirectTest();
+>>>>>>> 892a37d4869260e5b009ab85e698f01b4edec7c7
               }}
             >
               Login

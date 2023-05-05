@@ -1,15 +1,15 @@
 import React from "react";
-import TravelLayout from "../layouts/TravelLayout";
+import Layout from "../layouts/Layout";
 import { Container } from "react-bootstrap";
 import GptApiContent from "../layouts/GptApiContent";
 
 const Travel = () => {
   return (
-    <TravelLayout>
+    <Layout>
       <Container>
         <GptApiContent />
       </Container>
-    </TravelLayout>
+    </Layout>
   );
 };
 
