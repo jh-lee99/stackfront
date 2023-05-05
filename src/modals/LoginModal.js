@@ -5,12 +5,6 @@ import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const User = {
-  // 로그인 테스트
-  email: "test@example.com",
-  password: "test@1234",
-};
-
 const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,42 +38,20 @@ const LoginModal = ({ show, onHide }) => {
     } else setPwValid(false);
   };
 
-  const confirmButton = () => {
-    //로그인에 성공하면 travel 로 이동(테스트)
-    if (email === User.email && password === User.password) {
-      alert("로그인에 성공했습니다.");
-      navigate("/travel");
-    } else alert("등록되지 않은 회원입니다.");
-  };
-
   const Login = () => {
-    axios
-      .post("http://localhost:3000/login", {
+    axios({
+      url: "http://localhost:3000/login",
+      method: "POST",
+      withCredentials: true,
+      data: {
         email: email,
         password: password,
-      })
-      .then((response) => {
-        // Handle success.
-        if (response.status === 201) alert(response.message);
-        navigate("/travel");
-        //console.log("login complete!");
-        //console.log("User profile", response.data.user);
-        //console.log("User token", response.data.jwt);
-
-        //localStorage.setItem("token", response.data.jwt);
-      })
-      .catch((error) => {
-        // Handle error.
-        if (error.status === 401) {
-          alert(error.message);
-        } else {
-          alert(error.message);
-          window.location.replace("/");
-          navigate("/", { replace: true });
-        }
-
-        //console.log("An error occurred:", error.response);
-      });
+      },
+    }).then((result) => {
+      if (result.status === 200) {
+        console.log(result)
+      }
+    });
   };
 
   return (
@@ -139,9 +111,7 @@ const LoginModal = ({ show, onHide }) => {
               id="fullBtn"
               name="loginButton"
               onClick={() => {
-                //Login();
-                confirmButton();
-                //redirectTest();
+                Login();
               }}
             >
               Login
