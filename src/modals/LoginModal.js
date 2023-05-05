@@ -49,7 +49,8 @@ const LoginModal = ({ show, onHide }) => {
       },
     }).then((result) => {
       if (result.status === 200) {
-        console.log(result)
+        alert("로그인 성공");
+        console.log(result);
       }
     });
   };

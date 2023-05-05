@@ -5,21 +5,21 @@ import RegisterUpdate from "./pages/RegisterUpdate";
 import axios from "axios";
 
 const App = () => {
-  axios.interceptors.request.use(
-    (config) => {
-      const accessToken = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("accessToken="))
-        .split("=")[1];
-      if (accessToken) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  // axios.interceptors.request.use(
+  //   (config) => {
+  //     const accessToken = document.cookie
+  //       .split("; ")
+  //       .find((row) => row.startsWith("accessToken="))
+  //       .split("=")[1];
+  //     if (accessToken) {
+  //       config.headers.Authorization = `Bearer ${accessToken}`;
+  //     }
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
 
   return (
     <div>
