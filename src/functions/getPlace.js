@@ -9,7 +9,7 @@ export function getPlace(location) {
     .then((res) => {
       //setLocation(res.data.location);
       //<TravelMap lat={lat}, lng={lng} />
-      console.log(res.data);
+      console.log("getPlace", res.data);
       const place = res.data;
       return place;
     })

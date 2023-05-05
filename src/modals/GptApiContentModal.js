@@ -12,7 +12,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
   const [date, setDate] = useState(0);
-  const [place, setPlace] = useState([]);
+  const [place, setPlace] = useState();
   //const [loading, setLoading] = useState(true);
 
   const [result, setResult] = useState("<div></div>");
@@ -32,15 +32,14 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
 
       // 가져온 값을 사용해 필요한 작업을 수행합니다.
       console.log(`Location clicked: ${location}`);
-      const place = getPlace(location);
-      setPlace(place);
+      setPlace(getPlace(location));
     }
 
     const locationElements = pre.querySelectorAll("[location]");
     locationElements.forEach((element) => {
       element.addEventListener("click", handleLocationClick);
     });
-  }, [place, result]);
+  }, [result]);
 
   useEffect(() => {
     // diff 값이 바뀔때마다 date값이 변경됨

@@ -1,6 +1,8 @@
 import React from "react";
+import LoginModal from "../modals/LoginModal";
 
-const Dropdown = () => {
+const Dropdown = (id) => {
+  const token = localStorage.getItem("token");
   return (
     //TravelHeader에 필요한 드롭다운 생성
     <div class="dropdown">

@@ -7,18 +7,21 @@ const containerStyle = {
   height: "60vh",
 };
 
-function TravelMap(place) {
+function TravelMap(place = { lat: 37.55998, lng: 126.9858296 }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBN-IU-e5RgkOxfMf1VRQGtNN99FKJb4-A",
   });
 
   const [center, setCenter] = useState({ lat: 37.55998, lng: 126.9858296 });
+
   useEffect(() => {
     setCenter(place);
+    console.log("ddd", place);
   }, [place]);
 
   const [map, setMap] = useState(null);
+
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);

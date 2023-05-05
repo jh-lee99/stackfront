@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 import TravelMap from "../components/TravelMap";
 import GptApiContentModal from "../modals/GptApiContentModal";
 
-const GptApiContent = (place) => {
+const GptApiContent = (_place) => {
   const [GptApiContentModalOn, setGptApiContentModalOn] = useState(false);
   const [showButton, setShowButton] = useState(true);
+  const [place, setplace] = useState();
+
+  useEffect(() => {
+    setplace(_place);
+  }, [_place]);
 
   return (
     <>
-      <TravelMap place={place} />
+      <TravelMap place={_place} />
 
       <Button
         block
