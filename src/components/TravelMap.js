@@ -1,29 +1,22 @@
 import React, { useEffect } from "react";
 import { useState, useCallback, memo } from "react";
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
-import GptApiContentModal1 from "../modals/GptApiContentModal";
-import axios from "axios";
 
 const containerStyle = {
   width: "100%",
   height: "60vh",
 };
 
-/*const center = {
-  lat: 37.5642135,
-  lng: 127.0016985,
-};*/
-
-function TravelMap(location) {
+function TravelMap(place) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBN-IU-e5RgkOxfMf1VRQGtNN99FKJb4-A",
   });
 
-  const [center, setCenter] = useState();
+  const [center, setCenter] = useState({ lat: 37.55998, lng: 126.9858296 });
   useEffect(() => {
-    setCenter(location);
-  }, [center]);
+    setCenter(place);
+  }, [place]);
 
   const [map, setMap] = useState(null);
   const onLoad = useCallback(function callback(map) {
@@ -53,4 +46,4 @@ function TravelMap(location) {
 }
 
 // React.memo로 리렌더링 방지
-export default memo(TravelMap);
+export default TravelMap;

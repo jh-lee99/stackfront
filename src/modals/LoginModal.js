@@ -1,4 +1,4 @@
-import { Modal, Button, Form, Container } from "react-bootstrap";
+import { Modal, Button, Form, Container, Dropdown } from "react-bootstrap";
 import React, { useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
@@ -61,8 +61,10 @@ const LoginModal = ({ show, onHide }) => {
       .then((response) => {
         // Handle success.
         if (response.status === 201) alert(response.message);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
         navigate("/travel");
-        //console.log("login complete!");
+        console.log("login complete!");
         //console.log("User profile", response.data.user);
         //console.log("User token", response.data.jwt);
 
@@ -139,7 +141,7 @@ const LoginModal = ({ show, onHide }) => {
               id="fullBtn"
               name="loginButton"
               onClick={() => {
-                //Login();
+                Login();
                 confirmButton();
                 //redirectTest();
               }}

@@ -5,7 +5,7 @@ import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { getPlace } from "../functions/getPlace";
-import TravelMap from "../components/TravelMap";
+import GptApiContent from "../layouts/GptApiContent";
 //import Loading from "../components/Loading";
 
 const GptApiContentModal = ({ show, onHide, diff }) => {
@@ -87,7 +87,6 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         //responseDiv.innerHTML = response.data.result;
         setResult(response.data.result);
         setShowButton(true);
-
         onHide();
       })
       .catch((error) => {
@@ -176,8 +175,8 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         </Modal>
       </Container>
 
-      <div id="pre"></div>
-      <div>{place}</div>
+      <div id="pre" place={place}></div>
+      <div GptApiContent place={place} />
     </>
   );
 };

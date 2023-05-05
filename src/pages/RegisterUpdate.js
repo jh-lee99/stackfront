@@ -1,15 +1,15 @@
 import React from "react";
 
-import TravelLayout from "../layouts/TravelLayout";
+import Layout from "../layouts/Layout";
 import RegisterContent from "../layouts/RegisterContent";
 import { Container } from "react-bootstrap";
 const RegisterUpdate = () => {
   return (
-    <TravelLayout>
+    <Layout>
       <Container>
         <RegisterContent />
       </Container>
-    </TravelLayout>
+    </Layout>
   );
 };
 
