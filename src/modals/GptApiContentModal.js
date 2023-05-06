@@ -4,20 +4,33 @@ import axios from "axios";
 import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
-import { getPlace } from "../functions/getPlace";
-import GptApiContent from "../layouts/GptApiContent";
+
+//import GptApiContent from "../layouts/GptApiContent";
 //import Loading from "../components/Loading";
+let mapPlace = null; // Travel 맵으로 내보낼 변수
 
 const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
   const [date, setDate] = useState(0);
   const [place, setPlace] = useState();
+
   //const [loading, setLoading] = useState(true);
 
   const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
 
+  function getPlace(location) {
+    axios
+      .get(`http://localhost:3000/findLocation?query=${location}`) // 서버에서 location 데이터를 받아서 center 값을 변경
+      .then((res) => {
+        console.log("getPlace", res.data);
+        setPlace(res.data);
+      })
+      .catch(() => {
+        console.log("data error");
+      });
+  }
   // 추가함
   useEffect(() => {
     const parser = new DOMParser();
@@ -32,7 +45,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
 
       // 가져온 값을 사용해 필요한 작업을 수행합니다.
       console.log(`Location clicked: ${location}`);
-      setPlace(getPlace(location));
+      getPlace(location);
     }
 
     const locationElements = pre.querySelectorAll("[location]");
@@ -40,6 +53,12 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
       element.addEventListener("click", handleLocationClick);
     });
   }, [result]);
+
+  useEffect(() => {
+    // place 에 getPlace 로 얻어온 값이 잘 넘어왔는지 확인
+    console.log("place", place);
+    mapPlace = place;
+  }, [place]);
 
   useEffect(() => {
     // diff 값이 바뀔때마다 date값이 변경됨
@@ -174,10 +193,10 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         </Modal>
       </Container>
 
-      <div id="pre" place={place}></div>
-      <div GptApiContent place={place} />
+      <div id="pre"></div>
     </>
   );
 };
 
 export default GptApiContentModal;
+export { mapPlace };
