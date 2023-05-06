@@ -51,7 +51,9 @@ const LoginModal = ({ show, onHide }) => {
     }).then((result) => {
       if (result.status === 200) {
         alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
+        Cookies.set("username", result.data.username);
         console.log(result.data);
+        navigate("/", { replace: true });
       }
     }).catch((error) => {
       alert("로그인 실패: 등록되지 않은 사용자\n" + error);
