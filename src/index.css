@@ -54,9 +54,9 @@
 
 .introText {
   display: flex;
-  padding: 15%;
+  padding: 5%;
   text: center;
-  justify-content: center;
+  //justify-content: center;
 }
 .introBtn {
   margin: 20px;
@@ -67,9 +67,9 @@
 .introBox {
   display: flex;
   justify-content: center;
-  padding: 20%;
+
   bottom: 8px;
-  //align-items: flex-end;
+  align-items: flex-end;
 }
 
 .travelBtn {
@@ -87,4 +87,16 @@
 
 .register {
   border-radius: 8px;
+}
+
+.imgBox {
+  display: flex;
+}
+
+.marginRight {
+  margin-right: 20px;
+}
+
+.marginLeft {
+  margin-left: 20px;
 }

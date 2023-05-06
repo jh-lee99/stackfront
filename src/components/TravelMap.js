@@ -3,7 +3,7 @@ import { useState, useCallback, memo } from "react";
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { mapPlace } from "../modals/GptApiContentModal";
 
-const centerDefault = { lat: 37.55998, lng: 126.9858296 };
+const centerDefault = { lat: 37.55998, lng: 126.9858296 }; // center 초기값
 const containerStyle = {
   width: "100%",
   height: "60vh",
@@ -26,7 +26,7 @@ function TravelMap() {
     } else {
       setCenter(centerDefault);
     }
-  }, []);
+  }, [mapPlace]);
 
   const onLoad = useCallback(
     function callback(map) {
@@ -37,11 +37,9 @@ function TravelMap() {
     },
     [center]
   );
-
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
-
   useEffect(() => {
     if (map) {
       const bounds = new window.google.maps.LatLngBounds(center);
@@ -65,4 +63,4 @@ function TravelMap() {
 }
 
 // React.memo로 리렌더링 방지
-export default memo(TravelMap);
+export default TravelMap;

@@ -2,29 +2,33 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const Intro = () => { 
+const Intro = () => {
   const navigate = useNavigate();
   const loginLink = () => {
     navigate("/travel");
   };
-  const userEditLink = () => {
-    navigate("/registerUpdate");
-  };
   return (
     <div>
-      <div className="introText">첫 접속시 표시되는 화면입니다.</div>
-      <div className="introBox">
-        <Button
-          href="#"
-          onClick={() => {
-            userEditLink();
-          }}
-          variant="info"
-          className="introBtn"
-        >
-          회원정보 수정하기
-        </Button>
+      <div className="introText">
+        <div className="imgBox">
+          <img
+            className="marginRight"
+            src="images\Travel1.png"
+            alt="Travel1"
+            width="600vh"
+            height="400vh"
+          />
+          <img
+            className="marginLeft"
+            src="images\Travel2.png"
+            alt="Travel2"
+            width="600vh"
+            height="400vh"
+          />
+        </div>
+      </div>
 
+      <div className="introBox">
         <Button
           href="#"
           onClick={() => {
