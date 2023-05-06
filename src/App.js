@@ -63,10 +63,12 @@ const App = () => {
                 Cookies.set('accessToken', newAccessToken);
                 config.headers.Authorization = `Bearer ${newAccessToken}`;
               } else {
-                throw new Error('Failed to refresh access token');
+                throw new Error('토큰이 없습니다.');
               }
             } catch (error) {
-              console.error('Failed to refresh access token', error);
+              console.error(error);
+            } finally {
+              console.log('accessToken: ', Cookies.get(accessToken));
             }
           }
         }
