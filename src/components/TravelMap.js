@@ -1,36 +1,54 @@
 import React, { useEffect } from "react";
 import { useState, useCallback, memo } from "react";
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import { mapPlace } from "../modals/GptApiContentModal";
 
+const centerDefault = { lat: 37.55998, lng: 126.9858296 };
 const containerStyle = {
   width: "100%",
   height: "60vh",
 };
 
-function TravelMap(place = { lat: 37.55998, lng: 126.9858296 }) {
+function TravelMap() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBN-IU-e5RgkOxfMf1VRQGtNN99FKJb4-A",
   });
 
-  const [center, setCenter] = useState({ lat: 37.55998, lng: 126.9858296 });
+  const [map, setMap] = useState(null);
+  const [center, setCenter] = useState(centerDefault);
+  //const [location, setLocation] = useState(mapPlace);
 
   useEffect(() => {
-    setCenter(place);
-    console.log("ddd", place);
-  }, [place]);
-
-  const [map, setMap] = useState(null);
-
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map);
+    console.log("---------------------");
+    if (mapPlace) {
+      setCenter(mapPlace);
+    } else {
+      setCenter(centerDefault);
+    }
   }, []);
+
+  const onLoad = useCallback(
+    function callback(map) {
+      const bounds = new window.google.maps.LatLngBounds(center);
+      map.fitBounds(bounds);
+      setMap(map);
+      console.log("12345678");
+    },
+    [center]
+  );
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
+
+  useEffect(() => {
+    if (map) {
+      const bounds = new window.google.maps.LatLngBounds(center);
+      map.fitBounds(bounds);
+    }
+    console.log("12345678123");
+  }, [center, map]);
 
   return isLoaded ? (
     <GoogleMap
@@ -43,10 +61,8 @@ function TravelMap(place = { lat: 37.55998, lng: 126.9858296 }) {
       <MarkerF position={center} />
       {/* Child components, such as markers, info windows, etc. */}
     </GoogleMap>
-  ) : (
-    <></>
-  );
+  ) : null;
 }
 
 // React.memo로 리렌더링 방지
-export default TravelMap;
+export default memo(TravelMap);
