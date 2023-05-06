@@ -1,5 +1,6 @@
 import { Modal, Button, Form, Container, Dropdown } from "react-bootstrap";
 import React, { useState } from "react";
+import Cookies from 'js-cookie';
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
@@ -49,9 +50,12 @@ const LoginModal = ({ show, onHide }) => {
       },
     }).then((result) => {
       if (result.status === 200) {
-        alert("로그인 성공");
-        console.log(result);
+        alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
+        console.log(result.data);
       }
+    }).catch((error) => {
+      alert("로그인 실패: 등록되지 않은 사용자\n" + error);
+      console.log(error.data);
     });
   };
 
