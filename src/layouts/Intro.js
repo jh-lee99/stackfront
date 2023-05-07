@@ -65,7 +65,6 @@ const Intro = () => {
     }
   };
 
-  const autoImg = () => {};
   const prev = (num) => {
     if (num > 1) {
       setIndex(num - 1);
