@@ -6,7 +6,7 @@ import Intro from "../layouts/Intro";
 const Home = () => {
   return (
     <Layout>
-      <Container style={{ minHeight: "75vh" }}>
+      <Container style={{ minHeight: "70vh" }}>
         <Intro />
       </Container>
     </Layout>

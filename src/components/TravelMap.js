@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState, useCallback, memo } from "react";
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { mapPlace } from "../modals/GptApiContentModal";
@@ -17,16 +17,17 @@ function TravelMap() {
 
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState(centerDefault);
+  const { place, setPlace } = useState({});
   //const [location, setLocation] = useState(mapPlace);
 
   useEffect(() => {
     console.log("---------------------");
-    if (mapPlace) {
-      setCenter(mapPlace);
+    if (place) {
+      setCenter(place);
     } else {
       setCenter(centerDefault);
     }
-  }, [mapPlace]);
+  }, [place]);
 
   const onLoad = useCallback(
     function callback(map) {
@@ -40,13 +41,6 @@ function TravelMap() {
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
-  useEffect(() => {
-    if (map) {
-      const bounds = new window.google.maps.LatLngBounds(center);
-      map.fitBounds(bounds);
-    }
-    console.log("12345678123");
-  }, [center, map]);
 
   return isLoaded ? (
     <GoogleMap
