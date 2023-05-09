@@ -4,9 +4,9 @@ import axios from "axios";
 import TravelCalendar from "../components/TravelCalendar";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
+import { createStoreHook } from "react-redux";
+import Loading from "../components/Loading";
 
-//import GptApiContent from "../layouts/GptApiContent";
-//import Loading from "../components/Loading";
 let mapPlace = null; // Travel 맵으로 내보낼 변수
 
 const GptApiContentModal = ({ show, onHide, diff }) => {
@@ -14,11 +14,14 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
   const [start, setStart] = useState("");
   const [date, setDate] = useState(0);
   const [place, setPlace] = useState();
-
-  //const [loading, setLoading] = useState(true);
+  const [isLoading, setIsloading] = useState(false);
 
   const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
+
+  /*const isLoading = {
+    setLoading: false,
+  };*/
 
   function getPlace(location) {
     axios
@@ -31,6 +34,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         console.log("data error");
       });
   }
+
   // 추가함
   useEffect(() => {
     const parser = new DOMParser();
@@ -92,7 +96,8 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
   };
 
   const submit = () => {
-    //setLoading(true);
+    onHide();
+    setIsloading(true);
     axios
       .post("http://localhost:3000/travelkeyword", {
         dest: dest,
@@ -104,8 +109,8 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         //var responseDiv = document.getElementById("pre");
         //responseDiv.innerHTML = response.data.result;
         setResult(response.data.result);
+        setIsloading(false);
         setShowButton(true);
-        onHide();
       })
       .catch((error) => {
         // Handle error.
@@ -192,7 +197,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
           </Modal.Body>
         </Modal>
       </Container>
-
+      {isLoading ? <Loading></Loading> : <div id="pre"></div>}
       <div id="pre"></div>
     </>
   );
