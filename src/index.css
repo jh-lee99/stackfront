@@ -18,11 +18,7 @@
 .ComponentBox {
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  //min-height: 80%;
-  //min-width: 80%;
-  //background-color: rgba(128, 128, 128, 0.2);
+  //align-items: center;
 }
 
 #center {
@@ -61,18 +57,6 @@
   width: 40vh;
 }
 
-.introBox {
-  display: flex;
-  justify-content: center;
-  //align-items: flex-end;
-  //min-height: 20vh;
-  position: absolute;
-  bottom: 0;
-
-  left: 0;
-  right: 0;
-}
-
 .travelBtn {
   margin: 8px;
   border-radius: 8px;
@@ -93,30 +77,41 @@
 .imgBox {
   display: flex;
   flex-direction: column;
-
-  padding: 5%;
-  //text: center;
+  margin-top: 3%;
+  padding: 3%;
+  padding-top: 1;
+  padding-bottom: 0;
   justify-content: center;
-  //min-height: 100%;
   border-radius: 8px;
   background-color: rgba(128, 128, 128, 0.2);
+  align-items: center;
+  max-width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 706.77px;
 }
 .imgBtnBox {
   display: flex;
-  padding: 4%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
   justify-content: center;
 }
 .marginRight {
   margin-right: 20px;
 }
 
-.marginLeft {
-  margin-left: 20px;
-}
 img {
   border-radius: 8px;
 }
 
 nav {
-  margin: 5px;
+  margin: 1vh;
+  margin-bottom: 0;
+}
+
+.image-Item {
+  flex-direction: column;
+  justifycontent: center;
+  max-height: 591.75px;
 }
