@@ -9,9 +9,9 @@ const Intro = () => {
     navigate("/travel");
   };
   const images = [
-    <img src="images\Travel1.png" alt="Travel1" width="100%" height="550vh" />,
-    <img src="images\Travel2.png" alt="Travel2" width="100%" height="550vh" />,
-    <img src="images\Travel3.png" alt="Travel3" width="100%" height="550vh" />,
+    <img src="images\Travel1.png" alt="Travel1" width="100%" height="auto" />,
+    <img src="images\Travel2.png" alt="Travel2" width="100%" height="auto" />,
+    <img src="images\Travel3.png" alt="Travel3" width="100%" height="auto" />,
   ];
 
   const [img, setImg] = useState(images[0]);

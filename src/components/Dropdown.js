@@ -1,4 +1,5 @@
 import React from "react";
+import Cookies from 'js-cookie';
 import LoginModal from "../modals/LoginModal";
 
 const Dropdown = () => {
@@ -11,7 +12,7 @@ const Dropdown = () => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        아이디 표시
+        {Cookies.get("username")}
       </button>
       <ul className="dropdown-menu">
         <li>

@@ -28,7 +28,7 @@ const Header = () => {
                   src="images\logo.png"
                   alt="For. travel"
                   width="auto"
-                  height="auto"
+                  height="50vh"
                 />
               </Navbar.Brand>
               <Dropdown />
@@ -64,7 +64,7 @@ const Header = () => {
                 className="justify-content-end"
               >
                 <Nav className="ml-auto">
-                  {/*<Nav.Link>
+                  <Nav.Link>
                     <Button
                       variant="primary"
                       onClick={() => setLoginModalOn(true)}
@@ -81,8 +81,8 @@ const Header = () => {
                     >
                       Sign Up
                     </Button>
-    </Nav.Link>*/}
-                  <Dropdown />
+                  </Nav.Link>
+                  {/* <Dropdown /> */}
                 </Nav>
               </Navbar.Collapse>
             </Container>
