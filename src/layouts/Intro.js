@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { memo } from "react";
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -8,9 +9,9 @@ const Intro = () => {
     navigate("/travel");
   };
   const images = [
-    <img src="images\Travel1.png" alt="Travel1" width="100%" height="100%" />,
-    <img src="images\Travel2.png" alt="Travel2" width="100%" height="100%" />,
-    <img src="images\Travel3.png" alt="Travel3" width="100%" height="100%" />,
+    <img src="images\Travel1.png" alt="Travel1" width="100%" height="550vh" />,
+    <img src="images\Travel2.png" alt="Travel2" width="100%" height="550vh" />,
+    <img src="images\Travel3.png" alt="Travel3" width="100%" height="550vh" />,
   ];
 
   const [img, setImg] = useState(images[0]);
@@ -30,7 +31,7 @@ const Intro = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((index) => (index + 1) % (images.length + 1));
-    }, 5000);
+    }, 10000);
     return () => {
       clearInterval(interval);
     };
@@ -49,8 +50,7 @@ const Intro = () => {
       console.log("2", index);
       setGuide(
         <div style={{ fontSize: "20px", fontWeight: "bold", margin: "1%" }}>
-          2. 목적지와 출발지를 입력, 달력에서 가고 싶은 기간 드래그 or 클릭,
-          전송버튼 클릭
+          2. 목적지, 출발지, 날짜 입력하기
         </div>
       );
       setImg(images[1]);
@@ -81,13 +81,13 @@ const Intro = () => {
   return (
     <>
       <div>
-        <div className="imgBtnBox"></div>
-        {/*<div className="introText">*/}
         <div className="imgBox">
-          <div>{guide}</div>
-          <div>{img}</div>
+          <div className="image-Item">
+            {guide}
+            {img}
+          </div>
           <nav aria-label="guide">
-            <ul class="pagination">
+            <ul class="pagination" style={{ justifyContent: "center" }}>
               <li class="page-item">
                 <a
                   class="page-link"
@@ -152,6 +152,7 @@ const Intro = () => {
           </nav>
         </div>
       </div>
+
       <div className="imgBtnBox">
         <Button
           href="#"

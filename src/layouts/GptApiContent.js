@@ -16,6 +16,7 @@ const GptApiContent = (place) => {
   }, [location]);
   return (
     <>
+      <div style={{ marginTop: "3%" }}></div>
       <TravelMap />
 
       <Button
