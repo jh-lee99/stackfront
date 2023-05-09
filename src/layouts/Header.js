@@ -28,7 +28,7 @@ const Header = () => {
                   src="images\logo.png"
                   alt="For. travel"
                   width="auto"
-                  height="auto"
+                  height="50vh"
                 />
               </Navbar.Brand>
               <Dropdown />
