@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
+import { left } from "@popperjs/core";
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -9,9 +10,9 @@ const Intro = () => {
     navigate("/travel");
   };
   const images = [
-    <img src="images\Travel1.png" alt="Travel1" width="100%" height="auto" />,
-    <img src="images\Travel2.png" alt="Travel2" width="100%" height="auto" />,
-    <img src="images\Travel3.png" alt="Travel3" width="100%" height="auto" />,
+    <img src="images\Travel1.png" alt="Travel1" width="70%" height="auto" />,
+    <img src="images\Travel2.png" alt="Travel2" width="70%" height="auto" />,
+    <img src="images\Travel3.png" alt="Travel3" width="70%" height="auto" />,
   ];
 
   const [img, setImg] = useState(images[0]);
@@ -83,8 +84,10 @@ const Intro = () => {
       <div>
         <div className="imgBox">
           <div className="image-Item">
-            {guide}
-            {img}
+            <div style={{ paddingLeft: "15%" }}>{guide}</div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              {img}
+            </div>
           </div>
           <nav aria-label="guide">
             <ul class="pagination" style={{ justifyContent: "center" }}>

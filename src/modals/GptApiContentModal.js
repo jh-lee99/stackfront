@@ -198,7 +198,6 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         </Modal>
       </Container>
       {isLoading ? <Loading></Loading> : <div id="pre"></div>}
-      <div id="pre"></div>
     </>
   );
 };
