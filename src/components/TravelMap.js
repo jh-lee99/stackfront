@@ -20,9 +20,30 @@ function TravelMap() {
   const place = useSelector((state) => state.MapReducer.mapPlace);
   const [center, setCenter] = useState(centerDefault);
 
+  const [error, setError] = useState();
+
+  const onSuccess = (pos) => {
+    // 현재 위치를 받아오는데 성공하면 실행되는 함수
+    const { latitude, longitude } = pos.coords;
+    setCenter({
+      lat: latitude,
+      lng: longitude,
+    });
+  };
+
+  const onError = (error) => {
+    // 현재 위치를 받는데 실패하면 에러 메시지 출력
+    setError(error.message);
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError); // 처음 마운트 되었을 때 현재 위치를 받아오는함수
+  }, []);
+
   useEffect(() => {
     setCenter(place);
   }, [place]);
+
   useEffect(() => {
     console.log("center", center);
   }, [center]);
@@ -32,7 +53,6 @@ function TravelMap() {
       const bounds = new window.google.maps.LatLngBounds(center);
       map.fitBounds(bounds);
       setMap(map);
-      console.log("12345678");
     },
     [center]
   );
@@ -45,7 +65,7 @@ function TravelMap() {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={4}
+        zoom={16}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
