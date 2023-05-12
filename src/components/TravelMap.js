@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback } from "react";
 import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { useSelector } from "react-redux";
 
-const centerDefault = { lat: 37.55998, lng: 126.9858296 }; // center 초기값
+const centerDefault = { lat: 37.55998, lng: 126.9858296 }; // center 초기값, 현재 위치를 받아 오지 못할경우 나타는 좌표
 
 const containerStyle = {
   width: "80%",
@@ -18,7 +18,7 @@ function TravelMap() {
 
   const [map, setMap] = useState(null);
   const place = useSelector((state) => state.MapReducer.mapPlace);
-  const [center, setCenter] = useState(centerDefault);
+  const [center, setCenter] = useState(centerDefault); // 지도에 나타나는 좌표
 
   const [error, setError] = useState();
 
@@ -41,6 +41,7 @@ function TravelMap() {
   }, []);
 
   useEffect(() => {
+    // 결과에서 장소를 클릭할때마다 center 값을 변경
     setCenter(place);
   }, [place]);
 

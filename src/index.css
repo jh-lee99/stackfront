@@ -116,3 +116,10 @@ nav {
   justify-content: center;
   //max-height: 591.75px;
 }
+
+.loadingStyle {
+  margin: auto;
+  justifycontent: center;
+  width: 80%;
+  margin-bottom: 2%;
+}

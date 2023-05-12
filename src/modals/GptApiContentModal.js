@@ -195,7 +195,9 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         </Modal>
       </Container>
       {isLoading ? (
-        <Loading />
+        <div className="loadingStyle">
+          <Loading />
+        </div>
       ) : (
         <div
           id="pre"
