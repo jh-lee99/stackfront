@@ -9,16 +9,8 @@ import { useNavigate } from "react-router-dom";
 const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
-
-  const navigate = useNavigate();
-
-  /*const redirectTest = () => { // redirect test
-    navigate("/*", { replace: true });
-  };*/
-
   const onChangeEmail = (e) => {
     //이메일 검증
     setEmail(e.target.value);
@@ -54,7 +46,8 @@ const LoginModal = ({ show, onHide }) => {
           alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
           Cookies.set("username", result.data.username);
           console.log(result.data);
-          navigate("/", { replace: true });
+          // navigate("/", { replace: true });
+          window.location.reload()
         }
       })
       .catch((error) => {
