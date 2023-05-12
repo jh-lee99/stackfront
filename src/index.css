@@ -58,15 +58,9 @@
 }
 
 .travelBtn {
-  margin: 8px;
   border-radius: 8px;
-  justify-content: center;
-}
-
-.center {
-  display: flex;
-
-  margin: 35%;
+  min-width: 20vh;
+  margin: auto;
   width: 30%;
 }
 
@@ -89,7 +83,7 @@
   max-width: 87%;
   margin-left: auto;
   margin-right: auto;
-  min-height: 50vh;
+  min-height: 70vh;
   height: auto;
   //max-height: 706.77px;
 }
