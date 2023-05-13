@@ -65,7 +65,6 @@ const App = () => {
           Cookies.remove("accessToken");
           Cookies.remove("refreshToken");
           Cookies.remove("username");
-          console.error("쿠키를 전부 삭제함", error);
           console.error("Failed to check access token", error);
           Cookies.remove("username");
           alert("세션이 끊겼습니다.\n로그아웃합니다.");
