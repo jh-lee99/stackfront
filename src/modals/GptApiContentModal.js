@@ -91,7 +91,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
     onHide();
     //setIsloading(true);
     dispatch(startLoading());
-
+    console.log(start, dest, date);
     axios
       .post("http://localhost:3000/travelkeyword", {
         dest: dest,
