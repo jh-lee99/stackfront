@@ -4,7 +4,8 @@ import Cookies from "js-cookie";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Travel from "./pages/Travel";
-import RegisterUpdate from "./pages/RegisterUpdate";
+import UpdateUser from "./pages/UpdateUser";
+import RecentMessage from "./pages/RecentMessage";
 
 const App = () => {
   const navigate = useNavigate();
@@ -106,7 +107,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/*" element={<Navigate to="/"></Navigate>}></Route>
         <Route path="/travel" element={<Travel />} />
-        <Route path="/registerupdate" element={<RegisterUpdate />} />
+        <Route path="/registerupdate" element={<UpdateUser />} />
+        <Route path="/recentmessage" element={<RecentMessage />} />
       </Routes>
     </div>
   );

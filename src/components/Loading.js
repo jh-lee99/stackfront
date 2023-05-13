@@ -2,9 +2,9 @@ import React from "react";
 
 export const Loading = () => {
   return (
-    <div class="progress">
+    <div className="progress">
       <div
-        class="progress-bar progress-bar-striped progress-bar-animated"
+        className="progress-bar progress-bar-striped progress-bar-animated"
         role="progressbar"
         aria-valuenow="75"
         aria-valuemin="0"

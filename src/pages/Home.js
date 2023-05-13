@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "../layouts/Layout";
 import { Container } from "react-bootstrap";
-import Intro from "../layouts/Intro";
+import IntroContent from "../contents/IntroContent";
 
 const Home = () => {
   return (
     <Layout>
       <Container style={{ minHeight: "70vh" }}>
-        <Intro />
+        <IntroContent />
       </Container>
     </Layout>
   );

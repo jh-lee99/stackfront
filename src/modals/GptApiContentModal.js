@@ -87,11 +87,14 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
     setStart("");
   };
 
+  useEffect(() => {
+    console.log("업", date);
+  }, [date]);
+
   const submit = () => {
     onHide();
-    //setIsloading(true);
     dispatch(startLoading());
-    console.log(start, dest, date);
+
     axios
       .post("http://localhost:3000/travelkeyword", {
         dest: dest,
@@ -189,7 +192,7 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
               <div>
                 <div>결과로 받는 언어를 선택해주세요.</div>
                 <div
-                  class="btn-group"
+                  className="btn-group"
                   role="group"
                   aria-label="Basic outlined example"
                 >

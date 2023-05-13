@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { memo } from "react";
-import { left } from "@popperjs/core";
 
-const Intro = () => {
+const IntroContent = () => {
   const navigate = useNavigate();
   const loginLink = () => {
     navigate("/travel");
@@ -40,7 +38,7 @@ const Intro = () => {
 
   const nextImage = (num) => {
     if (num === 1) {
-      console.log("1", index);
+      //console.log("1", index);
       setGuide(
         <div style={{ fontSize: "20px", fontWeight: "bold", margin: "1%" }}>
           1. 여행 떠나기 버튼 클릭
@@ -48,7 +46,7 @@ const Intro = () => {
       );
       setImg(images[0]);
     } else if (num === 2) {
-      console.log("2", index);
+      //console.log("2", index);
       setGuide(
         <div style={{ fontSize: "20px", fontWeight: "bold", margin: "1%" }}>
           2. 목적지, 출발지, 날짜 입력하기
@@ -56,7 +54,7 @@ const Intro = () => {
       );
       setImg(images[1]);
     } else if (num === 3) {
-      console.log("3", index);
+      //console.log("3", index);
       setGuide(
         <div style={{ fontSize: "20px", fontWeight: "bold", margin: "1%" }}>
           3. 가고 싶은 장소 클릭
@@ -90,10 +88,10 @@ const Intro = () => {
             </div>
           </div>
           <nav aria-label="guide">
-            <ul class="pagination" style={{ justifyContent: "center" }}>
-              <li class="page-item">
+            <ul className="pagination" style={{ justifyContent: "center" }}>
+              <li className="page-item">
                 <a
-                  class="page-link"
+                  className="page-link"
                   href="#"
                   aria-label="Previous"
                   onClick={() => {
@@ -103,9 +101,9 @@ const Intro = () => {
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <a
-                  class="page-link"
+                  className="page-link"
                   href="#"
                   onClick={() => {
                     setIndex(1);
@@ -115,9 +113,9 @@ const Intro = () => {
                   1
                 </a>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <a
-                  class="page-link"
+                  className="page-link"
                   href="#"
                   onClick={() => {
                     setIndex(2);
@@ -127,9 +125,9 @@ const Intro = () => {
                   2
                 </a>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <a
-                  class="page-link"
+                  className="page-link"
                   href="#"
                   onClick={() => {
                     setIndex(3);
@@ -139,9 +137,9 @@ const Intro = () => {
                   3
                 </a>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <a
-                  class="page-link"
+                  className="page-link"
                   href="#"
                   aria-label="Next"
                   onClick={() => {
@@ -173,4 +171,4 @@ const Intro = () => {
   );
 };
 
-export default Intro;
+export default IntroContent;

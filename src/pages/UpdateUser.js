@@ -1,9 +1,9 @@
 import React from "react";
 
 import Layout from "../layouts/Layout";
-import RegisterContent from "../components/RegisterContent";
+import RegisterContent from "../contents/UpdateUserContent";
 import { Container } from "react-bootstrap";
-const RegisterUpdate = () => {
+const UpdateUser = () => {
   return (
     <Layout>
       <Container>
@@ -13,4 +13,4 @@ const RegisterUpdate = () => {
   );
 };
 
-export default RegisterUpdate;
+export default UpdateUser;
