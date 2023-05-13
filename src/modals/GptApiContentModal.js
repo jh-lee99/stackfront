@@ -203,6 +203,10 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
           id="pre"
           style={{
             marginBottom: "2%",
+            width: "60%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "auto",
           }}
         ></div>
       )}

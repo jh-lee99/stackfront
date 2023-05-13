@@ -12,6 +12,7 @@ const RegisterContent = () => {
   const onChangeModifiedId = (e) => {
     setModifiedId(e.target.value);
   };
+
   const onChangeModifiedPassword = (e) => {
     setModifiedPassword(e.target.value);
     const regex =
@@ -58,12 +59,12 @@ const RegisterContent = () => {
           </Form.Label>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Id 변경</Form.Label>
+          <Form.Label>Username 변경</Form.Label>
           <Form.Control
             type="text"
             value={ModifiedId}
             onChange={onChangeModifiedId}
-            placeholder="아이디"
+            placeholder="Username"
             className="my-2"
           />
         </Form.Group>

@@ -4,20 +4,17 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const RegistModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
-  const [id, setId] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confrimPassword, setConfirmPassword] = useState("");
-  //const { replace } = useNavigate();
-
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
 
   const onChangeId = (e) => {
-    setId(e.target.value);
+    setUsername(e.target.value);
   };
 
   const onChangeEmail = (e) => {
@@ -45,7 +42,7 @@ const RegistModal = ({ show, onHide }) => {
   const register = () => {
     axios
       .post("", {
-        id: id,
+        username: username,
         email: email,
         password: password,
         confirmpassword: confrimPassword,
@@ -56,7 +53,6 @@ const RegistModal = ({ show, onHide }) => {
         console.log("User profile", response.data.user);
         console.log("User token", response.data.jwt);
         localStorage.setItem("token", response.data.jwt);
-        //replace("/");
       })
       .catch((error) => {
         // Handle error.
@@ -81,7 +77,7 @@ const RegistModal = ({ show, onHide }) => {
               <Form.Label>Id</Form.Label>
               <Form.Control
                 placeholder="아이디"
-                value={id}
+                value={username}
                 onChange={onChangeId}
                 className="my-2"
               />
