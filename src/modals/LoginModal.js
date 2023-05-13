@@ -1,10 +1,9 @@
-import { Modal, Button, Form, Container, Dropdown } from "react-bootstrap";
+import { Modal, Button, Form, Container } from "react-bootstrap";
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
@@ -46,8 +45,7 @@ const LoginModal = ({ show, onHide }) => {
           alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
           Cookies.set("username", result.data.username);
           console.log(result.data);
-          // navigate("/", { replace: true });
-          window.location.reload()
+          window.location.reload();
         }
       })
       .catch((error) => {

@@ -13,21 +13,19 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
   const [date, setDate] = useState(0);
-  //const [place, setPlace] = useState();
-  //const [isLoading, setIsloading] = useState(false);
   const isLoading = useSelector((state) => state.LoadingReducer.isLoading);
   const dispatch = useDispatch();
-  const place = useSelector((state) => state.mapPlace);
-
   const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
-
+  const [selectedBtnIndex, setSelectedBtnIndex] = useState(0);
+  const handleClick = (index) => {
+    setSelectedBtnIndex(index);
+  };
   function getPlace(location) {
     axios
       .get(`http://localhost:3000/findLocation?query=${location}`) // 서버에서 location 데이터를 받아서 center 값을 변경
       .then((res) => {
         console.log("getPlace", res.data);
-        //setPlace(res.data);
         dispatch(loadPlace(res.data));
       })
       .catch(() => {
@@ -104,7 +102,6 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
         console.log(response.data.result);
 
         setResult(response.data.result);
-        //setIsloading(false);
         dispatch(finishLoading());
 
         setShowButton(true);
@@ -120,7 +117,6 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
     resetDest();
     resetStart();
   };
-  //console.log("isLoading", isLoading);
   return (
     <>
       <Container>
@@ -190,6 +186,48 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
               >
                 전송
               </Button>
+              <div>
+                <div>결과로 받는 언어를 선택해주세요.</div>
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="Basic outlined example"
+                >
+                  <Button
+                    type="button"
+                    variant="info"
+                    className={` ${selectedBtnIndex === 0 && "active"}`}
+                    style={{ width: "94px", height: "48px" }}
+                    onClick={() => {
+                      handleClick(0);
+                    }}
+                  >
+                    한국어
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="info"
+                    className={` ${selectedBtnIndex === 1 && "active"}`}
+                    style={{ width: "94px", height: "48px" }}
+                    onClick={() => {
+                      handleClick(1);
+                    }}
+                  >
+                    영어
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="info"
+                    style={{ width: "94px", height: "48px" }}
+                    className={` ${selectedBtnIndex === 2 && "active"}`}
+                    onClick={() => {
+                      handleClick(2);
+                    }}
+                  >
+                    일본어
+                  </Button>
+                </div>
+              </div>
             </Form>
           </Modal.Body>
         </Modal>
