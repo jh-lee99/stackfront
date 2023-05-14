@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, finishLoading } from "../Reducer/LoadingReducer";
 import { loadPlace } from "../Reducer/MapReducer";
+import { dateDiff } from "../Reducer/DateDiffReducer";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
@@ -82,36 +83,47 @@ const GptApiContentModal = ({ show, onHide }) => {
     setStart("");
   };
 
+  const resetDate = (e) => {
+    dispatch(dateDiff(0));
+  };
+
   useEffect(() => {
     console.log("업", date);
   }, [date]);
 
   const submit = () => {
-    onHide();
-    dispatch(startLoading());
+    if (!dest) {
+      alert("목적지를 입력해주세요!");
+    } else if (date === 0) {
+      alert("여행 기간을 설정해주세요!");
+    } else {
+      onHide();
+      dispatch(startLoading());
 
-    axios
-      .post("http://localhost:3000/travelkeyword", {
-        dest: dest,
-        start: start,
-        date: date,
-      })
-      .then((response) => {
-        console.log(response.data.result);
-        setResult(response.data.result);
-        dispatch(finishLoading());
-        setShowButton(true);
-      })
-      .catch((error) => {
-        // Handle error.
-        alert(error.message);
-        console.log("An error occurred:", error.response);
-        setShowButton(true);
-        window.location.replace("/travel");
-        navigate("/travel", { replace: true });
-      });
-    resetDest();
-    resetStart();
+      axios
+        .post("http://localhost:3000/travelkeyword", {
+          dest: dest,
+          start: start,
+          date: date,
+        })
+        .then((response) => {
+          console.log(response.data.result);
+          setResult(response.data.result);
+          dispatch(finishLoading());
+          setShowButton(true);
+        })
+        .catch((error) => {
+          // Handle error.
+          alert(error.message);
+          console.log("An error occurred:", error.response);
+          setShowButton(true);
+          window.location.replace("/travel");
+          navigate("/travel", { replace: true });
+        });
+      resetDest();
+      resetStart();
+      resetDate();
+    }
   };
   return (
     <>

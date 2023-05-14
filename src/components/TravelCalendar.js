@@ -5,11 +5,9 @@ import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import "react-calendar/dist/Calendar.css";
 import { dateDiff } from "../Reducer/DateDiffReducer";
-//import { diff } from "semver";
 
 function TravelCalendar() {
   const [selectedDates, setSelectedDates] = useState([]);
-  //const [Tdate, setTdate] = useState(0);
   const date = useSelector((state) => state.DateDiffReducer.date);
   const dispatch = useDispatch();
 
