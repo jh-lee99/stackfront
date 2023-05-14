@@ -3,7 +3,7 @@ import { Form, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 
-const RegisterContent = () => {
+const UpdateUserContent = () => {
   const [ModifiedId, setModifiedId] = useState("");
   const [ModifiedPassword, setModifiedPassword] = useState("");
   const [ConfirmModifiedPassword, setConfirmModifiedPassword] = useState("");
@@ -121,4 +121,4 @@ const RegisterContent = () => {
   );
 };
 
-export default RegisterContent;
+export default UpdateUserContent;

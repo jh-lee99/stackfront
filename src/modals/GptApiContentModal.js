@@ -10,11 +10,11 @@ import { startLoading, finishLoading } from "../Reducer/LoadingReducer";
 import { loadPlace } from "../Reducer/MapReducer";
 import Cookies from 'js-cookie';
 
-const GptApiContentModal = ({ show, onHide, diff }) => {
+const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
   const [start, setStart] = useState("");
-  const [date, setDate] = useState(0);
   const isLoading = useSelector((state) => state.LoadingReducer.isLoading);
+  const date = useSelector((state) => state.DateDiffReducer.date);
   const dispatch = useDispatch();
   const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
@@ -56,11 +56,6 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
       element.addEventListener("click", handleLocationClick);
     });
   }, [result]);
-
-  useEffect(() => {
-    // diff 값이 바뀔때마다 date값이 변경됨
-    setDate(diff);
-  }, [diff]);
 
   const onChangeDest = (e) => {
     setDest(e.target.value);
@@ -105,10 +100,8 @@ const GptApiContentModal = ({ show, onHide, diff }) => {
       })
       .then((response) => {
         console.log(response.data.result);
-
         setResult(response.data.result);
         dispatch(finishLoading());
-
         setShowButton(true);
       })
       .catch((error) => {

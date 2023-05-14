@@ -11,7 +11,7 @@ export const dateDiff = (diff) => ({
 
 export default function DateDiffReducer(state = initialState, action) {
   switch (action.type) {
-    case dateDiff:
+    case DATE_DIFF:
       return {
         ...state,
         date: action.date,
