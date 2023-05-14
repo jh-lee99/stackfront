@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, finishLoading } from "../Reducer/LoadingReducer";
 import { loadPlace } from "../Reducer/MapReducer";
+import Cookies from "js-cookie";
 import { dateDiff } from "../Reducer/DateDiffReducer";
 
 const GptApiContentModal = ({ show, onHide }) => {
@@ -102,6 +103,7 @@ const GptApiContentModal = ({ show, onHide }) => {
 
       axios
         .post("http://localhost:3000/travelkeyword", {
+          username: Cookies.get("username"),
           dest: dest,
           start: start,
           date: date,
