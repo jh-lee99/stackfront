@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
 import { Calendar } from "react-calendar";
 import moment from "moment";
-import GptApiContentModal from "../modals/GptApiContentModal";
+
 import { useSelector, useDispatch } from "react-redux";
 import "react-calendar/dist/Calendar.css";
+import { dateDiff } from "../Reducer/DateDiffReducer";
 //import { diff } from "semver";
 
 function TravelCalendar() {
   const [selectedDates, setSelectedDates] = useState([]);
-  const [Tdate, setTdate] = useState(0);
+  //const [Tdate, setTdate] = useState(0);
+  const date = useSelector((state) => state.DateDiffReducer.date);
+  const dispatch = useDispatch();
 
-  const dateDiff = () => {
+  const dayDiff = () => {
     if (selectedDates.length === 2) {
       const start = moment(selectedDates[0]);
       const end = moment(selectedDates[1]);
@@ -29,7 +32,7 @@ function TravelCalendar() {
       const start = moment(selectedDates[0]);
       const end = moment(selectedDates[1]);
       const diff = end.diff(start, "days");
-      setTdate(diff + 1);
+      dispatch(dateDiff(diff + 1));
     }
   }, [selectedDates]);
 
@@ -62,13 +65,11 @@ function TravelCalendar() {
             {moment(selectedDates[0]).format("YYYY-MM-DD")} ~{" "}
             {moment(selectedDates[1]).format("YYYY-MM-DD")}
           </p>
-          {dateDiff()}
+          {dayDiff()}
         </div>
       ) : (
         <div className="my-3 text-center">여행날짜를 선택해주세요!</div>
       )}
-      <GptApiContentModal diff={Tdate} />{" "}
-      {/*GptApiContentModal prop 으로 Tdate 전달(날짜 차이) */}
     </div>
   );
 }

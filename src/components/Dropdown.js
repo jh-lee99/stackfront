@@ -1,25 +1,25 @@
 import React from "react";
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router';
-import axios from 'axios';
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
 const Dropdown = () => {
   const navigate = useNavigate();
 
-  const logout = async() => {
+  const logout = async () => {
     try {
       const response = await axios({
         url: "http://localhost:3000/logout",
         method: "POST",
-      })
+      });
       console.log("logout success");
       Cookies.remove("accessToken");
       Cookies.remove("refreshToken");
       window.location.reload();
-    } catch(err) {
+    } catch (err) {
       console.log("이미 로그아웃 되었습니다.", err);
     }
-  }
+  };
   return (
     //TravelHeader에 필요한 드롭다운 생성
     <div className="dropdown">
@@ -34,19 +34,26 @@ const Dropdown = () => {
       </button>
       <ul className="dropdown-menu">
         <li>
-          <button className="dropdown-item" onClick={() => {
-            // 회원정보 수정 버튼 클릭 시 처리 로직
-            // /registerupdate 로 이동
-            navigate("/registerupdate");
-          }}>
+          <button
+            className="dropdown-item"
+            onClick={() => {
+              // 회원정보 수정 버튼 클릭 시 처리 로직
+              // /registerupdate 로 이동
+              navigate("/registerupdate");
+            }}
+          >
             회원정보 수정
           </button>
         </li>
         <li>
-          <button className="dropdown-item" onClick={() => {
-            // 최근 메시지 표시 버튼 클릭 시 처리 로직
-            // /resentmessage/1 로 이동
-          }}>
+          <button
+            className="dropdown-item"
+            onClick={() => {
+              // 최근 메시지 표시 버튼 클릭 시 처리 로직
+              // /resentmessage/1 로 이동
+              navigate("/recentmessage");
+            }}
+          >
             최근 메시지 표시
           </button>
         </li>
@@ -54,16 +61,18 @@ const Dropdown = () => {
           <hr className="dropdown-divider" />
         </li>
         <li>
-          <button className="dropdown-item" onClick={() => {
-            // 로그아웃 버튼 클릭 시 처리 로직
-            logout();
-          }}>
+          <button
+            className="dropdown-item"
+            onClick={() => {
+              // 로그아웃 버튼 클릭 시 처리 로직
+              logout();
+            }}
+          >
             로그아웃
           </button>
         </li>
       </ul>
     </div>
-
   );
 };
 
