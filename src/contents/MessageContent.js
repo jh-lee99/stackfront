@@ -3,30 +3,33 @@ import { useState } from "react";
 import TravelMap from "../components/TravelMap";
 import axios from "axios";
 import { get } from "react-hook-form";
+import Cookies from 'js-cookie';
 
 const MessageContent = (place) => {
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [index, setIndex] = useState(0);
+  
   useEffect(() => {
     setLocation(place);
   }, [place]);
+
   useEffect(() => {
     console.log("location", location);
   }, [location]);
+  
   useEffect(() => {
     // 시작시 서버에 요청을 보낸다.
     try {
-      axios({
-        url: `http://localhost:3000/recentmessage?msgnum=${0}`,
-        method: "GET",
+      axios.get("http://localhost:3000/findmessage", {
         withCredentials: true,
+        username:Cookies.get("username"),
+        messageID:6-index
       })
         .then((res) => {
-          console.log("have accessToken", res.data);
+          
         })
         .catch((err) => {
-          console.log(err);
-          console.log("Err: ", err.message);
+          
         });
     } catch (error) {
       console.log(error);
