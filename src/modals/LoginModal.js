@@ -5,6 +5,30 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
 
+export const Login = (email, password) => {
+  axios({
+    url: "http://localhost:3000/login",
+    method: "POST",
+    withCredentials: true,
+    data: {
+      email: email,
+      password: password,
+    },
+  })
+    .then((result) => {
+      if (result.status === 200) {
+        alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
+        Cookies.set("username", result.data.username);
+        console.log(result.data);
+        window.location.reload();
+      }
+    })
+    .catch((error) => {
+      alert("로그인 실패: 등록되지 않은 사용자\n" + error);
+      console.log(error.data);
+    });
+};
+
 const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,30 +52,6 @@ const LoginModal = ({ show, onHide }) => {
     if (regex.test(e.target.value)) {
       setPwValid(true);
     } else setPwValid(false);
-  };
-
-  const Login = () => {
-    axios({
-      url: "http://localhost:3000/login",
-      method: "POST",
-      withCredentials: true,
-      data: {
-        email: email,
-        password: password,
-      },
-    })
-      .then((result) => {
-        if (result.status === 200) {
-          alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
-          Cookies.set("username", result.data.username);
-          console.log(result.data);
-          window.location.reload();
-        }
-      })
-      .catch((error) => {
-        alert("로그인 실패: 등록되지 않은 사용자\n" + error);
-        console.log(error.data);
-      });
   };
 
   return (
@@ -111,7 +111,7 @@ const LoginModal = ({ show, onHide }) => {
               id="fullBtn"
               name="loginButton"
               onClick={() => {
-                Login();
+                Login(email, password);
               }}
             >
               Login

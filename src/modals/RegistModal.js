@@ -4,6 +4,7 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import { useState } from "react";
 import axios from "axios";
+import { Login } from './LoginModal';
 
 const RegistModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
@@ -41,18 +42,15 @@ const RegistModal = ({ show, onHide }) => {
 
   const register = () => {
     axios
-      .post("", {
+      .post("http://localhost:3000/register", {
         username: username,
         email: email,
         password: password,
         confirmpassword: confrimPassword,
       })
       .then((response) => {
-        // Handle success.
-        console.log("Well done!");
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        localStorage.setItem("token", response.data.jwt);
+        console.log("회원가입이 성공적으로 이루어졌습니다!");
+        Login(email, password)
       })
       .catch((error) => {
         // Handle error.
