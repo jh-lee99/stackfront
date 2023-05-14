@@ -25,12 +25,6 @@ const GptApiContentModal = ({ show, onHide }) => {
     setSelectedBtnIndex(index);
   };
 
-  function handleKeyPress(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      event.target.click();
-    }
-  }
   function getPlace(location) {
     axios
       .get(`http://localhost:3000/findLocation?query=${location}`) // 서버에서 location 데이터를 받아서 center 값을 변경
@@ -161,7 +155,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   onChange={onChangeDest}
                   placeholder="목적지 입력"
                   className="my-3"
-                  onKeyDown={handleKeyPress}
+                  //onKeyDown={handleKeyPress}
                 />
               </Form.Group>
               {showButton && (
@@ -195,17 +189,7 @@ const GptApiContentModal = ({ show, onHide }) => {
               <div className="Box">
                 <TravelCalendar />
               </div>
-              <Button
-                id="submit"
-                block
-                variant="info"
-                type="button"
-                onClick={() => {
-                  submit();
-                }}
-              >
-                전송
-              </Button>
+
               <div>
                 <div>결과로 받는 언어를 선택해주세요.</div>
                 <div
@@ -213,6 +197,17 @@ const GptApiContentModal = ({ show, onHide }) => {
                   role="group"
                   aria-label="Basic outlined example"
                 >
+                  <Button
+                    id="submit"
+                    block
+                    variant="info"
+                    type="button"
+                    onClick={() => {
+                      submit();
+                    }}
+                  >
+                    전송
+                  </Button>
                   <Button
                     type="button"
                     variant="info"
@@ -260,11 +255,9 @@ const GptApiContentModal = ({ show, onHide }) => {
         <div
           id="pre"
           style={{
-            marginBottom: "2%",
             width: "60%",
             display: "flex",
             justifyContent: "center",
-            margin: "auto",
           }}
         ></div>
       )}

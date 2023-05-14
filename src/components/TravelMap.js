@@ -19,7 +19,6 @@ function TravelMap() {
   const [map, setMap] = useState(null);
   const place = useSelector((state) => state.MapReducer.mapPlace);
   const [center, setCenter] = useState(centerDefault); // 지도에 나타나는 좌표
-
   const [error, setError] = useState();
 
   const onSuccess = (pos) => {
@@ -66,7 +65,7 @@ function TravelMap() {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={16}
+        zoom={14}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >

@@ -2,12 +2,30 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import TravelMap from "../components/TravelMap";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { loadPlace } from "../Reducer/MapReducer";
+import { useDispatch } from "react-redux";
 
 const MessageContent = (place) => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   const [content, setContent] = useState("");
+  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
+
+  function getPlace(location) {
+    axios
+      .get(`http://localhost:3000/findLocation?query=${location}`) // 서버에서 location 데이터를 받아서 center 값을 변경
+      .then((res) => {
+        console.log("getPlace", res.data);
+        dispatch(loadPlace(res.data));
+      })
+      .catch(() => {
+        console.log("data error");
+      });
+  }
+
   const prev = (num) => {
-    if (num > 0) {
+    if (num > 1) {
       setIndex(num - 1);
     }
   };
@@ -17,50 +35,51 @@ const MessageContent = (place) => {
     }
   };
   useEffect(() => {
-    console.log("index", index);
-  }, [index]);
-  useEffect(() => {
-    // 시작시 서버에 요청을 보낸다.
     try {
-      axios({
-        url: `http://localhost:3000/recentmessage?msgnum=1`,
-        method: "GET",
-        withCredentials: true,
-      })
+      axios
+        .get("http://localhost:3000/findmessage", {
+          withCredentials: true,
+          params: {
+            username: Cookies.get("username"),
+            messageID: index,
+          },
+        })
         .then((res) => {
-          setContent(res.data);
-          console.log("defaultMessage", res.data);
+          setMessage(res.data.message);
+          console.log("Message", res.data.message);
+          console.log("index2", index);
         })
         .catch((err) => {
-          console.log(err);
-          console.log("Err: ", err.message);
+          setMessage(err.response.data.error);
+          console.log("Err: ", err.response.data.error);
         });
     } catch (error) {
       console.log(error);
     }
-  }, []);
+    //setIndex(1); // 인덱스 초기화*/
+  }, [index]);
 
-  const showMessage = (num) => {
-    setIndex(num);
-    /*try {
-      axios({
-        url: `http://localhost:3000/recentmessage?msgnum=${index}`,
-        method: "GET",
-        withCredentials: true,
-      })
-        .then((res) => {
-          setContent(res.data);
-          console.log("Message", res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-          console.log("Err: ", err.message);
-        });
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    const parser = new DOMParser();
+    const parsedHtml = parser.parseFromString(message, "text/html");
+    const pre = document.getElementById("pre");
+    pre.innerHTML = "";
+    pre.appendChild(parsedHtml.documentElement);
+
+    function handleLocationClick(event) {
+      // 클릭한 요소의 location 속성 값을 가져옵니다.
+      const location = event.target.getAttribute("location");
+
+      // 가져온 값을 사용해 필요한 작업을 수행합니다.
+      console.log(`Location clicked: ${location}`);
+      getPlace(location);
     }
-    //setIndex(0); // 인덱스 초기화*/
-  };
+
+    const locationElements = pre.querySelectorAll("[location]");
+    locationElements.forEach((element) => {
+      element.addEventListener("click", handleLocationClick);
+    });
+  }, [message]);
 
   return (
     <>
@@ -71,74 +90,68 @@ const MessageContent = (place) => {
         <nav aria-label="guide">
           <ul className="pagination" style={{ justifyContent: "center" }}>
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                href="#"
                 aria-label="Previous"
                 onClick={() => {
                   prev(index);
                 }}
               >
                 <span aria-hidden="true">&laquo;</span>
-              </a>
+              </button>
             </li>
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                href="#"
                 onClick={() => {
-                  showMessage(0);
+                  setIndex(1);
                 }}
               >
                 1
-              </a>
+              </button>
             </li>
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                href="#"
                 onClick={() => {
-                  showMessage(1);
+                  setIndex(2);
                 }}
               >
                 2
-              </a>
+              </button>
             </li>
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                href="#"
                 onClick={() => {
-                  showMessage(2);
+                  setIndex(3);
                 }}
               >
                 3
-              </a>
+              </button>
             </li>
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                href="#"
                 onClick={() => {
-                  showMessage(3);
+                  setIndex(4);
                 }}
               >
                 4
-              </a>
+              </button>
             </li>
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
-                href="#"
                 onClick={() => {
-                  showMessage(4);
+                  setIndex(5);
                 }}
               >
                 5
-              </a>
+              </button>
             </li>
             <li className="page-item">
-              <a
+              <button
                 className="page-link"
                 href="#"
                 aria-label="Next"
@@ -147,23 +160,19 @@ const MessageContent = (place) => {
                 }}
               >
                 <span aria-hidden="true">&raquo;</span>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
       </div>
       <div
+        id="pre"
         style={{
-          marginBottom: "2%",
           width: "60%",
           display: "flex",
           justifyContent: "center",
-          margin: "auto",
-          marginBottom: "3%",
         }}
-      >
-        {content}
-      </div>
+      ></div>
     </>
   );
 };
