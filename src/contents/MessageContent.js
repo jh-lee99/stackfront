@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 
 const MessageContent = (place) => {
   const [index, setIndex] = useState(1);
-  const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
 
@@ -34,6 +33,7 @@ const MessageContent = (place) => {
       setIndex(num + 1);
     }
   };
+
   useEffect(() => {
     try {
       axios

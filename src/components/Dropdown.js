@@ -2,6 +2,7 @@ import React from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { handleLoginSuccess } from '../controller/loginsucess';
 
 const Dropdown = () => {
   const navigate = useNavigate();
@@ -36,10 +37,14 @@ const Dropdown = () => {
         <li>
           <button
             className="dropdown-item"
-            onClick={() => {
+            onClick={async() => {
               // 회원정보 수정 버튼 클릭 시 처리 로직
               // /registerupdate 로 이동
-              navigate("/registerupdate");
+              await handleLoginSuccess().then(() => {
+                navigate("/registerupdate")
+              }).catch(() => {
+                alert("로그인 이후 이용해주세요!")
+              })
             }}
           >
             회원정보 수정
