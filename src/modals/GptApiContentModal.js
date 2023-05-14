@@ -10,6 +10,7 @@ import { startLoading, finishLoading } from "../Reducer/LoadingReducer";
 import { loadPlace } from "../Reducer/MapReducer";
 import Cookies from "js-cookie";
 import { dateDiff } from "../Reducer/DateDiffReducer";
+import { eventListeners } from "@popperjs/core";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
@@ -23,6 +24,13 @@ const GptApiContentModal = ({ show, onHide }) => {
   const handleClick = (index) => {
     setSelectedBtnIndex(index);
   };
+
+  function handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      event.target.click();
+    }
+  }
   function getPlace(location) {
     axios
       .get(`http://localhost:3000/findLocation?query=${location}`) // 서버에서 location 데이터를 받아서 center 값을 변경
@@ -153,6 +161,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   onChange={onChangeDest}
                   placeholder="목적지 입력"
                   className="my-3"
+                  onKeyDown={handleKeyPress}
                 />
               </Form.Group>
               {showButton && (
@@ -187,6 +196,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                 <TravelCalendar />
               </div>
               <Button
+                id="submit"
                 block
                 variant="info"
                 type="button"

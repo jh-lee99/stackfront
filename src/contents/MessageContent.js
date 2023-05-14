@@ -6,17 +6,24 @@ import { get } from "react-hook-form";
 import Cookies from 'js-cookie';
 
 const MessageContent = (place) => {
-  const [location, setLocation] = useState({ lat: 0, lng: 0 });
   const [index, setIndex] = useState(0);
-  
-  useEffect(() => {
-    setLocation(place);
-  }, [place]);
+  const [content, setContent] = useState("");
+  const prev = (num) => {
+    if (num > 0) {
+      setIndex(num - 1);
+    }
+  };
+  const next = (num) => {
+    if (num < 5) {
+      setIndex(num + 1);
+    }
+  };
 
   useEffect(() => {
-    console.log("location", location);
-  }, [location]);
-  
+    console.log("index", index);
+  }, [index]);
+
+
   useEffect(() => {
     // 시작시 서버에 요청을 보낸다.
     try {
@@ -26,7 +33,8 @@ const MessageContent = (place) => {
         messageID:6-index
       })
         .then((res) => {
-          
+          setContent(res.data);
+          console.log("defaultMessage", res.data);
         })
         .catch((err) => {
           
@@ -36,10 +44,32 @@ const MessageContent = (place) => {
     }
   }, []);
 
+  const showMessage = (num) => {
+    setIndex(num);
+    /*try {
+      axios({
+        url: `http://localhost:3000/recentmessage?msgnum=${index}`,
+        method: "GET",
+        withCredentials: true,
+      })
+        .then((res) => {
+          setContent(res.data);
+          console.log("Message", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("Err: ", err.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+    //setIndex(0); // 인덱스 초기화*/
+  };
+
   return (
     <>
       <div style={{ marginTop: "3%" }}></div>
-      <div style={{ marginBottom: "3%" }}>
+      <div>
         <TravelMap />
         <div></div>
         <nav aria-label="guide">
@@ -49,33 +79,65 @@ const MessageContent = (place) => {
                 className="page-link"
                 href="#"
                 aria-label="Previous"
-                onClick={() => {}}
+                onClick={() => {
+                  prev(index);
+                }}
               >
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#" onClick={() => {}}>
+              <a
+                className="page-link"
+                href="#"
+                onClick={() => {
+                  showMessage(0);
+                }}
+              >
                 1
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a
+                className="page-link"
+                href="#"
+                onClick={() => {
+                  showMessage(1);
+                }}
+              >
                 2
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#" onClick={() => {}}>
+              <a
+                className="page-link"
+                href="#"
+                onClick={() => {
+                  showMessage(2);
+                }}
+              >
                 3
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#" onClick={() => {}}>
+              <a
+                className="page-link"
+                href="#"
+                onClick={() => {
+                  showMessage(3);
+                }}
+              >
                 4
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#" onClick={() => {}}>
+              <a
+                className="page-link"
+                href="#"
+                onClick={() => {
+                  showMessage(4);
+                }}
+              >
                 5
               </a>
             </li>
@@ -84,13 +146,27 @@ const MessageContent = (place) => {
                 className="page-link"
                 href="#"
                 aria-label="Next"
-                onClick={() => {}}
+                onClick={() => {
+                  next(index);
+                }}
               >
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
           </ul>
         </nav>
+      </div>
+      <div
+        style={{
+          marginBottom: "2%",
+          width: "60%",
+          display: "flex",
+          justifyContent: "center",
+          margin: "auto",
+          marginBottom: "3%",
+        }}
+      >
+        {content}
       </div>
     </>
   );
