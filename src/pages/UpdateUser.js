@@ -21,10 +21,7 @@ const UpdateUser = () => {
 
   return (
     <Layout>
-      <Container>
-        {getContent()}
-        {/* {<UpdatePasswordContent />} */}
-      </Container>
+      <Container>{getContent()}</Container>
     </Layout>
   );
 };

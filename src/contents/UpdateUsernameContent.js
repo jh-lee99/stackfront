@@ -31,12 +31,11 @@ const UpdateUsernameContent = () => {
       })
       .then((res) => {
         console.log("res.data", res.data);
-        if(res.status === 200) {
-          Cookies.set("username", res.data.username)
+        if (res.status === 200) {
+          Cookies.set("username", res.data.username);
+          alert("username이 변경되었습니다!");
           window.location.reload();
-        }
-          else
-          console.log("실패하였습니다.");
+        } else console.log("실패하였습니다.");
       })
       .catch((err) => {
         console.log("err", err);
