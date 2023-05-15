@@ -34,6 +34,13 @@ const LoginModal = ({ show, onHide }) => {
   const [password, setPassword] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
+
+  function handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      event.target.click();
+    }
+  }
   const onChangeEmail = (e) => {
     //이메일 검증
     setEmail(e.target.value);
@@ -92,7 +99,7 @@ const LoginModal = ({ show, onHide }) => {
                 onChange={onChangePassword}
                 className="my-2"
               />
-              <div className="errorMessageWrap">
+              {/*<div className="errorMessageWrap">
                 {!pwValid && password.length > 0 && password.length < 21 && (
                   <div>
                     영문, 숫자, 특수문자 포함 8자 이상 20자 이내로 입력해주세요.
@@ -101,7 +108,7 @@ const LoginModal = ({ show, onHide }) => {
                 {!pwValid && password.length > 20 && (
                   <div>20자 이하로 입력해 주세요.</div>
                 )}
-              </div>
+                </div>*/}
             </Form.Group>
             <Button
               block
