@@ -63,11 +63,11 @@ const App = () => {
           }
           console.log("status: ", response.status);
         } catch (error) {
+          Cookies.remove("username");
+          Cookies.remove("email");
           Cookies.remove("accessToken");
           Cookies.remove("refreshToken");
-          Cookies.remove("username");
           console.error("Failed to check access token", error);
-          Cookies.remove("username");
           alert("세션이 끊겼습니다.\n로그아웃합니다.");
           navigate("/", { replace: true });
         } finally {

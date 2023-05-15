@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectupdate, updateUserpassword } from "../Reducer/UpdateUserReducer";
 import Cookies from "js-cookie";
 const UpdateUsernameContent = () => {
-  const [newusername, setNewUsername] = useState("");
+  const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
   const modeState = useSelector((state) => state.UpdateUserReducer.mode);
   const username = Cookies.get("username");
@@ -21,18 +21,25 @@ const UpdateUsernameContent = () => {
   };
 
   const submitUsername = () => {
+    console.log(email, password, username, newUsername);
     axios
       .post("http://localhost:3000/update/user", {
         email: email,
         password: password,
         username: username,
-        newusername: newusername,
+        newUsername: newUsername,
       })
       .then((res) => {
-        console.log(res.data);
+        console.log("res.data", res.data);
+        if(res.status === 200) {
+          Cookies.set("username", res.data.username)
+          window.location.reload();
+        }
+          else
+          console.log("실패하였습니다.");
       })
       .catch((err) => {
-        console.log(err.data);
+        console.log("err", err);
       });
     setNewUsername("");
     setPassword("");
@@ -50,7 +57,7 @@ const UpdateUsernameContent = () => {
           <Form.Label>Username 변경</Form.Label>
           <Form.Control
             type="text"
-            value={newusername}
+            value={newUsername}
             onChange={onChangeUsername}
             placeholder="Username"
             className="my-2"

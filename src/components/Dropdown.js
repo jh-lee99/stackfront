@@ -14,6 +14,8 @@ const Dropdown = () => {
         method: "POST",
       });
       console.log("logout success");
+      Cookies.remove("username");
+      Cookies.remove("email");
       Cookies.remove("accessToken");
       Cookies.remove("refreshToken");
       window.location.reload();
