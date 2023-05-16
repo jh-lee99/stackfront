@@ -7,21 +7,19 @@ import { handleLoginSuccess } from '../controller/loginsucess';
 const Dropdown = () => {
   const navigate = useNavigate();
 
-  const logout = async () => {
-    try {
-      const response = await axios({
-        url: "http://localhost:3000/logout",
-        method: "POST",
-      });
-      console.log("logout success");
-      Cookies.remove("username");
-      Cookies.remove("email");
-      Cookies.remove("accessToken");
-      Cookies.remove("refreshToken");
+  const logout = () => {
+    axios({
+      url: "http://localhost:3000/logout",
+      method: "POST",
+      withCredentials: true
+    })
+    .then((response)=> {
+      console.log(response.data.message);
+      alert(response.data.message);
       window.location.reload();
-    } catch (err) {
-      console.log("이미 로그아웃 되었습니다.", err);
-    }
+    }).catch((error)=> {
+      console.log(error);
+    });
   };
   return (
     //TravelHeader에 필요한 드롭다운 생성

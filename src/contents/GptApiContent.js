@@ -29,10 +29,11 @@ const GptApiContent = (place) => {
               className="my-3 travelBtn center"
               onClick={() => {
                 axios
-                  .get("http://localhost:3000/login/success", {
+                  .get("http://localhost:3000/api/token/verify", {
                     withCredentials: true,
                   })
-                  .then(() => {
+                  .then((response) => {
+                    console.log(response.data.message);
                     setGptApiContentModalOn(true);
                   })
                   .catch(() => {

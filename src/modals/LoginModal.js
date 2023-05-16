@@ -17,10 +17,8 @@ export const Login = (email, password) => {
   })
     .then((result) => {
       if (result.status === 200) {
-        alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
-        Cookies.set("username", result.data.username);
-        Cookies.set("email", result.data.email);
         console.log(result.data);
+        alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
         window.location.reload();
       }
     })

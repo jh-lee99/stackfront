@@ -4,7 +4,6 @@ import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import RegistModal from "../modals/RegistModal";
 import LoginModal from "../modals/LoginModal";
 import Dropdown from "../components/Dropdown";
-import Cookies from "js-cookie";
 
 const Header = () => {
   // axios 요청으로 username을 반환하는 요청을 보냄
@@ -13,32 +12,32 @@ const Header = () => {
 
   const [RegistModalOn, setRegistModalOn] = useState(false);
   const [LoginModalOn, setLoginModalOn] = useState(false);
-  const token = Cookies.get("accessToken");
-  const username = Cookies.get("username");
+  // const token = Cookies.get("accessToken");
+  // const username = Cookies.get("username");
 
-  if (username && token) {
-    console.log("have", username);
-    return (
-      <>
-        <header>
-          <Navbar bg="light" expand="lg">
-            <Container>
-              <Navbar.Brand href="/">
-                <img
-                  src="images\logo.png"
-                  alt="For. travel"
-                  width="auto"
-                  height="50vh"
-                />
-              </Navbar.Brand>
-              <Dropdown />
-            </Container>
-          </Navbar>
-        </header>
-      </>
-    );
-  } else {
-    console.log("no have");
+  // if (username && token) {
+  //   console.log("have", username);
+  //   return (
+  //     <>
+  //       <header>
+  //         <Navbar bg="light" expand="lg">
+  //           <Container>
+  //             <Navbar.Brand href="/">
+  //               <img
+  //                 src="images\logo.png"
+  //                 alt="For. travel"
+  //                 width="auto"
+  //                 height="50vh"
+  //               />
+  //             </Navbar.Brand>
+  //             <Dropdown />
+  //           </Container>
+  //         </Navbar>
+  //       </header>
+  //     </>
+  //   );
+  // } else {
+  //   console.log("no have");
     return (
       <>
         <RegistModal
@@ -82,7 +81,7 @@ const Header = () => {
                       Sign Up
                     </Button>
                   </Nav.Link>
-                  {/* <Dropdown /> */}
+                  <Dropdown />
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -91,6 +90,6 @@ const Header = () => {
       </>
     );
   }
-};
+// };
 
 export default Header;
