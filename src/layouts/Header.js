@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import RegistModal from "../modals/RegistModal";
 import LoginModal from "../modals/LoginModal";
@@ -82,7 +81,6 @@ const Header = () => {
                       Sign Up
                     </Button>
                   </Nav.Link>
-                  {/* <Dropdown /> */}
                 </Nav>
               </Navbar.Collapse>
             </Container>

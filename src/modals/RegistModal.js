@@ -4,7 +4,7 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import { useState } from "react";
 import axios from "axios";
-import { Login } from './LoginModal';
+import { Login } from "./LoginModal";
 
 const RegistModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
@@ -46,11 +46,10 @@ const RegistModal = ({ show, onHide }) => {
         username: username,
         email: email,
         password: password,
-        confirmpassword: confrimPassword,
       })
       .then((response) => {
         console.log("회원가입이 성공적으로 이루어졌습니다!");
-        Login(email, password)
+        Login(email, password);
       })
       .catch((error) => {
         // Handle error.
@@ -72,9 +71,9 @@ const RegistModal = ({ show, onHide }) => {
         <Modal.Body>
           <Form>
             <Form.Group>
-              <Form.Label>Id</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                placeholder="아이디"
+                placeholder="Name"
                 value={username}
                 onChange={onChangeId}
                 className="my-2"
@@ -142,7 +141,6 @@ const RegistModal = ({ show, onHide }) => {
             >
               Sign Up
             </Button>
-
             <HorizonLine text={"OR"} />
             <GoogleOAuthProvider>
               <GoogleLogin />

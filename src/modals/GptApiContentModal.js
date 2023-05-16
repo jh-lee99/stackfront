@@ -10,7 +10,7 @@ import { startLoading, finishLoading } from "../Reducer/LoadingReducer";
 import { loadPlace } from "../Reducer/MapReducer";
 import Cookies from "js-cookie";
 import { dateDiff } from "../Reducer/DateDiffReducer";
-import { eventListeners } from "@popperjs/core";
+//import { eventListeners } from "@popperjs/core";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");
@@ -189,7 +189,17 @@ const GptApiContentModal = ({ show, onHide }) => {
               <div className="Box">
                 <TravelCalendar />
               </div>
-
+              <Button
+                id="submit"
+                block
+                variant="info"
+                type="button"
+                onClick={() => {
+                  submit();
+                }}
+              >
+                전송
+              </Button>
               <div>
                 <div>결과로 받는 언어를 선택해주세요.</div>
                 <div
@@ -197,17 +207,6 @@ const GptApiContentModal = ({ show, onHide }) => {
                   role="group"
                   aria-label="Basic outlined example"
                 >
-                  <Button
-                    id="submit"
-                    block
-                    variant="info"
-                    type="button"
-                    onClick={() => {
-                      submit();
-                    }}
-                  >
-                    전송
-                  </Button>
                   <Button
                     type="button"
                     variant="info"

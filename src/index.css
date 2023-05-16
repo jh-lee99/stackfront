@@ -11,10 +11,6 @@
   padding: 0 10px;
 }
 
-#fullBtn {
-  width: 100%;
-}
-
 .ComponentBox {
   display: flex;
   justify-content: center;
@@ -123,4 +119,33 @@ nav {
   justifycontent: center;
   width: 80%;
   margin-bottom: 2%;
+}
+
+.UpdateBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
+  padding-top: 1;
+  padding-bottom: 0;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: rgba(128, 128, 128, 0.2);
+  align-items: center;
+  max-width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0%;
+
+  height: auto;
+}
+
+.exit {
+  margin-top: 0%;
+  padding-left: 95%;
+}
+
+.setCenter {
+  display: flex;
+  justifycontent: center;
 }

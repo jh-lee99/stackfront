@@ -90,64 +90,59 @@ const IntroContent = () => {
           <nav aria-label="guide">
             <ul className="pagination" style={{ justifyContent: "center" }}>
               <li className="page-item">
-                <a
+                <button
                   className="page-link"
-                  href="#"
                   aria-label="Previous"
                   onClick={() => {
                     prev(index);
                   }}
                 >
                   <span aria-hidden="true">&laquo;</span>
-                </a>
+                </button>
               </li>
               <li className="page-item">
-                <a
+                <button
                   className="page-link"
-                  href="#"
                   onClick={() => {
                     setIndex(1);
                     nextImage(index);
                   }}
                 >
                   1
-                </a>
+                </button>
               </li>
               <li className="page-item">
-                <a
+                <button
                   className="page-link"
-                  href="#"
                   onClick={() => {
                     setIndex(2);
                     nextImage(index);
                   }}
                 >
                   2
-                </a>
+                </button>
               </li>
               <li className="page-item">
-                <a
+                <button
                   className="page-link"
-                  href="#"
                   onClick={() => {
                     setIndex(3);
                     nextImage(index);
                   }}
                 >
                   3
-                </a>
+                </button>
               </li>
               <li className="page-item">
-                <a
+                <button
                   className="page-link"
-                  href="#"
                   aria-label="Next"
                   onClick={() => {
                     next(index);
                   }}
                 >
                   <span aria-hidden="true">&raquo;</span>
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
