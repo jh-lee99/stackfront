@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../layouts/Layout";
 import { Container } from "react-bootstrap";
 import IntroContent from "../contents/IntroContent";

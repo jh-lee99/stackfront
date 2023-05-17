@@ -4,11 +4,14 @@ import { useState } from "react";
 import TravelMap from "../components/TravelMap";
 import GptApiContentModal from "../modals/GptApiContentModal";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUsername } from "../Reducer/UserNameReducer";
 
 const GptApiContent = (place) => {
   const [GptApiContentModalOn, setGptApiContentModalOn] = useState(false);
   const [showButton, setShowButton] = useState(true);
   const [location, setLocation] = useState({ lat: 0, lng: 0 });
+  const dispatch = useDispatch();
   useEffect(() => {
     setLocation(place);
   }, [place]);
@@ -21,7 +24,6 @@ const GptApiContent = (place) => {
       <div style={{ position: "relative" }}>
         <>
           <TravelMap />
-
           <div className="setCenter">
             <Button
               block
@@ -39,6 +41,7 @@ const GptApiContent = (place) => {
                   })
                   .catch(() => {
                     alert("로그인 이후 이용해주세요!");
+                    dispatch(setUsername(""));
                   });
               }}
             >

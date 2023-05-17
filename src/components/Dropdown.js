@@ -1,13 +1,15 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { handleLoginSuccess } from "../controller/loginsucess";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setUsername } from "../Reducer/UserNameReducer";
 
 const Dropdown = () => {
   const navigate = useNavigate();
   const username = useSelector((state) => state.UserNameReducer.username);
+  const dispatch = useDispatch();
+
   const logout = () => {
     axios({
       url: "http://localhost:3000/logout",
@@ -17,6 +19,7 @@ const Dropdown = () => {
       .then((response) => {
         console.log(response.data.message);
         alert(response.data.message);
+        dispatch(setUsername(""));
         window.location.reload();
       })
       .catch((error) => {

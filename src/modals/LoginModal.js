@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUsername } from "../Reducer/UserNameReducer";
 
 const LoginModal = ({ show, onHide }) => {
@@ -11,7 +11,6 @@ const LoginModal = ({ show, onHide }) => {
   const [password, setPassword] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
-  const username = useSelector((state) => state.UserNameReducer.username);
   const dispatch = useDispatch();
 
   const Login = (email, password) => {
@@ -31,7 +30,7 @@ const LoginModal = ({ show, onHide }) => {
             dispatch(setUsername(response.data.username));
           }
           alert(`로그인 성공: ${response.data.username}님 안녕하세요!`);
-          //window.location.reload();
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -39,12 +38,12 @@ const LoginModal = ({ show, onHide }) => {
         console.log(error.data);
       });
   };
-  function handleKeyPress(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      event.target.click();
-    }
-  }
+  // function handleKeyPress(event) {
+  //   if (event.keyCode === 13) {
+  //     event.preventDefault();
+  //     event.target.click();
+  //   }
+  // }
   const onChangeEmail = (e) => {
     //이메일 검증
     setEmail(e.target.value);

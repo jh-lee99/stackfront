@@ -4,6 +4,13 @@ import MapReducer from "./MapReducer";
 import DateDiffReducer from "./DateDiffReducer";
 import UpdateUserReducer from "./UpdateUserReducer";
 import UserNameReducer from "./UserNameReducer";
+import persistReducer from "redux-persist/es/persistReducer";
+import localStorage from "redux-persist/es/storage";
+const persistConfig = {
+  key: "root",
+  storage: localStorage,
+  whitelist: ["UserNameReducer"],
+};
 
 const rootReducer = combineReducers({
   // 여러개의 리듀서를 하나로 통합
@@ -14,4 +21,4 @@ const rootReducer = combineReducers({
   UserNameReducer,
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

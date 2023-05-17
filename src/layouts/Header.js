@@ -3,7 +3,8 @@ import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import RegistModal from "../modals/RegistModal";
 import LoginModal from "../modals/LoginModal";
 import Dropdown from "../components/Dropdown";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setUsername } from "../Reducer/UserNameReducer";
 
 const Header = () => {
   // axios 요청으로 username을 반환하는 요청을 보냄
@@ -13,6 +14,7 @@ const Header = () => {
   const [RegistModalOn, setRegistModalOn] = useState(false);
   const [LoginModalOn, setLoginModalOn] = useState(false);
   const username = useSelector((state) => state.UserNameReducer.username);
+
   // const token = Cookies.get("accessToken");
   // const username = Cookies.get("username");
 
@@ -39,6 +41,7 @@ const Header = () => {
     );
   } else {
     console.log("no have");
+
     return (
       <>
         <RegistModal
