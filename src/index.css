@@ -29,7 +29,7 @@
 .Box {
   display: flex;
   justify-content: center;
-  padding: 50px;
+  padding: 5%;
 }
 
 #pre {
@@ -148,4 +148,11 @@ nav {
 .setCenter {
   display: flex;
   justifycontent: center;
+  padding-right: auto;
+  padding-left: auto;
+}
+
+.setMap {
+  padding: auto;
+  margin: auto;
 }

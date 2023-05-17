@@ -8,7 +8,6 @@ import Loading from "../components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 import { startLoading, finishLoading } from "../Reducer/LoadingReducer";
 import { loadPlace } from "../Reducer/MapReducer";
-import Cookies from "js-cookie";
 import { dateDiff } from "../Reducer/DateDiffReducer";
 //import { eventListeners } from "@popperjs/core";
 
@@ -105,7 +104,7 @@ const GptApiContentModal = ({ show, onHide }) => {
 
       axios
         .post("http://localhost:3000/travelkeyword", {
-          username: Cookies.get("username"),
+          // username: Cookies.get("username"),
           dest: dest,
           start: start,
           date: date,
@@ -189,57 +188,69 @@ const GptApiContentModal = ({ show, onHide }) => {
               <div className="Box">
                 <TravelCalendar />
               </div>
-              <Button
-                id="submit"
-                block
-                variant="info"
-                type="button"
-                onClick={() => {
-                  submit();
-                }}
-              >
-                전송
-              </Button>
-              <div>
-                <div>결과로 받는 언어를 선택해주세요.</div>
+              <div style={{ display: "inline-block" }}>
                 <div
-                  className="btn-group"
-                  role="group"
-                  aria-label="Basic outlined example"
+                  style={{
+                    justifyContent: "start",
+                  }}
                 >
                   <Button
-                    type="button"
+                    id="submit"
+                    block
                     variant="info"
-                    className={` ${selectedBtnIndex === 0 && "active"}`}
-                    style={{ width: "94px", height: "48px" }}
+                    type="button"
                     onClick={() => {
-                      handleClick(0);
+                      submit();
                     }}
                   >
-                    한국어
+                    전송
                   </Button>
-                  <Button
-                    type="button"
-                    variant="info"
-                    className={` ${selectedBtnIndex === 1 && "active"}`}
-                    style={{ width: "94px", height: "48px" }}
-                    onClick={() => {
-                      handleClick(1);
-                    }}
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "end",
+                  }}
+                >
+                  <div
+                    className="btn-group"
+                    role="group"
+                    aria-label="Basic outlined example"
                   >
-                    영어
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="info"
-                    style={{ width: "94px", height: "48px" }}
-                    className={` ${selectedBtnIndex === 2 && "active"}`}
-                    onClick={() => {
-                      handleClick(2);
-                    }}
-                  >
-                    일본어
-                  </Button>
+                    <Button
+                      type="button"
+                      variant="info"
+                      className={` ${selectedBtnIndex === 0 && "active"}`}
+                      style={{ width: "94px", height: "48px" }}
+                      onClick={() => {
+                        handleClick(0);
+                      }}
+                    >
+                      한국어
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="info"
+                      className={` ${selectedBtnIndex === 1 && "active"}`}
+                      style={{ width: "94px", height: "48px" }}
+                      onClick={() => {
+                        handleClick(1);
+                      }}
+                    >
+                      영어
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="info"
+                      style={{ width: "94px", height: "48px" }}
+                      className={` ${selectedBtnIndex === 2 && "active"}`}
+                      onClick={() => {
+                        handleClick(2);
+                      }}
+                    >
+                      일본어
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Form>

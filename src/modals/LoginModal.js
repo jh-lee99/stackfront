@@ -1,41 +1,44 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
-import React, { useState } from "react";
-import Cookies from "js-cookie";
+import React, { useEffect, useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
-
-export const Login = (email, password) => {
-  axios({
-    url: "http://localhost:3000/login",
-    method: "POST",
-    withCredentials: true,
-    data: {
-      email: email,
-      password: password,
-    },
-  })
-    .then((result) => {
-      if (result.status === 200) {
-        alert(`로그인 성공: ${result.data.username}님 안녕하세요!`);
-        Cookies.set("username", result.data.username);
-        Cookies.set("email", result.data.email);
-        console.log(result.data);
-        window.location.reload();
-      }
-    })
-    .catch((error) => {
-      alert("로그인 실패: 등록되지 않은 사용자\n" + error);
-      console.log(error.data);
-    });
-};
+import { useSelector, useDispatch } from "react-redux";
+import { setUsername } from "../Reducer/UserNameReducer";
 
 const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
+  const username = useSelector((state) => state.UserNameReducer.username);
+  const dispatch = useDispatch();
 
+  const Login = (email, password) => {
+    axios({
+      url: "http://localhost:3000/login",
+      method: "POST",
+      withCredentials: true,
+      data: {
+        email: email,
+        password: password,
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          if (response.data.username !== "") {
+            dispatch(setUsername(response.data.username));
+          }
+          alert(`로그인 성공: ${response.data.username}님 안녕하세요!`);
+          //window.location.reload();
+        }
+      })
+      .catch((error) => {
+        alert("로그인 실패: 등록되지 않은 사용자\n" + error);
+        console.log(error.data);
+      });
+  };
   function handleKeyPress(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
