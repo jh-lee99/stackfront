@@ -102,13 +102,16 @@ const GptApiContentModal = ({ show, onHide }) => {
       onHide();
       dispatch(startLoading());
 
-      axios
-        .post("http://localhost:3000/travelkeyword", {
-          // username: Cookies.get("username"),
+      axios({
+        url: "http://localhost:3000/travelkeyword",
+        method: "post",
+        withCredentials: true,
+        data: {
           dest: dest,
           start: start,
           date: date,
-        })
+        }
+      })
         .then((response) => {
           console.log(response.data.result);
           setResult(response.data.result);

@@ -29,8 +29,6 @@ const LoginModal = ({ show, onHide }) => {
           if (response.data.username !== "") {
             dispatch(setUsername(response.data.username));
           }
-          alert(`로그인 성공: ${response.data.username}님 안녕하세요!`);
-          window.location.reload();
         }
       })
       .catch((error) => {
