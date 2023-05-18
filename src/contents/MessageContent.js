@@ -12,17 +12,21 @@ const MessageContent = (place) => {
   const dispatch = useDispatch();
 
   function getPlace(location) {
-    axios
-      .get(`http://localhost:3000/findLocation?query=${location}`) // 서버에서 location 데이터를 받아서 center 값을 변경
-      .then((res) => {
-        console.log("getPlace", res.data);
-        dispatch(loadPlace(res.data));
-      })
-      .catch(() => {
-        console.log("data error");
-      });
+    axios({
+      url: `http://localhost:3000/findLocation?query=${location}`,
+      method: "get",
+      withCredentials: true,
+    })
+    .then((res) => {
+      // 서버에서 location 데이터를 받아서 center 값을 변경
+      console.log("getPlace", res.data);
+      dispatch(loadPlace(res.data));
+    })
+    .catch(() => {
+      console.log("data error");
+    });
   }
-
+    
   const prev = (num) => {
     if (num > 1) {
       setIndex(num - 1);
@@ -36,23 +40,23 @@ const MessageContent = (place) => {
 
   useEffect(() => {
     try {
-      axios
-        .get("http://localhost:3000/findmessage", {
-          withCredentials: true,
-          params: {
-            username: Cookies.get("username"),
-            messageID: index,
-          },
-        })
-        .then((res) => {
-          setMessage(res.data.message);
-          console.log("Message", res.data.message);
-          console.log("index2", index);
-        })
-        .catch((err) => {
-          setMessage(err.response.data.error);
-          console.log("Err: ", err.response.data.error);
-        });
+      axios({
+        url: "http://localhost:3000/findmessage",
+        method: "get",
+        withCredentials: true,
+        params: {
+          messageID: index,
+        },
+      })
+      .then((res) => {
+        setMessage(res.data.message);
+        console.log("Message", res.data.message);
+        console.log("index2", index);
+      })
+      .catch((err) => {
+        setMessage(err.response.data.error);
+        console.log("Err: ", err.response.data.error);
+      });
     } catch (error) {
       console.log(error);
     }
