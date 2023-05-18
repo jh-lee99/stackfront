@@ -188,8 +188,26 @@ const GptApiContentModal = ({ show, onHide }) => {
               <div className="Box">
                 <TravelCalendar />
               </div>
-              <div style={{ display: "inline-block" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "end",
+                  marginRight: "11.5vh",
+                  marginBottom: "1%",
+                }}
+              >
+                언어를 선택해주세요!
+              </div>
+              <div
+                className="btn-container"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
                 <div
+                  className="btn-wrapper"
                   style={{
                     justifyContent: "start",
                   }}
@@ -207,16 +225,12 @@ const GptApiContentModal = ({ show, onHide }) => {
                   </Button>
                 </div>
                 <div
+                  className="btn-wrapper"
                   style={{
-                    display: "flex",
                     justifyContent: "end",
                   }}
                 >
-                  <div
-                    className="btn-group"
-                    role="group"
-                    aria-label="Basic outlined example"
-                  >
+                  <div>
                     <Button
                       type="button"
                       variant="info"
