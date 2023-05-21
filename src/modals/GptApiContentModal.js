@@ -110,7 +110,7 @@ const GptApiContentModal = ({ show, onHide }) => {
           dest: dest,
           start: start,
           date: date,
-        }
+        },
       })
         .then((response) => {
           console.log(response.data.result);
@@ -157,6 +157,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   onChange={onChangeDest}
                   placeholder="목적지 입력"
                   className="my-3"
+                  style={{ borderRadius: "8px" }}
                   //onKeyDown={handleKeyPress}
                 />
               </Form.Group>
@@ -175,12 +176,14 @@ const GptApiContentModal = ({ show, onHide }) => {
                     value={start}
                     onChange={onChangeStart}
                     className="my-3"
+                    style={{ borderRadius: "8px" }}
                   />
                 </Form.Group>
               )}
               {!showButton && (
                 <Button
                   variant="info"
+                  style={{ borderRadius: "8px" }}
                   onClick={() => {
                     clearStart();
                   }}
@@ -195,11 +198,11 @@ const GptApiContentModal = ({ show, onHide }) => {
                 style={{
                   display: "flex",
                   justifyContent: "end",
-                  marginRight: "11.5vh",
+                  marginRight: "4vh",
                   marginBottom: "1%",
                 }}
               >
-                언어를 선택해주세요!
+                답변받을 언어를 선택해주세요!
               </div>
               <div
                 className="btn-container"
@@ -216,6 +219,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                   }}
                 >
                   <Button
+                    style={{ borderRadius: "8px" }}
                     id="submit"
                     block
                     variant="info"
@@ -238,7 +242,12 @@ const GptApiContentModal = ({ show, onHide }) => {
                       type="button"
                       variant="info"
                       className={` ${selectedBtnIndex === 0 && "active"}`}
-                      style={{ width: "94px", height: "48px" }}
+                      style={{
+                        width: "94px",
+                        height: "48px",
+                        borderStartStartRadius: "8px",
+                        borderEndStartRadius: "8px",
+                      }}
                       onClick={() => {
                         handleClick(0);
                       }}
@@ -259,7 +268,12 @@ const GptApiContentModal = ({ show, onHide }) => {
                     <Button
                       type="button"
                       variant="info"
-                      style={{ width: "94px", height: "48px" }}
+                      style={{
+                        width: "94px",
+                        height: "48px",
+                        borderStartEndRadius: "8px",
+                        borderEndEndRadius: "8px",
+                      }}
                       className={` ${selectedBtnIndex === 2 && "active"}`}
                       onClick={() => {
                         handleClick(2);

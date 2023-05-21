@@ -20,41 +20,39 @@ const GptApiContent = (place) => {
   }, [location]);
   return (
     <>
-      <div style={{ marginTop: "3%" }}></div>
-      <div style={{ position: "relative" }}>
-        <>
-          <TravelMap />
-          <div className="setCenter">
-            <Button
-              block
-              variant="info"
-              type="button"
-              className="my-3 travelBtn center"
-              onClick={() => {
-                axios
-                  .get("http://localhost:3000/api/token/verify", {
-                    withCredentials: true,
-                  })
-                  .then((response) => {
-                    console.log(response.data.message);
-                    setGptApiContentModalOn(true);
-                  })
-                  .catch(() => {
-                    alert("로그인 이후 이용해주세요!");
-                    dispatch(setUsername(""));
-                  });
-              }}
-            >
-              여행 떠나기
-            </Button>
-          </div>
-          <GptApiContentModal
-            show={GptApiContentModalOn}
-            onHide={() => setGptApiContentModalOn(false)}
-            showButton={showButton}
-            HideButton={() => setShowButton(false)}
-          />
-        </>
+      <div className="TravelBox">
+        <TravelMap />
+
+        <GptApiContentModal
+          show={GptApiContentModalOn}
+          onHide={() => setGptApiContentModalOn(false)}
+          showButton={showButton}
+          HideButton={() => setShowButton(false)}
+        />
+      </div>
+      <div id="setCenter">
+        <Button
+          block
+          variant="info"
+          type="button"
+          className="travelBtn"
+          onClick={() => {
+            axios
+              .get("http://localhost:3000/api/token/verify", {
+                withCredentials: true,
+              })
+              .then((response) => {
+                console.log(response.data.message);
+                setGptApiContentModalOn(true);
+              })
+              .catch(() => {
+                alert("로그인 이후 이용해주세요!");
+                dispatch(setUsername(""));
+              });
+          }}
+        >
+          여행 떠나기
+        </Button>
       </div>
     </>
   );

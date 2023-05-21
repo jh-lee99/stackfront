@@ -2,7 +2,7 @@ import React from "react";
 
 export const Loading = () => {
   return (
-    <div className="progress">
+    <div className="progress" style={{ marginTop: "5%" }}>
       <div
         className="progress-bar progress-bar-striped progress-bar-animated"
         role="progressbar"

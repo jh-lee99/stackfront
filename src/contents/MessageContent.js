@@ -17,16 +17,16 @@ const MessageContent = (place) => {
       method: "get",
       withCredentials: true,
     })
-    .then((res) => {
-      // 서버에서 location 데이터를 받아서 center 값을 변경
-      console.log("getPlace", res.data);
-      dispatch(loadPlace(res.data));
-    })
-    .catch(() => {
-      console.log("data error");
-    });
+      .then((res) => {
+        // 서버에서 location 데이터를 받아서 center 값을 변경
+        console.log("getPlace", res.data);
+        dispatch(loadPlace(res.data));
+      })
+      .catch(() => {
+        console.log("data error");
+      });
   }
-    
+
   const prev = (num) => {
     if (num > 1) {
       setIndex(num - 1);
@@ -48,15 +48,15 @@ const MessageContent = (place) => {
           messageID: index,
         },
       })
-      .then((res) => {
-        setMessage(res.data.message);
-        console.log("Message", res.data.message);
-        console.log("index2", index);
-      })
-      .catch((err) => {
-        setMessage(err.response.data.error);
-        console.log("Err: ", err.response.data.error);
-      });
+        .then((res) => {
+          setMessage(res.data.message);
+          console.log("Message", res.data.message);
+          console.log("index2", index);
+        })
+        .catch((err) => {
+          setMessage(err.response.data.error);
+          console.log("Err: ", err.response.data.error);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -87,8 +87,7 @@ const MessageContent = (place) => {
 
   return (
     <>
-      <div style={{ marginTop: "3%" }}></div>
-      <div>
+      <div style={{ marginTop: "3%" }}>
         <TravelMap />
         <div></div>
         <nav aria-label="guide">

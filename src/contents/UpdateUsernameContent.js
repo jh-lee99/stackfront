@@ -41,17 +41,12 @@ const UpdateUsernameContent = () => {
   };
 
   return (
-    <Container style={{ marginBottom: "3%" }}>
-      <div className="UpdateBox">
-        <div className="exit">
+    <Container style={{ marginTop: "3%" }}>
+      <Form id="Form" className="UpdateUserNameBox">
+        <div style={{ display: "flex", justifyContent: "end" }}>
           <Button
+            id="exitBtn"
             variant="danger"
-            style={{
-              marginBottom: "5%",
-              height: "3vh",
-              width: "3vh",
-              padding: "0",
-            }}
             onClick={() => {
               dispatch(selectupdate());
             }}
@@ -59,33 +54,37 @@ const UpdateUsernameContent = () => {
             x
           </Button>
         </div>
-        <Form id="Form">
-          <Form.Group>
-            <Form.Label>
-              <h1 className="my-5">Username 변경</h1>
-            </Form.Label>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Username 변경</Form.Label>
-            <Form.Control
-              type="text"
-              value={newUsername}
-              onChange={onChangeUsername}
-              placeholder="Username"
-              className="my-2"
-            />
-          </Form.Group>
-          <Form.Group style={{ marginBottom: "5%" }}>
-            <Form.Label>Password 확인</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={onChangePassword}
-              placeholder="Password"
-              className="my-2"
-            />
-          </Form.Group>
+        <Form.Group className="updateForm">
+          <Form.Label>
+            <h1 className="my-4">Username 변경</h1>
+          </Form.Label>
+        </Form.Group>
+        <Form.Group className="updateForm">
+          <Form.Label>Username 변경</Form.Label>
+          <Form.Control
+            id="radius"
+            type="text"
+            value={newUsername}
+            onChange={onChangeUsername}
+            placeholder="Username"
+            className="my-2"
+          />
+        </Form.Group>
+        <Form.Group className="updateForm">
+          <Form.Label>Password 확인</Form.Label>
+          <Form.Control
+            id="radius"
+            type="password"
+            value={password}
+            onChange={onChangePassword}
+            placeholder="Password"
+            className="my-2"
+          />
+        </Form.Group>
+        <Form.Group className="updateForm">
           <Button
+            id="radius"
+            className="fullBtn"
             variant="info"
             onClick={() => {
               submitUsername();
@@ -93,8 +92,8 @@ const UpdateUsernameContent = () => {
           >
             Username 변경하기
           </Button>
-        </Form>
-      </div>
+        </Form.Group>
+      </Form>
     </Container>
   );
 };

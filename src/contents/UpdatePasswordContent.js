@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { selectupdate } from "../Reducer/UpdateUserReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 
 const UpdatePasswordContent = () => {
-  const modeState = useSelector((state) => state.UpdateUserReducer.mode);
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [newPassword, setNewpassword] = useState("");
@@ -31,40 +29,39 @@ const UpdatePasswordContent = () => {
   };
 
   const submitPassword = () => {
-    console.log(email, password);
-    axios
-      .post("http://localhost:3000/update/password", {
-        password: password,
-        newPassword: newPassword,
-      })
-      .then((res) => {
-        console.log("res.data", res.data);
-        if (res.status === 200) {
-          Cookies.set("password", res.data.password);
-          window.location.reload();
-          alert("비밀번호가 변경되었습니다!");
-        } else console.log("실패하였습니다.");
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-    setPassword("");
-    setNewpassword("");
-    setConfirmNewpassword("");
+    if (password === "") alert("비밀번호를 입력해주세요!");
+    else if (newPassword === "") alert("새비밀번호를 입력해주세요!");
+    else {
+      console.log(email, password);
+      axios
+        .post("http://localhost:3000/update/password", {
+          password: password,
+          newPassword: newPassword,
+        })
+        .then((res) => {
+          console.log("res.data", res.data);
+          if (res.status === 200) {
+            Cookies.set("password", res.data.password);
+            window.location.reload();
+            alert("비밀번호가 변경되었습니다!");
+          } else console.log("실패하였습니다.");
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+      setPassword("");
+      setNewpassword("");
+      setConfirmNewpassword("");
+    }
     //else alert("비밀번호가 일치하지 않습니다.");
   };
   return (
-    <Container>
-      <div className="UpdateBox">
-        <div className="exit">
+    <Container style={{ marginTop: "3%" }}>
+      <Form id="Form" className="UpdatePwBox">
+        <div style={{ display: "flex", justifyContent: "end" }}>
           <Button
             variant="danger"
-            style={{
-              marginBottom: "5%",
-              height: "3vh",
-              width: "3vh",
-              padding: "0",
-            }}
+            id="exitBtn"
             onClick={() => {
               dispatch(selectupdate());
             }}
@@ -72,27 +69,25 @@ const UpdatePasswordContent = () => {
             x
           </Button>
         </div>
-        <Form id="Form">
-          <Form.Group>
-            <Form.Label>
-              <h1 className="my-5">Password 변경</h1>
-            </Form.Label>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Password 입력하기</Form.Label>
-          </Form.Group>
+        <Form.Group className="updateForm">
+          <Form.Label>
+            <h1 className="my-4">Password 변경</h1>
+          </Form.Label>
+          <Form.Label>Password 입력하기</Form.Label>
           <Form.Control
+            id="radius"
             type="password"
             placeholder="CurrentPassword"
             value={password}
             onChange={onChangePassword}
             className="my-2"
           />
-          <Form.Group>
-            <Form.Label>Password 변경하기</Form.Label>
-          </Form.Group>
+        </Form.Group>
+        <Form.Group className="updateForm">
+          <Form.Label>Password 변경하기</Form.Label>
           <Form.Control
             type="password"
+            id="radius"
             placeholder="newPassword"
             value={newPassword}
             onChange={onChangeNewpassword}
@@ -110,10 +105,11 @@ const UpdatePasswordContent = () => {
               </div>
             )}
           </div>
-          <Form.Group>
-            <Form.Label>Password 변경확인</Form.Label>
-          </Form.Group>
+        </Form.Group>
+        <Form.Group className="updateForm">
+          <Form.Label>Password 변경확인</Form.Label>
           <Form.Control
+            id="radius"
             type="password"
             placeholder="newPassword"
             value={confirmNewpassword}
@@ -127,17 +123,19 @@ const UpdatePasswordContent = () => {
               </div>
             )}
           </div>
+        </Form.Group>
+        <Form.Group className="updateForm">
           <Button
+            id="radius"
             variant="info"
             onClick={() => {
               submitPassword();
             }}
-            style={{ marginTop: "3%" }}
           >
             Password 변경하기
           </Button>
-        </Form>
-      </div>
+        </Form.Group>
+      </Form>
     </Container>
   );
 };

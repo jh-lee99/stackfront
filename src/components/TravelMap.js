@@ -61,7 +61,14 @@ function TravelMap() {
   }, []);
 
   return isLoaded ? (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: "5%",
+        marginTop: "3%",
+      }}
+    >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

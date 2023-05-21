@@ -14,7 +14,6 @@
 .ComponentBox {
   display: flex;
   justify-content: center;
-  //align-items: center;
 }
 
 #center {
@@ -49,20 +48,8 @@
 }
 
 .introBtn {
-  //margin: 20px;
   border-radius: 8px;
   width: 40vh;
-}
-
-.travelBtn {
-  border-radius: 8px;
-  min-width: 20vh;
-  margin: auto;
-  width: 30%;
-}
-
-.register {
-  border-radius: 8px;
 }
 
 .imgBox {
@@ -88,7 +75,6 @@
   display: flex;
   margin-top: 1%;
   margin-bottom: 1%;
-
   justify-content: center;
 }
 .marginRight {
@@ -122,34 +108,66 @@ nav {
 }
 
 .UpdateBox {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-top: 3%;
-  padding-top: 1;
-  padding-bottom: 0;
-  justify-content: center;
   border-radius: 8px;
   background-color: rgba(128, 128, 128, 0.2);
-  align-items: center;
   max-width: 87%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0%;
-
   height: auto;
 }
 
-.exit {
-  margin-top: 0%;
-  padding-left: 95%;
+.UpdateUserNameBox {
+  padding-top: 0;
+  border-radius: 8px;
+  background-color: rgba(128, 128, 128, 0.2);
+  max-width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0%;
+  height: auto;
+}
+.UpdatePwBox {
+  padding-top: 0;
+  border-radius: 8px;
+  background-color: rgba(128, 128, 128, 0.2);
+  max-width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0%;
+  height: auto;
+}
+#radius {
+  border-radius: 8px;
+}
+.updateForm {
+  display: flex;
+  flex-direction: column;
+  margin: 5% 5%;
+}
+
+.updateBtn {
+  border-radius: 8px;
+}
+
+#exitBtn {
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  background-color: transparent;
+  font-size: 20px;
 }
 
 .setCenter {
   display: flex;
   justifycontent: center;
-  padding-right: auto;
-  padding-left: auto;
+}
+
+#setCenter {
+  display: flex;
+  justifycontent: center;
 }
 
 .setMap {
@@ -162,19 +180,22 @@ nav {
 }
 
 .TravelBox {
-  display: flex;
-  flex-direction: column;
-  margin-top: 3%;
-  padding-top: 1;
-  padding-bottom: 0;
-  justify-content: center;
   border-radius: 8px;
   background-color: rgba(128, 128, 128, 0.2);
-  align-items: center;
   max-width: 87%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0%;
-
   height: auto;
+}
+.travelBtn {
+  border-radius: 8px;
+  min-width: 20vh;
+  margin: auto;
+  width: 30%;
+}
+.travelForm {
+  display: flex;
+  flex-direction: column;
+  margin: 5% 5%;
 }

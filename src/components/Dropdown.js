@@ -50,6 +50,7 @@ const Dropdown = () => {
                   navigate("/registerupdate");
                 })
                 .catch(() => {
+                  dispatch(setUsername(""));
                   alert("로그인 이후 이용해주세요!");
                 });
             }}
@@ -75,6 +76,7 @@ const Dropdown = () => {
         <li>
           <button
             className="dropdown-item"
+            style={{ color: "red" }}
             onClick={() => {
               // 로그아웃 버튼 클릭 시 처리 로직
               logout();

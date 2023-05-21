@@ -3,44 +3,55 @@ import {
   updateUsername,
   updateUserpassword,
 } from "../Reducer/UpdateUserReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const UpdateUserContent = () => {
-  const modeState = useSelector((state) => state.UpdateUserReducer.mode);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
-    <Container>
-      <div className="UpdateBox">
-        <Form id="Form">
-          <Form.Group>
-            <Form.Label>
-              <h1 className="my-5">회원정보 수정</h1>
-            </Form.Label>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Username 변경</Form.Label>
-          </Form.Group>
+    <Container style={{ marginTop: "3%" }}>
+      <Form id="Form" className="UpdateBox">
+        <div style={{ display: "flex", justifyContent: "end" }}>
+          <Button
+            id="exitBtn"
+            variant="danger"
+            onClick={() => {
+              navigate("/travel");
+            }}
+          >
+            x
+          </Button>
+        </div>
+        <Form.Group className="updateForm">
+          <Form.Label>
+            <h1 className="my-5">회원정보 수정</h1>
+          </Form.Label>
+        </Form.Group>
+        <Form.Group className="updateForm" style={{ marginBottom: "25%" }}>
+          <Form.Label>Username 변경</Form.Label>
           <Button
             variant="info"
-            style={{ marginBottom: "5%" }}
+            className="updateBtn"
             onClick={() => {
               dispatch(updateUsername());
             }}
           >
             Username 변경하기
           </Button>
-          <Form.Group>
-            <Form.Label>Password 변경</Form.Label>
-          </Form.Group>
+        </Form.Group>
+        <Form.Group className="updateForm">
+          <Form.Label>Password 변경</Form.Label>
           <Button
             variant="info"
             onClick={() => {
               dispatch(updateUserpassword());
             }}
+            className="updateBtn"
           >
             Password 변경하기
           </Button>
-        </Form>
-      </div>
+        </Form.Group>
+      </Form>
     </Container>
   );
 };

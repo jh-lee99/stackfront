@@ -18,7 +18,7 @@ const Header = () => {
   // const token = Cookies.get("accessToken");
   // const username = Cookies.get("username");
 
-  if (username) {
+  if (username !== "") {
     console.log("have", username);
     return (
       <>
