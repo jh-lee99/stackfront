@@ -15,19 +15,20 @@ const App = () => {
       try {
         const response = await fetch("http://localhost:3000/api/token/verify", {
           credentials: "include",
-        })
-        const data = await response.json();
-        console.log("res", data.message);
+        });
+        const userdata = await response.json();
+        console.log("username:", userdata.userdata.username, "| email:", userdata.userdata.email);
         return config;
-      } catch(err) {
-        console.log("err",err);
-        return config;
+      } catch (err) {
+        console.log("err", err);
+        return Promise.reject(err);
       }
     },
     (error) => {
       return Promise.reject(error);
     }
   );
+  
 
   return (
     <div>
