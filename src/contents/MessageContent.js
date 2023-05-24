@@ -88,85 +88,94 @@ const MessageContent = (place) => {
   return (
     <>
       <div style={{ marginTop: "3%" }}>
-        <TravelMap />
-        <div></div>
-        <nav aria-label="guide">
-          <ul className="pagination" style={{ justifyContent: "center" }}>
-            <li className="page-item">
-              <button
-                className="page-link"
-                aria-label="Previous"
-                onClick={() => {
-                  prev(index);
-                }}
-              >
-                <span aria-hidden="true">&laquo;</span>
-              </button>
-            </li>
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={() => {
-                  setIndex(1);
-                }}
-              >
-                1
-              </button>
-            </li>
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={() => {
-                  setIndex(2);
-                }}
-              >
-                2
-              </button>
-            </li>
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={() => {
-                  setIndex(3);
-                }}
-              >
-                3
-              </button>
-            </li>
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={() => {
-                  setIndex(4);
-                }}
-              >
-                4
-              </button>
-            </li>
-            <li className="page-item">
-              <button
-                className="page-link"
-                onClick={() => {
-                  setIndex(5);
-                }}
-              >
-                5
-              </button>
-            </li>
-            <li className="page-item">
-              <button
-                className="page-link"
-                href="#"
-                aria-label="Next"
-                onClick={() => {
-                  next(index);
-                }}
-              >
-                <span aria-hidden="true">&raquo;</span>
-              </button>
-            </li>
-          </ul>
-        </nav>
+        <div className="TravelBox">
+          <TravelMap />
+          <nav aria-label="guide">
+            <ul className="pagination" style={{ justifyContent: "center" }}>
+              <li className="page-item" style={{ marginBottom: "2%" }}>
+                <button
+                  className="page-link"
+                  aria-label="Previous"
+                  onClick={() => {
+                    prev(index);
+                  }}
+                  style={{
+                    borderStartStartRadius: "8px",
+                    borderEndStartRadius: "8px",
+                  }}
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </button>
+              </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={() => {
+                    setIndex(1);
+                  }}
+                >
+                  1
+                </button>
+              </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={() => {
+                    setIndex(2);
+                  }}
+                >
+                  2
+                </button>
+              </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={() => {
+                    setIndex(3);
+                  }}
+                >
+                  3
+                </button>
+              </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={() => {
+                    setIndex(4);
+                  }}
+                >
+                  4
+                </button>
+              </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  onClick={() => {
+                    setIndex(5);
+                  }}
+                >
+                  5
+                </button>
+              </li>
+              <li className="page-item">
+                <button
+                  className="page-link"
+                  href="#"
+                  aria-label="Next"
+                  onClick={() => {
+                    next(index);
+                  }}
+                  style={{
+                    borderStartEndRadius: "8px",
+                    borderEndEndRadius: "8px",
+                  }}
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
       <div
         id="pre"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { handleLoginSuccess } from "../controller/loginsucess";
@@ -20,6 +20,7 @@ const Dropdown = () => {
         console.log(response.data.message);
         alert(response.data.message);
         dispatch(setUsername(""));
+        navigate("/");
         window.location.reload();
       })
       .catch((error) => {
@@ -38,7 +39,7 @@ const Dropdown = () => {
         {/* 유저 이름 출력 */}
         {username}
       </button>
-      <ul className="dropdown-menu">
+      <ul className="dropdown-menu" id="radius">
         <li>
           <button
             className="dropdown-item"

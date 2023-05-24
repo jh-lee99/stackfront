@@ -23,7 +23,7 @@ const Header = () => {
     return (
       <>
         <header>
-          <Navbar bg="light" expand="lg">
+          <Navbar bg="light" expand="lg" id="radius">
             <Container>
               <Navbar.Brand href="/">
                 <img
@@ -50,7 +50,7 @@ const Header = () => {
         />
         <LoginModal show={LoginModalOn} onHide={() => setLoginModalOn(false)} />
         <header>
-          <Navbar bg="light" expand="lg">
+          <Navbar bg="light" expand="lg" id="radius">
             <Container>
               <Navbar.Brand href="/">
                 <img

@@ -93,6 +93,10 @@ const IntroContent = () => {
                 <button
                   className="page-link"
                   aria-label="Previous"
+                  style={{
+                    borderStartStartRadius: "8px",
+                    borderEndStartRadius: "8px",
+                  }}
                   onClick={() => {
                     prev(index);
                   }}
@@ -139,6 +143,10 @@ const IntroContent = () => {
                   aria-label="Next"
                   onClick={() => {
                     next(index);
+                  }}
+                  style={{
+                    borderStartEndRadius: "8px",
+                    borderEndEndRadius: "8px",
                   }}
                 >
                   <span aria-hidden="true">&raquo;</span>

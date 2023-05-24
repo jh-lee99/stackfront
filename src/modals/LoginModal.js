@@ -1,5 +1,5 @@
 import { Modal, Button, Form, Container } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
@@ -36,12 +36,11 @@ const LoginModal = ({ show, onHide }) => {
         console.log(error.data);
       });
   };
-  // function handleKeyPress(event) {
-  //   if (event.keyCode === 13) {
-  //     event.preventDefault();
-  //     event.target.click();
-  //   }
-  // }
+  const activeEnter = (e) => {
+    if (e.key === "Enter") {
+      Login(email, password);
+    }
+  };
   const onChangeEmail = (e) => {
     //이메일 검증
     setEmail(e.target.value);
@@ -80,6 +79,7 @@ const LoginModal = ({ show, onHide }) => {
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
+                id="radius"
                 value={email}
                 onChange={onChangeEmail}
                 placeholder="이메일"
@@ -96,8 +96,12 @@ const LoginModal = ({ show, onHide }) => {
               <Form.Control
                 type="password"
                 placeholder="비밀번호"
+                id="radius"
                 value={password}
                 onChange={onChangePassword}
+                onKeyDown={(e) => {
+                  activeEnter(e);
+                }}
                 className="my-2"
               />
               <div className="errorMessageWrap">

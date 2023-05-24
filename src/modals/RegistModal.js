@@ -74,6 +74,7 @@ const RegistModal = ({ show, onHide }) => {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 placeholder="Name"
+                id="radius"
                 value={username}
                 onChange={onChangeId}
                 className="my-2"
@@ -83,6 +84,7 @@ const RegistModal = ({ show, onHide }) => {
               <Form.Label>Email</Form.Label>
               <Form.Control
                 placeholder="이메일"
+                id="radius"
                 value={email}
                 onChange={onChangeEmail}
                 className="my-2"
@@ -99,6 +101,7 @@ const RegistModal = ({ show, onHide }) => {
               <Form.Control
                 type="password"
                 placeholder="비밀번호"
+                id="radius"
                 value={password}
                 onChange={onChangePassword}
                 className="my-2 register"
@@ -116,6 +119,7 @@ const RegistModal = ({ show, onHide }) => {
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
+                id="radius"
                 placeholder="비밀번호 확인"
                 value={confrimPassword}
                 onChange={onChangeConfirmPassword}
@@ -142,7 +146,7 @@ const RegistModal = ({ show, onHide }) => {
               Sign Up
             </Button>
             <HorizonLine text={"OR"} />
-            <GoogleOAuthProvider>
+            <GoogleOAuthProvider id="radius">
               <GoogleLogin />
             </GoogleOAuthProvider>
           </Form>
