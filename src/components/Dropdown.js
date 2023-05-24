@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { handleLoginSuccess } from "../controller/loginsucess";
@@ -9,6 +9,10 @@ const Dropdown = () => {
   const navigate = useNavigate();
   const username = useSelector((state) => state.UserNameReducer.username);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", dispatch(setUsername("")));
+  }, []);
 
   const logout = () => {
     axios({

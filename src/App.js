@@ -6,10 +6,14 @@ import Home from "./pages/Home";
 import Travel from "./pages/Travel";
 import UpdateUser from "./pages/UpdateUser";
 import RecentMessage from "./pages/RecentMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserdata } from "./Reducer/UserDataReducer";
 
 const App = () => {
   // const navigate = useNavigate();
   // 모든 axios 요청 생성에서 전역적으로 사용되는 인터셉트.
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.UserDataReducer.userdata);
   axios.interceptors.request.use(
     async (config) => {
       try {
@@ -17,6 +21,7 @@ const App = () => {
           credentials: "include",
         });
         const userdata = await response.json().userdata;
+        dispatch(setUserdata(userdata));
         console.log(
           "username:",
           userdata.userdata.username,

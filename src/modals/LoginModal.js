@@ -44,12 +44,9 @@ const LoginModal = ({ show, onHide }) => {
       });
   };
 
-  // function handleKeyPress(event) {
-  //   if (event.keyCode === 13) {
-  //     event.preventDefault();
-  //     event.target.click();
-  //   }
-  // }
+  const activeEnter = (e) => {
+    if (e.key === "Enter") Login(email, password);
+  };
   const onChangeEmail = (e) => {
     //이메일 검증
     setEmail(e.target.value);
