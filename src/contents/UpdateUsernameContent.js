@@ -20,26 +20,30 @@ const UpdateUsernameContent = () => {
 
   const submitUsername = () => {
     console.log(password, newUsername);
-    axios
-      .post("http://localhost:3000/update/user", {
+    axios({
+      url:"http://localhost:3000/update/user", 
+      method:"post",
+      withCredentials:true,
+      data:{
         password: password,
-        newUsername: newUsername,
-      })
-      .then((res) => {
-        console.log("res.data", res.data);
-        if (res.status === 200) {
-          Cookies.set("username", res.data.username);
-          alert("username이 변경되었습니다!");
-          window.location.reload();
-        } else console.log("실패하였습니다.");
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-    setNewUsername("");
-    setPassword("");
-  };
-
+        newUsername: newUsername,    
+      }
+    })
+    .then((res) => {
+      console.log("res.data", res.data);
+      if (res.status === 200) {
+        Cookies.set("username", res.data.username);
+        alert("username이 변경되었습니다!");
+        window.location.reload();
+      } else console.log("실패하였습니다.");
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
+  setNewUsername("");
+  setPassword("");
+};
+      
   return (
     <Container style={{ marginTop: "3%" }}>
       <Form id="Form" className="UpdateUserNameBox">

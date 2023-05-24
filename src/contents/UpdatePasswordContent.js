@@ -11,7 +11,7 @@ const UpdatePasswordContent = () => {
   const [newPassword, setNewpassword] = useState("");
   const [confirmNewpassword, setConfirmNewpassword] = useState("");
   const [mpwValid, setMpwValid] = useState(false);
-  const email = Cookies.get("email");
+  // const email = Cookies.get("email");
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
@@ -21,9 +21,11 @@ const UpdatePasswordContent = () => {
       setMpwValid(true);
     } else setMpwValid(false);
   };
+
   const onChangeNewpassword = (e) => {
     setNewpassword(e.target.value);
   };
+
   const onChangeConfirmNewpassword = (e) => {
     setConfirmNewpassword(e.target.value);
   };
@@ -32,31 +34,35 @@ const UpdatePasswordContent = () => {
     if (password === "") alert("비밀번호를 입력해주세요!");
     else if (newPassword === "") alert("새비밀번호를 입력해주세요!");
     else {
-      console.log(email, password);
-      axios
-        .post("http://localhost:3000/update/password", {
+      // console.log(email, password);
+      axios({
+        url:"http://localhost:3000/update/password",
+        method:"post",
+        withCredentials:true,
+        data:{
           password: password,
           newPassword: newPassword,
-        })
-        .then((res) => {
-          console.log("res.data", res.data);
-          if (res.status === 200) {
-            Cookies.set("password", res.data.password);
-            window.location.reload();
-            alert("비밀번호가 변경되었습니다!");
-          } else console.log("실패하였습니다.");
-        })
-        .catch((err) => {
-          console.log("err", err);
-        });
-      setPassword("");
-      setNewpassword("");
-      setConfirmNewpassword("");
-    }
-    //else alert("비밀번호가 일치하지 않습니다.");
+        }
+      })
+      .then((res) => {
+        console.log("res.data", res.data);
+        if (res.status === 200) {
+          // Cookies.set("password", res.data.password);
+          window.location.reload();
+          alert("비밀번호가 변경되었습니다!");
+        } else console.log("실패하였습니다.");
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+    setPassword("");
+    setNewpassword("");
+    setConfirmNewpassword("");
+  }
+  //else alert("비밀번호가 일치하지 않습니다.");
   };
   return (
-    <Container style={{ marginTop: "3%" }}>
+  <Container style={{ marginTop: "3%" }}>
       <Form id="Form" className="UpdatePwBox">
         <div style={{ display: "flex", justifyContent: "end" }}>
           <Button
