@@ -28,7 +28,9 @@ const UpdateUserContent = () => {
           </Form.Label>
         </Form.Group>
         <Form.Group className="updateForm" style={{ marginBottom: "25%" }}>
-          <Form.Label>Username 변경</Form.Label>
+          <Form.Label>
+            <h4>Username 변경</h4>
+          </Form.Label>
           <Button
             variant="info"
             className="updateBtn"
@@ -40,7 +42,9 @@ const UpdateUserContent = () => {
           </Button>
         </Form.Group>
         <Form.Group className="updateForm">
-          <Form.Label>Password 변경</Form.Label>
+          <Form.Label>
+            <h4>Password 변경</h4>
+          </Form.Label>
           <Button
             variant="info"
             onClick={() => {

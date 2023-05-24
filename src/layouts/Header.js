@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import RegistModal from "../modals/RegistModal";
 import LoginModal from "../modals/LoginModal";

@@ -2,13 +2,12 @@ import React from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { selectupdate, updateUserpassword } from "../Reducer/UpdateUserReducer";
+import { useDispatch } from "react-redux";
+import { selectupdate } from "../Reducer/UpdateUserReducer";
 import Cookies from "js-cookie";
 const UpdateUsernameContent = () => {
   const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
-  const modeState = useSelector((state) => state.UpdateUserReducer.mode);
 
   const dispatch = useDispatch();
   const onChangeUsername = (e) => {
@@ -21,29 +20,31 @@ const UpdateUsernameContent = () => {
   const submitUsername = () => {
     console.log(password, newUsername);
     axios({
-      url:"http://localhost:3000/update/user", 
-      method:"post",
-      withCredentials:true,
-      data:{
+      url: "http://localhost:3000/update/user",
+      method: "post",
+      withCredentials: true,
+      data: {
         password: password,
-        newUsername: newUsername,    
-      }
+        newUsername: newUsername,
+      },
     })
-    .then((res) => {
-      console.log("res.data", res.data);
-      if (res.status === 200) {
-        Cookies.set("username", res.data.username);
-        alert("username이 변경되었습니다!");
-        window.location.reload();
-      } else console.log("실패하였습니다.");
-    })
-    .catch((err) => {
-      console.log("err", err);
-    });
-  setNewUsername("");
-  setPassword("");
-};
-      
+      .then((res) => {
+        console.log("res.data", res.data);
+        if (res.status === 200) {
+          Cookies.set("username", res.data.username);
+          alert("username이 변경되었습니다!");
+          window.location.reload();
+        } else console.log("실패하였습니다.");
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+    setNewUsername("");
+    setPassword("");
+  };
+  const activeEnter = (e) => {
+    if (e.key === "Enter") submitUsername();
+  };
   return (
     <Container style={{ marginTop: "3%" }}>
       <Form id="Form" className="UpdateUserNameBox">
@@ -81,6 +82,9 @@ const UpdateUsernameContent = () => {
             type="password"
             value={password}
             onChange={onChangePassword}
+            onKeyDown={(e) => {
+              activeEnter(e);
+            }}
             placeholder="Password"
             className="my-2"
           />

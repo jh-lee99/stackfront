@@ -29,6 +29,7 @@ const LoginModal = ({ show, onHide }) => {
           if (response.data.username !== "") {
             dispatch(setUsername(response.data.username));
           }
+          alert(`${response.data.username} 님 환영합니다.`);
         }
       })
       .catch((error) => {

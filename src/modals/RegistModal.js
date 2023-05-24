@@ -56,6 +56,10 @@ const RegistModal = ({ show, onHide }) => {
         console.log("An error occurred:", error.response);
       });
   };
+
+  const activeEnter = (e) => {
+    if (e.key === "Enter") register();
+  };
   return (
     <Modal
       show={show}
@@ -123,6 +127,9 @@ const RegistModal = ({ show, onHide }) => {
                 placeholder="비밀번호 확인"
                 value={confrimPassword}
                 onChange={onChangeConfirmPassword}
+                onKeyDown={(e) => {
+                  activeEnter(e);
+                }}
                 className="my-2"
               />
               <div className="errorMessageWrap">
