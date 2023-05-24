@@ -4,7 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { selectupdate } from "../Reducer/UpdateUserReducer";
-import Cookies from "js-cookie";
+import { setUsername } from "../Reducer/UserNameReducer";
+
 const UpdateUsernameContent = () => {
   const [newUsername, setNewUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,20 +25,21 @@ const UpdateUsernameContent = () => {
       method: "post",
       withCredentials: true,
       data: {
-        password: password,
         newUsername: newUsername,
+        password: password,
       },
     })
       .then((res) => {
         console.log("res.data", res.data);
         if (res.status === 200) {
-          Cookies.set("username", res.data.username);
           alert("username이 변경되었습니다!");
+          dispatch(setUsername(res.data.username));
           window.location.reload();
-        } else console.log("실패하였습니다.");
+        }
       })
       .catch((err) => {
-        console.log("err", err);
+        alert(`${err.response.data.message}\n변경에 실패하였습니다.`);
+        console.log(err);
       });
     setNewUsername("");
     setPassword("");

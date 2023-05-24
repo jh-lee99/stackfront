@@ -2,7 +2,7 @@ import { Form, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { selectupdate } from "../Reducer/UpdateUserReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const UpdatePasswordContent = () => {
   const dispatch = useDispatch();
@@ -10,6 +10,7 @@ const UpdatePasswordContent = () => {
   const [newPassword, setNewpassword] = useState("");
   const [confirmNewpassword, setConfirmNewpassword] = useState("");
   const [mpwValid, setMpwValid] = useState(false);
+  const userEmail = useSelector((state) => state.UserEmailReducer.email);
   // const email = Cookies.get("email");
 
   const onChangePassword = (e) => {
@@ -31,7 +32,7 @@ const UpdatePasswordContent = () => {
 
   const submitPassword = () => {
     if (password === "") alert("비밀번호를 입력해주세요!");
-    else if (newPassword === "") alert("새비밀번호를 입력해주세요!");
+    else if (newPassword === "") alert("변경할 비밀번호를 입력해주세요!");
     else {
       // console.log(email, password);
       axios({
@@ -39,6 +40,7 @@ const UpdatePasswordContent = () => {
         method: "post",
         withCredentials: true,
         data: {
+          email: userEmail,
           password: password,
           newPassword: newPassword,
         },
@@ -49,10 +51,11 @@ const UpdatePasswordContent = () => {
             // Cookies.set("password", res.data.password);
             window.location.reload();
             alert("비밀번호가 변경되었습니다!");
-          } else console.log("실패하였습니다.");
+          } else alert("실패하였습니다.");
         })
         .catch((err) => {
-          console.log("err", err);
+          alert("실패하였습니다.");
+          console.log(err);
         });
       setPassword("");
       setNewpassword("");

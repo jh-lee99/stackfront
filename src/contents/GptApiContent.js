@@ -22,7 +22,6 @@ const GptApiContent = (place) => {
     <>
       <div className="TravelBox">
         <TravelMap />
-
         <GptApiContentModal
           show={GptApiContentModalOn}
           onHide={() => setGptApiContentModalOn(false)}
@@ -36,33 +35,33 @@ const GptApiContent = (place) => {
           variant="info"
           type="button"
           className="travelBtn"
-          onClick={
-            async () => {
-              try{
-                const response = await fetch("http://localhost:3000/api/token/verify", {
-                  credentials: "include",
-                });
-                const userdata = await response.json();
-                console.log("username:", userdata.userdata.username, "| email:", userdata.userdata.email);
+          onClick={async () => {
+            // try{
+            //   const response = await fetch("http://localhost:3000/api/token/verify", {
+            //     credentials: "include",
+            //   });
+            //   const userdata = await response.json();
+            //   console.log("username:", userdata.userdata.username, "| email:", userdata.userdata.email);
+            //   setGptApiContentModalOn(true);
+            // } catch {
+            //   alert("로그인 이후 이용해주세요!");
+            //   dispatch(setUsername(""));
+            // }
+
+            axios({
+              url: "http://localhost:3000/api/token/verify",
+              withCredentials: true,
+            })
+              .then((response) => {
+                console.log(response.data.userdata.username);
+                dispatch(setUsername(response.data.userdata.username));
                 setGptApiContentModalOn(true);
-              } catch {
+              })
+              .catch(() => {
                 alert("로그인 이후 이용해주세요!");
                 dispatch(setUsername(""));
-              }
-  
-              // axios
-              //   .get("http://localhost:3000/api/token/verify", {
-              //     withCredentials: true,
-              //   })
-              //   .then((response) => {
-              //     console.log(response.data.message);
-              //     setGptApiContentModalOn(true);
-              //   })
-              //   .catch(() => {
-              //     alert("로그인 이후 이용해주세요!");
-              //     dispatch(setUsername(""));
-              //   });
-            }}
+              });
+          }}
         >
           여행 떠나기
         </Button>

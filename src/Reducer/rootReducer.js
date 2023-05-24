@@ -6,7 +6,7 @@ import UpdateUserReducer from "./UpdateUserReducer";
 import UserNameReducer from "./UserNameReducer";
 import persistReducer from "redux-persist/es/persistReducer";
 import localStorage from "redux-persist/es/storage";
-import UserDataReducer from "./UserDataReducer";
+import UserEmailReducer from "./UserEmailReducer";
 const persistConfig = {
   key: "root",
   storage: localStorage,
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   DateDiffReducer,
   UpdateUserReducer,
   UserNameReducer,
-  UserDataReducer,
+  UserEmailReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

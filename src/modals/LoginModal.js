@@ -5,6 +5,7 @@ import HorizonLine from "../components/HorizonLine";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUsername } from "../Reducer/UserNameReducer";
+import { setUserEmail } from "../Reducer/UserEmailReducer";
 
 const LoginModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
@@ -14,28 +15,22 @@ const LoginModal = ({ show, onHide }) => {
   const dispatch = useDispatch();
 
   const Login = async (email, password) => {
-    fetch("http://localhost:3000/login", {
+    axios({
+      url: "http://localhost:3000/login",
       method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+      withCredentials: true,
+      data: {
         email: email,
         password: password,
-      }),
+      },
     })
       .then((response) => {
         if (response.status === 200) {
-          return response.json();
-        } else {
-          throw new Error("로그인 실패: 등록되지 않은 사용자");
-        }
-      })
-      .then((data) => {
-        console.log(data);
-        if (data.username !== "") {
-          dispatch(setUsername(data.username));
+          console.log(response.data);
+          if (response.data.username !== "") {
+            dispatch(setUsername(response.data.username));
+            dispatch(setUserEmail(response.data.email));
+          }
         }
       })
       .catch((error) => {

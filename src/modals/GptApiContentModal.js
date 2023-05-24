@@ -289,7 +289,7 @@ const GptApiContentModal = ({ show, onHide }) => {
         </Modal>
       </Container>
       {isLoading ? (
-        <div className="loadingStyle">
+        <div style={{ marginTop: "3%", marginBottom: "3%" }}>
           <Loading />
         </div>
       ) : (

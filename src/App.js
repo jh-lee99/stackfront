@@ -1,43 +1,29 @@
-import axios from "axios";
-import { useEffect } from "react";
-import Cookies from "js-cookie";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Travel from "./pages/Travel";
 import UpdateUser from "./pages/UpdateUser";
 import RecentMessage from "./pages/RecentMessage";
-import { useDispatch, useSelector } from "react-redux";
-import { setUserdata } from "./Reducer/UserDataReducer";
 
 const App = () => {
   // const navigate = useNavigate();
   // 모든 axios 요청 생성에서 전역적으로 사용되는 인터셉트.
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.UserDataReducer.userdata);
-  axios.interceptors.request.use(
-    async (config) => {
-      try {
-        const response = await fetch("http://localhost:3000/api/token/verify", {
-          credentials: "include",
-        });
-        const userdata = await response.json().userdata;
-        dispatch(setUserdata(userdata));
-        console.log(
-          "username:",
-          userdata.userdata.username,
-          "| email:",
-          userdata.userdata.email
-        );
-        return config;
-      } catch (err) {
-        console.log("err", err);
-        return Promise.reject(err);
-      }
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  // axios.interceptors.request.use(
+  //   async (config) => {
+  //     try {
+  //       const response = await fetch("http://localhost:3000/api/token/verify", {
+  //         credentials: "include",
+  //       });
+  //       const userdata = await response.json().userdata;
+  //       console.log("username:", userdata.username, "| email:", userdata.email);
+  //       return config;
+  //     } catch (err) {
+  //       console.log("err", err);
+  //     }
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
 
   return (
     <div>

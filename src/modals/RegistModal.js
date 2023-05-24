@@ -4,18 +4,21 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import HorizonLine from "../components/HorizonLine";
 import { useState } from "react";
 import axios from "axios";
-//import { Login } from "./LoginModal";
+import { useDispatch, useSelector } from "react-redux";
+import { setUsername } from "../Reducer/UserNameReducer";
+import { setUserEmail } from "../Reducer/UserEmailReducer";
 
 const RegistModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [username, _setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confrimPassword, setConfirmPassword] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
+  const dispatch = useDispatch();
 
   const onChangeId = (e) => {
-    setUsername(e.target.value);
+    _setUsername(e.target.value);
   };
 
   const onChangeEmail = (e) => {
@@ -41,19 +44,33 @@ const RegistModal = ({ show, onHide }) => {
   };
 
   const register = () => {
-    axios
-      .post("http://localhost:3000/register", {
+    axios({
+      url: "http://localhost:3000/register",
+      method: "POST",
+      withCredentials: true,
+      data: {
         username: username,
         email: email,
         password: password,
-      })
+      },
+    })
       .then((response) => {
-        console.log("회원가입이 성공적으로 이루어졌습니다!");
-        //Login(email, password);
+        console.log(response);
+        const username = response.data.username;
+        const email = response.data.email;
+        _setUsername("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        dispatch(setUsername(username));
+        dispatch(setUserEmail(email));
+        onHide(true);
+        alert("회원가입이 성공적으로 이루어졌습니다.");
+        console.log(response.data.message);
       })
       .catch((error) => {
         // Handle error.
-        console.log("An error occurred:", error.response);
+        console.log("An error occurred:", error);
       });
   };
 
@@ -145,6 +162,7 @@ const RegistModal = ({ show, onHide }) => {
               variant="info"
               type="button"
               className="my-3"
+              name="registerButton"
               onClick={() => {
                 register();
               }}

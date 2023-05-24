@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import RegistModal from "../modals/RegistModal";
 import LoginModal from "../modals/LoginModal";
 import Dropdown from "../components/Dropdown";
-import { useSelector, useDispatch } from "react-redux";
-import { setUsername } from "../Reducer/UserNameReducer";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   // axios 요청으로 username을 반환하는 요청을 보냄

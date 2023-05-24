@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { handleLoginSuccess } from "../controller/loginsucess";
+// import { handleLoginSuccess } from "../controller/loginsucess";
 import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../Reducer/UserNameReducer";
+import { setUserEmail } from "../Reducer/UserEmailReducer";
 
 const Dropdown = () => {
   const navigate = useNavigate();
   const username = useSelector((state) => state.UserNameReducer.username);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    window.addEventListener("beforeunload", dispatch(setUsername("")));
-  }, []);
 
   const logout = () => {
     axios({
@@ -23,11 +20,13 @@ const Dropdown = () => {
       .then((response) => {
         console.log(response.data.message);
         alert(response.data.message);
+        // window.location.reload();
         dispatch(setUsername(""));
-        navigate("/");
-        window.location.reload();
+        dispatch(setUserEmail(""));
       })
       .catch((error) => {
+        dispatch(setUsername(""));
+        dispatch(setUserEmail(""));
         console.log(error);
       });
   };
@@ -50,7 +49,10 @@ const Dropdown = () => {
             onClick={async () => {
               // 회원정보 수정 버튼 클릭 시 처리 로직
               // /registerupdate 로 이동
-              await handleLoginSuccess()
+              axios({
+                url: "http://localhost:3000/api/token/verify",
+                withCredentials: true,
+              })
                 .then(() => {
                   navigate("/registerupdate");
                 })
