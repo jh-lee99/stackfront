@@ -144,7 +144,7 @@ const UpdatePasswordContent = () => {
             variant="info"
             onClick={() => {
               submitPassword();
-            }}
+            }}            
           >
             Password 변경하기
           </Button>
