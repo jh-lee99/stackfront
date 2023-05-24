@@ -13,29 +13,37 @@ const LoginModal = ({ show, onHide }) => {
   const [pwValid, setPwValid] = useState(false);
   const dispatch = useDispatch();
 
-  const Login = (email, password) => {
-    axios({
-      url: "http://localhost:3000/login",
+  const Login = async (email, password) => {
+    fetch("http://localhost:3000/login", {
       method: "POST",
-      withCredentials: true,
-      data: {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         email: email,
         password: password,
-      },
+      }),
     })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          if (response.data.username !== "") {
-            dispatch(setUsername(response.data.username));
-          }
-        }
-      })
-      .catch((error) => {
-        alert("로그인 실패: 등록되지 않은 사용자\n" + error);
-        console.log(error.data);
-      });
-  };
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error("로그인 실패: 등록되지 않은 사용자");
+      }
+    })
+    .then((data) => {
+      console.log(data);
+      if (data.username !== "") {
+        dispatch(setUsername(data.username));
+      }
+    })
+    .catch((error) => {
+    console.log(error);
+    alert("로그인 실패: 등록되지 않은 사용자\n" + error);
+  });
+}
+
   // function handleKeyPress(event) {
   //   if (event.keyCode === 13) {
   //     event.preventDefault();
