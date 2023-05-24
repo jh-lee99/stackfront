@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { handleLoginSuccess } from "../controller/loginsucess";
+// import { handleLoginSuccess } from "../controller/loginsucess";
 import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../Reducer/UserNameReducer";
 
@@ -19,10 +19,11 @@ const Dropdown = () => {
       .then((response) => {
         console.log(response.data.message);
         alert(response.data.message);
+        // window.location.reload();
         dispatch(setUsername(""));
-        window.location.reload();
       })
       .catch((error) => {
+        dispatch(setUsername(""));
         console.log(error);
       });
   };
@@ -45,16 +46,19 @@ const Dropdown = () => {
             onClick={async () => {
               // 회원정보 수정 버튼 클릭 시 처리 로직
               // /registerupdate 로 이동
-              await handleLoginSuccess()
-                .then(() => {
-                  navigate("/registerupdate");
-                })
-                .catch(() => {
-                  dispatch(setUsername(""));
-                  alert("로그인 이후 이용해주세요!");
-                });
+              axios({
+                url:"http://localhost:3000/api/token/verify",
+                withCredentials:true,
+              })
+              .then(() => {
+                navigate("/registerupdate");
+              })
+              .catch(() => {
+                dispatch(setUsername(""));
+                alert("로그인 이후 이용해주세요!");
+              });
             }}
-          >
+            >
             회원정보 수정
           </button>
         </li>
