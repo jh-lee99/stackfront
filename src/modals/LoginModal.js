@@ -13,35 +13,43 @@ const LoginModal = ({ show, onHide }) => {
   const [pwValid, setPwValid] = useState(false);
   const dispatch = useDispatch();
 
-  const Login = (email, password) => {
-    axios({
-      url: "http://localhost:3000/login",
+  const Login = async (email, password) => {
+    fetch("http://localhost:3000/login", {
       method: "POST",
-      withCredentials: true,
-      data: {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         email: email,
         password: password,
-      },
+      }),
     })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response.data);
-          if (response.data.username !== "") {
-            dispatch(setUsername(response.data.username));
-          }
-          alert(`${response.data.username} 님 환영합니다.`);
+          return response.json();
+        } else {
+          throw new Error("로그인 실패: 등록되지 않은 사용자");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        if (data.username !== "") {
+          dispatch(setUsername(data.username));
         }
       })
       .catch((error) => {
+        console.log(error);
         alert("로그인 실패: 등록되지 않은 사용자\n" + error);
-        console.log(error.data);
       });
   };
-  const activeEnter = (e) => {
-    if (e.key === "Enter") {
-      Login(email, password);
-    }
-  };
+
+  // function handleKeyPress(event) {
+  //   if (event.keyCode === 13) {
+  //     event.preventDefault();
+  //     event.target.click();
+  //   }
+  // }
   const onChangeEmail = (e) => {
     //이메일 검증
     setEmail(e.target.value);

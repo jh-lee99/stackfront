@@ -16,8 +16,13 @@ const App = () => {
         const response = await fetch("http://localhost:3000/api/token/verify", {
           credentials: "include",
         });
-        const userdata = await response.json();
-        console.log("username:", userdata.userdata.username, "| email:", userdata.userdata.email);
+        const userdata = await response.json().userdata;
+        console.log(
+          "username:",
+          userdata.userdata.username,
+          "| email:",
+          userdata.userdata.email
+        );
         return config;
       } catch (err) {
         console.log("err", err);
@@ -28,7 +33,6 @@ const App = () => {
       return Promise.reject(error);
     }
   );
-  
 
   return (
     <div>
