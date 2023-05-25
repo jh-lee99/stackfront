@@ -22,13 +22,8 @@ const GptApiContent = (place) => {
     <>
       <div className="TravelBox">
         <TravelMap />
-        <GptApiContentModal
-          show={GptApiContentModalOn}
-          onHide={() => setGptApiContentModalOn(false)}
-          showButton={showButton}
-          HideButton={() => setShowButton(false)}
-        />
       </div>
+
       <div id="setCenter">
         <Button
           block
@@ -66,6 +61,12 @@ const GptApiContent = (place) => {
           여행 떠나기
         </Button>
       </div>
+      <GptApiContentModal
+        show={GptApiContentModalOn}
+        onHide={() => setGptApiContentModalOn(false)}
+        showButton={showButton}
+        HideButton={() => setShowButton(false)}
+      />
     </>
   );
 };

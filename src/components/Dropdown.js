@@ -20,9 +20,10 @@ const Dropdown = () => {
       .then((response) => {
         console.log(response.data.message);
         alert(response.data.message);
-        // window.location.reload();
         dispatch(setUsername(""));
         dispatch(setUserEmail(""));
+        navigate("/");
+        //window.location.reload();
       })
       .catch((error) => {
         dispatch(setUsername(""));

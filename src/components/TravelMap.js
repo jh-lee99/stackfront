@@ -67,12 +67,14 @@ function TravelMap() {
         justifyContent: "center",
         paddingTop: "5%",
         marginTop: "3%",
+        paddingBottom: "5%",
+        marginBottom: "3%",
       }}
     >
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={14}
+        zoom={15}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
