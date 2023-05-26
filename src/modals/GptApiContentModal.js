@@ -43,7 +43,6 @@ const GptApiContentModal = ({ show, onHide }) => {
     const pre = document.getElementById("pre");
     pre.innerHTML = "";
     pre.appendChild(parsedHtml.documentElement);
-    pre.style.backgroundColor = "yellow";
 
     function handleLocationClick(event) {
       // 클릭한 요소의 location 속성 값을 가져옵니다.
