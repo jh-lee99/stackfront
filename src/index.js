@@ -13,11 +13,7 @@ import { PersistGate } from "redux-persist/integration/react";
 const store = createStore(rootReducer);
 const persistor = persistStore(store);
 let unsubscribe = store.subscribe(() => console.log(store.getState()));
-// persistor.purge(); // 브라우저를 닫았을 때 리덕스 상태를 초기화
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// window.addEventListener("beforeunload", () => {
-//   persistor.purge();
-// });
 
 root.render(
   <Provider store={store}>

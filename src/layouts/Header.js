@@ -84,7 +84,6 @@ const Header = () => {
                       Sign Up
                     </Button>
                   </Nav.Link>
-                  <Dropdown />
                 </Nav>
               </Navbar.Collapse>
             </Container>

@@ -41,6 +41,11 @@ const GptApiContentModal = ({ show, onHide }) => {
     const parser = new DOMParser();
     const parsedHtml = parser.parseFromString(result, "text/html");
     const pre = document.getElementById("pre");
+    const bodyStyle = parsedHtml.getElementsByTagName("body")[0].style;
+    bodyStyle.backgroundColor = "rgb(245, 245, 220)";
+    bodyStyle.padding = "5%";
+    bodyStyle.borderRadius = "8px";
+    // parsedHtml.documentElement.style.backgroundColor = "yellow";
     pre.innerHTML = "";
     pre.appendChild(parsedHtml.documentElement);
 
@@ -94,6 +99,7 @@ const GptApiContentModal = ({ show, onHide }) => {
   }, [date]);
 
   const submit = () => {
+    document.getElementById("pre").innerHTML = "";
     if (!dest) {
       alert("목적지를 입력해주세요!");
     } else if (date === 0) {
