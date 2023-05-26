@@ -45,7 +45,7 @@ const GptApiContentModal = ({ show, onHide }) => {
     bodyStyle.backgroundColor = "rgb(245, 245, 220)";
     bodyStyle.padding = "5%";
     bodyStyle.borderRadius = "8px";
-    // parsedHtml.documentElement.style.backgroundColor = "yellow";
+
     pre.innerHTML = "";
     pre.appendChild(parsedHtml.documentElement);
 

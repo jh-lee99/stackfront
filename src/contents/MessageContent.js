@@ -67,6 +67,10 @@ const MessageContent = (place) => {
     const parser = new DOMParser();
     const parsedHtml = parser.parseFromString(message, "text/html");
     const pre = document.getElementById("pre");
+    const bodyStyle = parsedHtml.getElementsByTagName("body")[0].style;
+    bodyStyle.backgroundColor = "rgb(245, 245, 220)";
+    bodyStyle.padding = "5%";
+    bodyStyle.borderRadius = "8px";
     pre.innerHTML = "";
     pre.appendChild(parsedHtml.documentElement);
 
