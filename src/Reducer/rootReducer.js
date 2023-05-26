@@ -10,7 +10,7 @@ import UserEmailReducer from "./UserEmailReducer";
 const persistConfig = {
   key: "root",
   storage: localStorage,
-  whitelist: ["UserNameReducer"],
+  whitelist: ["UserNameReducer", "UserEmailReducer"],
 };
 
 const rootReducer = combineReducers({
