@@ -31,18 +31,6 @@ const GptApiContent = (place) => {
           type="button"
           className="travelBtn"
           onClick={async () => {
-            // try{
-            //   const response = await fetch("http://localhost:3000/api/token/verify", {
-            //     credentials: "include",
-            //   });
-            //   const userdata = await response.json();
-            //   console.log("username:", userdata.userdata.username, "| email:", userdata.userdata.email);
-            //   setGptApiContentModalOn(true);
-            // } catch {
-            //   alert("로그인 이후 이용해주세요!");
-            //   dispatch(setUsername(""));
-            // }
-
             axios({
               url: "http://localhost:3000/api/token/verify",
               withCredentials: true,
