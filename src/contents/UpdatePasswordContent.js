@@ -15,6 +15,10 @@ const UpdatePasswordContent = () => {
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const onChangeNewpassword = (e) => {
+    setNewpassword(e.target.value);
     const regex =
       /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
     if (regex.test(e.target.value)) {
@@ -22,18 +26,18 @@ const UpdatePasswordContent = () => {
     } else setMpwValid(false);
   };
 
-  const onChangeNewpassword = (e) => {
-    setNewpassword(e.target.value);
-  };
-
   const onChangeConfirmNewpassword = (e) => {
     setConfirmNewpassword(e.target.value);
   };
 
   const submitPassword = () => {
-    if (password === "") alert("비밀번호를 입력해주세요!");
-    else if (newPassword === "") alert("변경할 비밀번호를 입력해주세요!");
-    else {
+    if (!password && newPassword) alert("비밀번호를 입력해주세요.");
+    else if (password && !newPassword) alert("변경할 비밀번호를 입력해주세요.");
+    else if (password && newPassword && !mpwValid)
+      alert("사용할 수 없는 password입니다.");
+    else if (password === newPassword && password !== "")
+      alert("비밀번호가 새 비밀번호와 동일합니다.");
+    else if (password && newPassword && mpwValid && password !== newPassword) {
       // console.log(email, password);
       axios({
         url: "http://localhost:3000/update/password",
@@ -60,8 +64,7 @@ const UpdatePasswordContent = () => {
       setPassword("");
       setNewpassword("");
       setConfirmNewpassword("");
-    }
-    //else alert("비밀번호가 일치하지 않습니다.");
+    } else alert("입력칸을 전부 채워주세요.");
   };
   const activeEnter = (e) => {
     if (e.key === "Enter") submitPassword();
@@ -131,11 +134,12 @@ const UpdatePasswordContent = () => {
             className="my-2"
           />
           <div className="errorMessageWrap">
-            {newPassword !== confirmNewpassword && (
-              <div style={{ marginBottom: "3%" }}>
-                입력하신 비밀번호가 일치하지 않습니다.
-              </div>
-            )}
+            {newPassword !== confirmNewpassword &&
+              confirmNewpassword.length >= 1 && (
+                <div style={{ marginBottom: "3%" }}>
+                  입력하신 비밀번호가 일치하지 않습니다.
+                </div>
+              )}
           </div>
         </Form.Group>
         <Form.Group className="updateForm">
@@ -144,7 +148,7 @@ const UpdatePasswordContent = () => {
             variant="info"
             onClick={() => {
               submitPassword();
-            }}            
+            }}
           >
             Password 변경하기
           </Button>

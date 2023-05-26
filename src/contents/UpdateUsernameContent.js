@@ -20,27 +20,34 @@ const UpdateUsernameContent = () => {
 
   const submitUsername = () => {
     console.log(password, newUsername);
-    axios({
-      url: "http://localhost:3000/update/user",
-      method: "post",
-      withCredentials: true,
-      data: {
-        newUsername: newUsername,
-        password: password,
-      },
-    })
-      .then((res) => {
-        console.log("res.data", res.data);
-        if (res.status === 200) {
-          alert("username이 변경되었습니다!");
-          dispatch(setUsername(res.data.username));
-          window.location.reload();
-        }
+    if (newUsername && password)
+      axios({
+        url: "http://localhost:3000/update/user",
+        method: "post",
+        withCredentials: true,
+        data: {
+          newUsername: newUsername,
+          password: password,
+        },
       })
-      .catch((err) => {
-        alert(`${err.response.data.message}\n변경에 실패하였습니다.`);
-        console.log(err);
-      });
+        .then((res) => {
+          console.log("res.data", res.data);
+          if (res.status === 200) {
+            alert("username이 변경되었습니다!");
+            dispatch(setUsername(res.data.username));
+            window.location.reload();
+          }
+        })
+        .catch((err) => {
+          alert(`${err.response.data.message}\n변경에 실패하였습니다.`);
+          console.log(err);
+        });
+    else if (newUsername === "" && password)
+      alert("변경할 이름을 입력해주세요.");
+    else if (newUsername && password === "") alert("비밀번호를 입력해주세요.");
+    else if (newUsername === "" && password === "")
+      alert("입력칸을 전부 채워주세요.");
+
     setNewUsername("");
     setPassword("");
   };

@@ -12,7 +12,7 @@ const RegistModal = ({ show, onHide }) => {
   const [email, setEmail] = useState("");
   const [username, _setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confrimPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
   const dispatch = useDispatch();
@@ -44,34 +44,72 @@ const RegistModal = ({ show, onHide }) => {
   };
 
   const register = () => {
-    axios({
-      url: "http://localhost:3000/register",
-      method: "POST",
-      withCredentials: true,
-      data: {
-        username: username,
-        email: email,
-        password: password,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        const username = response.data.username;
-        const email = response.data.email;
-        _setUsername("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        dispatch(setUsername(username));
-        dispatch(setUserEmail(email));
-        onHide(true);
-        alert("회원가입이 성공적으로 이루어졌습니다.");
-        console.log(response.data.message);
+    if (
+      username &&
+      email &&
+      password &&
+      confirmPassword &&
+      emailValid &&
+      pwValid &&
+      password === confirmPassword
+    )
+      axios({
+        url: "http://localhost:3000/register",
+        method: "POST",
+        withCredentials: true,
+        data: {
+          username: username,
+          email: email,
+          password: password,
+        },
       })
-      .catch((error) => {
-        // Handle error.
-        console.log("An error occurred:", error);
-      });
+        .then((response) => {
+          console.log(response);
+          const username = response.data.username;
+          const email = response.data.email;
+          _setUsername("");
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
+          dispatch(setUsername(username));
+          dispatch(setUserEmail(email));
+          onHide(true);
+          alert("회원가입이 성공적으로 이루어졌습니다.");
+          console.log(response.data.message);
+        })
+        .catch((error) => {
+          // Handle error.
+          console.log("An error occurred:", error);
+        });
+    else if (
+      username &&
+      email &&
+      password &&
+      confirmPassword &&
+      !emailValid &&
+      pwValid
+    )
+      alert("email을 조건에 맞게 입력해주세요.");
+    else if (
+      username &&
+      email &&
+      password &&
+      confirmPassword &&
+      emailValid &&
+      !pwValid
+    )
+      alert("password를 조건에 맞게 입력해주세요.");
+    else if (
+      username &&
+      email &&
+      password &&
+      confirmPassword &&
+      emailValid &&
+      pwValid &&
+      password !== confirmPassword
+    )
+      alert("비밀번호가 일치하지 않습니다.");
+    else alert("입력칸을 전부 채워주세요.");
   };
 
   const activeEnter = (e) => {
@@ -142,7 +180,7 @@ const RegistModal = ({ show, onHide }) => {
                 type="password"
                 id="radius"
                 placeholder="비밀번호 확인"
-                value={confrimPassword}
+                value={confirmPassword}
                 onChange={onChangeConfirmPassword}
                 onKeyDown={(e) => {
                   activeEnter(e);
@@ -150,8 +188,8 @@ const RegistModal = ({ show, onHide }) => {
                 className="my-2"
               />
               <div className="errorMessageWrap">
-                {!(password === confrimPassword) &&
-                  confrimPassword.length > 0 && (
+                {!(password === confirmPassword) &&
+                  confirmPassword.length > 0 && (
                     <div>비밀번호가 일치하지 않습니다.</div>
                   )}
               </div>

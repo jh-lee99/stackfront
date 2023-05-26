@@ -15,28 +15,32 @@ const LoginModal = ({ show, onHide }) => {
   const dispatch = useDispatch();
 
   const Login = async (email, password) => {
-    axios({
-      url: "http://localhost:3000/login",
-      method: "POST",
-      withCredentials: true,
-      data: {
-        email: email,
-        password: password,
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          if (response.data.username !== "") {
-            dispatch(setUsername(response.data.username));
-            dispatch(setUserEmail(response.data.email));
-          }
-        }
+    if (email && password)
+      axios({
+        url: "http://localhost:3000/login",
+        method: "POST",
+        withCredentials: true,
+        data: {
+          email: email,
+          password: password,
+        },
       })
-      .catch((error) => {
-        console.log(error);
-        alert("로그인 실패: 등록되지 않은 사용자\n" + error);
-      });
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response.data);
+            if (response.data.username !== "") {
+              dispatch(setUsername(response.data.username));
+              dispatch(setUserEmail(response.data.email));
+            }
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("로그인 실패: 등록되지 않은 사용자\n" + error);
+        });
+    else if (email === "" && password) alert("email을 입력해주세요.");
+    else if (email && password === "") alert("password를 입력해주세요.");
+    else alert("입력칸을 전부 채워주세요.");
   };
 
   const activeEnter = (e) => {
