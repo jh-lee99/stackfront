@@ -69,7 +69,6 @@
   margin-right: auto;
   min-height: 70vh;
   height: auto;
-  //max-height: 706.77px;
 }
 .imgBtnBox {
   display: flex;
@@ -199,9 +198,4 @@ nav {
   display: flex;
   flex-direction: column;
   margin: 5% 5%;
-}
-
-.highlight {
-  background-color: yellow;
-  color: blue;
 }

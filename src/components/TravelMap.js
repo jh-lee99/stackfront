@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const centerDefault = { lat: 37.55998, lng: 126.9858296 }; // center 초기값, 현재 위치를 받아 오지 못할경우 나타는 좌표
 
 const containerStyle = {
-  width: "80%",
+  width: "60%",
   height: "60vh",
 };
 

@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { Calendar } from "react-calendar";
 import moment from "moment";
-
-import { useSelector, useDispatch } from "react-redux";
-import "react-calendar/dist/Calendar.css";
+import { useDispatch } from "react-redux";
 import { dateDiff } from "../Reducer/DateDiffReducer";
+import "../../node_modules/react-calendar/dist/Calendar.css";
 
 function TravelCalendar() {
   const [selectedDates, setSelectedDates] = useState([]);
-  const date = useSelector((state) => state.DateDiffReducer.date);
   const dispatch = useDispatch();
 
   const dayDiff = () => {
@@ -54,7 +52,7 @@ function TravelCalendar() {
         showNeighboringMonth={false} //  이전, 이후 달의 날짜는 보이지 않도록 설정
         prev2Label={null}
         next2Label={null}
-        className="mx-auto w-full text-sm border-b"
+        // className="mx-auto w-full text-sm border-b"
         activeStartDate={null}
       />
       {selectedDates.length === 2 ? (

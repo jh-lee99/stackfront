@@ -168,7 +168,13 @@ const GptApiContentModal = ({ show, onHide }) => {
                 />
               </Form.Group>
               {showButton && (
-                <Button block variant="info" type="button" onClick={addForm}>
+                <Button
+                  block
+                  variant="info"
+                  type="button"
+                  onClick={addForm}
+                  style={{ borderRadius: "8px" }}
+                >
                   출발지 입력하기!
                 </Button>
               )}
