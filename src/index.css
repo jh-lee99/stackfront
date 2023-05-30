@@ -96,12 +96,11 @@ nav {
   margin: auto;
   flex-direction: column;
   justify-content: center;
-  //max-height: 591.75px;
 }
 
 .loadingStyle {
   margin: auto;
-  justifycontent: center;
+  justify-content: center;
   width: 80%;
   margin-bottom: 2%;
 }
@@ -161,12 +160,12 @@ nav {
 
 .setCenter {
   display: flex;
-  justifycontent: center;
+  justify-content: center;
 }
 
 #setCenter {
   display: flex;
-  justifycontent: center;
+  justify-content: center;
 }
 
 .setMap {
