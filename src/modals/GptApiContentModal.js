@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { startLoading, finishLoading } from "../Reducer/LoadingReducer";
 import { loadPlace } from "../Reducer/MapReducer";
 import { dateDiff } from "../Reducer/DateDiffReducer";
-//import { eventListeners } from "@popperjs/core";
 
 const GptApiContentModal = ({ show, onHide }) => {
   const [dest, setDest] = useState("");

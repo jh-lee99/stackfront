@@ -23,13 +23,13 @@ const Header = () => {
       <>
         <header>
           <Navbar bg="light" expand="lg" id="radius">
-            <Container>
+            <Container style={{ paddingLeft: "3%", paddingRight: "5%" }}>
               <Navbar.Brand href="/">
                 <img
                   src="images\logo.png"
                   alt="For. travel"
                   width="auto"
-                  height="50vh"
+                  height="40vh"
                 />
               </Navbar.Brand>
               <Dropdown />
@@ -50,13 +50,13 @@ const Header = () => {
         <LoginModal show={LoginModalOn} onHide={() => setLoginModalOn(false)} />
         <header>
           <Navbar bg="light" expand="lg" id="radius">
-            <Container>
+            <Container style={{ paddingLeft: "3%", paddingRight: "5%" }}>
               <Navbar.Brand href="/">
                 <img
                   src="images\logo.png"
                   alt="For. travel"
                   width="auto"
-                  height="50vh"
+                  height="40vh"
                 />
               </Navbar.Brand>
 
