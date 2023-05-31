@@ -3559,7 +3559,7 @@ fieldset:disabled .btn {
 }
 .navbar {
   --bs-navbar-padding-x: 0;
-  --bs-navbar-padding-y: 1.5rem;
+  --bs-navbar-padding-y: 1rem;
   --bs-navbar-color: rgba(0, 0, 0, 0.3);
   --bs-navbar-hover-color: #1a1a1a;
   --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);
@@ -3584,6 +3584,8 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
+  margin-left: 5%;
+  margin-right: 5%;
 }
 .navbar > .container,
 .navbar > .container-fluid,
