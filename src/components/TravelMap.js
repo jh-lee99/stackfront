@@ -7,7 +7,8 @@ const centerDefault = { lat: 37.55998, lng: 126.9858296 }; // center 초기값, 
 
 const containerStyle = {
   width: "60%",
-  height: "60vh",
+  height: "50vh",
+  borderRadius: "8px",
 };
 
 function TravelMap() {
@@ -51,7 +52,6 @@ function TravelMap() {
   const onLoad = useCallback(
     function callback(map) {
       const bounds = new window.google.maps.LatLngBounds(center);
-      map.fitBounds(bounds);
       setMap(map);
     },
     [center]
