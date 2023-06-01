@@ -3559,7 +3559,7 @@ fieldset:disabled .btn {
 }
 .navbar {
   --bs-navbar-padding-x: 0;
-  --bs-navbar-padding-y: 1rem;
+  --bs-navbar-padding-y: 0.75rem;
   --bs-navbar-color: rgba(0, 0, 0, 0.3);
   --bs-navbar-hover-color: #1a1a1a;
   --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);

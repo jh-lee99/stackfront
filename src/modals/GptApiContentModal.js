@@ -133,6 +133,8 @@ const GptApiContentModal = ({ show, onHide }) => {
           setResult(response.data.result);
           dispatch(finishLoading());
           setShowButton(true);
+          setLangcode("ko");
+          setSelectedBtnIndex(0);
         })
         .catch((error) => {
           // Handle error.
@@ -145,7 +147,6 @@ const GptApiContentModal = ({ show, onHide }) => {
       resetDest();
       resetStart();
       resetDate();
-      setLangcode("ko");
     }
   };
   return (
@@ -301,7 +302,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                       className={` ${selectedBtnIndex === 2 && "active"}`}
                       onClick={() => {
                         handleClick(2);
-                        changeLang("jp");
+                        changeLang("ja");
                       }}
                     >
                       일본어
