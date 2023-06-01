@@ -4958,6 +4958,7 @@ fieldset:disabled .btn {
   border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
   outline: 0;
   border-radius: 8px;
+  min-width: 400px;
 }
 .modal-backdrop {
   --bs-backdrop-zindex: 1050;

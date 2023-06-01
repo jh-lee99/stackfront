@@ -19,7 +19,9 @@ const GptApiContentModal = ({ show, onHide }) => {
   const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
   const [selectedBtnIndex, setSelectedBtnIndex] = useState(0);
+  const [langcord, setLangcord] = useState("ko");
   const handleClick = (index) => {
+    // 버튼 활성화 함수
     setSelectedBtnIndex(index);
   };
 
@@ -62,6 +64,28 @@ const GptApiContentModal = ({ show, onHide }) => {
       element.addEventListener("click", handleLocationClick);
     });
   }, [result]);
+
+  function changeLang(lang) {
+    setLangcord(lang);
+    // axios({
+    //   url: "http://localhost:3000/...",
+    //   method: "GET",
+    //   withCredentials: true,
+    //   data: {
+    //     langcord: langcord,
+    //   },
+    // })
+    //   .then((response) => {
+    //     alert(response);
+    //   })
+    //   .catch((error) => {
+    //     alert(error);
+    //   });
+  }
+  useEffect(() => {
+    // langcord 작동 확인
+    console.log(langcord);
+  }, [langcord]);
 
   const onChangeDest = (e) => {
     setDest(e.target.value);
@@ -134,6 +158,7 @@ const GptApiContentModal = ({ show, onHide }) => {
       resetDest();
       resetStart();
       resetDate();
+      setLangcord("ko");
     }
   };
   return (
@@ -261,6 +286,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                       }}
                       onClick={() => {
                         handleClick(0);
+                        changeLang("ko");
                       }}
                     >
                       한국어
@@ -272,6 +298,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                       style={{ width: "94px", height: "48px" }}
                       onClick={() => {
                         handleClick(1);
+                        changeLang("eng");
                       }}
                     >
                       영어
@@ -288,6 +315,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                       className={` ${selectedBtnIndex === 2 && "active"}`}
                       onClick={() => {
                         handleClick(2);
+                        changeLang("jap");
                       }}
                     >
                       일본어
