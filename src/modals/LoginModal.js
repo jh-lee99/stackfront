@@ -15,7 +15,7 @@ const LoginModal = ({ show, onHide }) => {
   const dispatch = useDispatch();
 
   const Login = async (email, password) => {
-    if (email && password)
+    if (email && password && emailValid)
       axios({
         url: "http://localhost:3000/login",
         method: "POST",
@@ -40,6 +40,8 @@ const LoginModal = ({ show, onHide }) => {
         });
     else if (email === "" && password) alert("email을 입력해주세요.");
     else if (email && password === "") alert("password를 입력해주세요.");
+    else if (email && password && !emailValid)
+      alert("올바르지 않은 email 입니다.");
     else alert("입력칸을 전부 채워주세요.");
   };
 
