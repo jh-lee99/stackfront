@@ -180,8 +180,8 @@ p {
   margin-bottom: 1rem;
 }
 abbr[title] {
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   cursor: help;
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;

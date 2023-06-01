@@ -19,7 +19,7 @@ const GptApiContentModal = ({ show, onHide }) => {
   const [result, setResult] = useState("<div></div>");
   const [showButton, setShowButton] = useState(true);
   const [selectedBtnIndex, setSelectedBtnIndex] = useState(0);
-  const [langcord, setLangcord] = useState("ko");
+  const [langcode, setLangcode] = useState("ko");
   const handleClick = (index) => {
     // 버튼 활성화 함수
     setSelectedBtnIndex(index);
@@ -66,26 +66,12 @@ const GptApiContentModal = ({ show, onHide }) => {
   }, [result]);
 
   function changeLang(lang) {
-    setLangcord(lang);
-    // axios({
-    //   url: "http://localhost:3000/...",
-    //   method: "GET",
-    //   withCredentials: true,
-    //   data: {
-    //     langcord: langcord,
-    //   },
-    // })
-    //   .then((response) => {
-    //     alert(response);
-    //   })
-    //   .catch((error) => {
-    //     alert(error);
-    //   });
+    setLangcode(lang);
   }
   useEffect(() => {
     // langcord 작동 확인
-    console.log(langcord);
-  }, [langcord]);
+    console.log(langcode);
+  }, [langcode]);
 
   const onChangeDest = (e) => {
     setDest(e.target.value);
@@ -139,6 +125,7 @@ const GptApiContentModal = ({ show, onHide }) => {
           dest: dest,
           start: start,
           date: date,
+          langcode: langcode,
         },
       })
         .then((response) => {
@@ -158,7 +145,7 @@ const GptApiContentModal = ({ show, onHide }) => {
       resetDest();
       resetStart();
       resetDate();
-      setLangcord("ko");
+      setLangcode("ko");
     }
   };
   return (
@@ -188,7 +175,6 @@ const GptApiContentModal = ({ show, onHide }) => {
                   placeholder="목적지 입력"
                   className="my-3"
                   style={{ borderRadius: "8px" }}
-                  //onKeyDown={handleKeyPress}
                 />
               </Form.Group>
               {showButton && (
@@ -298,7 +284,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                       style={{ width: "94px", height: "48px" }}
                       onClick={() => {
                         handleClick(1);
-                        changeLang("eng");
+                        changeLang("en");
                       }}
                     >
                       영어
@@ -315,7 +301,7 @@ const GptApiContentModal = ({ show, onHide }) => {
                       className={` ${selectedBtnIndex === 2 && "active"}`}
                       onClick={() => {
                         handleClick(2);
-                        changeLang("jap");
+                        changeLang("jp");
                       }}
                     >
                       일본어
